@@ -1,0 +1,166 @@
+.header {
+  position: sticky;
+  z-index: 30;
+  top: var(--site-header-inset);
+  width: min(1200px, calc(100% - clamp(24px, 5vw, 64px)));
+  min-height: 66px;
+  margin: var(--site-header-inset) auto 14px;
+  padding: 8px clamp(12px, 2vw, 24px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(12px, 2vw, 28px);
+  border: 1px solid #dce8f7;
+  border-radius: 24px;
+  color: #111a50;
+  background: var(--page-background);
+  box-shadow: 0 6px 20px #19356715, 0 1px 3px #1935670c;
+}
+
+.brand {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+}
+
+.brandRobot {
+  display: block;
+  width: clamp(36px, 4vw, 46px);
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.brandCopy {
+  display: grid;
+  gap: 3px;
+}
+
+.brandName {
+  font-size: clamp(22px, 2.4vw, 29px);
+  font-weight: 850;
+  letter-spacing: -.045em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.brandName > span {
+  color: #244ed8;
+  background: linear-gradient(105deg, #0872df, #8636d4);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brandTagline {
+  color: #455571;
+  font-size: 11px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.navigation,
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.navigation {
+  gap: clamp(2px, .65vw, 10px);
+  color: #293653;
+}
+
+.navigation > *,
+.actions > * {
+  display: grid;
+  min-height: 44px;
+  padding-inline: clamp(8px, 1vw, 15px);
+  place-items: center;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.navigation a:hover,
+.navigation [aria-current] {
+  color: #0759b5;
+  background: #ebf4ff;
+}
+
+.header button:disabled {
+  color: #606c83;
+  cursor: not-allowed;
+}
+
+.actions {
+  flex: none;
+  gap: 8px;
+}
+
+.login {
+  border: 1px solid #d9e4f1;
+}
+
+.start {
+  color: #fff;
+  background: #095cc1;
+  box-shadow: 0 2px 6px #075cbd2b;
+}
+
+.start:hover {
+  background: #064f9f;
+}
+
+@media (max-width: 740px) {
+  .header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 3px 6px;
+    padding: 7px 10px 5px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+  }
+
+  .navigation {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2px;
+  }
+
+  .navigation > *,
+  .actions > * {
+    min-height: 40px;
+    padding-inline: 5px;
+    font-size: 13px;
+  }
+
+  .actions {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .actions .login {
+    display: none;
+  }
+
+  .actions .start {
+    padding-inline: 10px;
+  }
+
+  .brandRobot {
+    width: 34px;
+  }
+
+  .brandName {
+    font-size: clamp(18px, 5.6vw, 22px);
+  }
+
+  .brandTagline {
+    font-size: 9px;
+  }
+}
