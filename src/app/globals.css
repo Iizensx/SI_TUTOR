@@ -5,9 +5,9 @@
   --muted-ink: #334a64;
   --blue: #075cbd;
   --page-width: 1280px;
-  --page-background: #f5f9fd;
+  --page-background: #ffffff;
   --site-header-inset: 12px;
-  --site-header-clearance: 90px;
+  --site-header-clearance: 98px;
 }
 
 html {
@@ -274,7 +274,7 @@ summary:focus-visible {
 @media (max-width: 740px) {
   :root {
     --site-header-inset: 8px;
-    --site-header-clearance: 112px;
+    --site-header-clearance: 118px;
   }
 }
 
@@ -332,3 +332,4 @@ summary:focus-visible {
     transition: none;
   }
 }
+

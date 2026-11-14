@@ -24,26 +24,23 @@ export function CourseIcon({ name }: { name: keyof typeof iconPaths }) {
 }
 
 export function CourseHero({
-  course, subject, children, wide = false,
+  course, subject, children, wide = false, showDescription = false,
 }: {
   course: Course;
   subject: Subject;
   children: ReactNode;
   wide?: boolean;
+  showDescription?: boolean;
 }) {
   return (
     <section className={wide ? `${styles.hero} ${styles.heroWide}` : styles.hero} aria-labelledby="course-title">
-      <Image className={styles.heroImage} src={course.cover} alt="" fill sizes={wide ? "(max-width: 1200px) 100vw, 1160px" : "(max-width: 860px) 100vw, 790px"} preload />
+      <Image className={styles.heroImage} src={course.cover} alt="" fill sizes="(max-width: 1200px) 100vw, 1180px" preload />
       <div className={styles.heroBody}>
         <div className={styles.heroBadges}>
           <span>{subject.name}</span>
-          {course.free && !wide && <span className={styles.freeBadge}>Free</span>}
         </div>
         <h1 id="course-title">{course.title}</h1>
-        <p className={styles.rating}>
-          <span className={styles.stars} aria-hidden="true">★★★★★</span>
-          <span><span className={styles.srOnly}>Rated </span>{course.rating.toFixed(1)} ({course.reviews} reviews)</span>
-        </p>
+        {showDescription && <p className={styles.heroDescription}>{course.description}</p>}
         <ul className={styles.heroMeta}>
           <li><CourseIcon name="clock" /> {course.duration}</li>
           <li><CourseIcon name="book" /> {course.lessonCount} lesson{course.lessonCount === 1 ? "" : "s"}</li>
@@ -110,4 +107,3 @@ export function Curriculum({
     </div>
   );
 }
-

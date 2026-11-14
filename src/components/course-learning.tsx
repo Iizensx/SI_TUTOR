@@ -2,48 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState, useSyncExternalStore } from "react";
+import { useRef, useState } from "react";
 import type { Course, Lesson, Subject } from "@/lib/catalog";
 import { CourseHero, CourseIcon, Curriculum } from "./course-shared";
+import { CourseAccess, useDemoAccess } from "./course-access";
+import { getCompletedLessons, lessonStorageKey, useSavedValue } from "./lesson-progress";
 import styles from "./course-experience.module.css";
-
-const storageChange = "si-tutor-lesson-storage";
-const inMemory = new Map<string, string>();
-
-function subscribe(onChange: () => void) {
-  window.addEventListener("storage", onChange);
-  window.addEventListener(storageChange, onChange);
-  return () => {
-    window.removeEventListener("storage", onChange);
-    window.removeEventListener(storageChange, onChange);
-  };
-}
-
-function useSavedValue(key: string) {
-  const value = useSyncExternalStore(
-    subscribe,
-    () => {
-      try {
-        return window.localStorage.getItem(key) ?? inMemory.get(key) ?? "";
-      } catch {
-        return inMemory.get(key) ?? "";
-      }
-    },
-    () => "",
-  );
-
-  function save(next: string) {
-    inMemory.set(key, next);
-    try {
-      window.localStorage.setItem(key, next);
-    } catch {
-      // Keep the value available in this tab when storage is unavailable.
-    }
-    window.dispatchEvent(new Event(storageChange));
-  }
-
-  return [value, save] as const;
-}
 
 function LessonNotes({ storageKey }: { storageKey: string }) {
   const [savedNote, saveNote] = useSavedValue(storageKey);
@@ -74,13 +38,26 @@ function LessonNotes({ storageKey }: { storageKey: string }) {
   );
 }
 
-export function LearningRoom({ course, subject, preview }: { course: Course; subject: Subject; preview: boolean }) {
+export function LearningRoom(props: { course: Course; subject: Subject; preview: boolean }) {
+  const access = useDemoAccess(props.course.slug);
+  if (props.preview || access.active) return <LessonContent {...props} expires={access.active ? access.expiry : null} />;
+
+  return (
+    <section className={styles.enrollCard}>
+      <h1>{props.course.title}</h1>
+      <p>{access.expired ? "Your 3-month access has ended." : "Purchase this subject to open its lessons and study files."}</p>
+      <CourseAccess slug={props.course.slug} />
+    </section>
+  );
+}
+
+function LessonContent({ course, subject, preview, expires }: { course: Course; subject: Subject; preview: boolean; expires: number | null }) {
   const lessons = course.sections.flatMap(({ lessons }) => lessons);
   const [tab, setTab] = useState<"overview" | "notes">("overview");
   const headingRef = useRef<HTMLHeadingElement>(null);
-  const keyPrefix = `si-tutor:course:${course.slug}`;
+  const keyPrefix = lessonStorageKey(course.slug);
   const [savedProgress, saveProgress] = useSavedValue(`${keyPrefix}:completed`);
-  const completed = new Set(savedProgress.split(",").filter((id) => lessons.some((lesson) => lesson.id === id)));
+  const completed = getCompletedLessons(savedProgress, lessons.map(({ id }) => id));
   const progress = lessons.length ? Math.round((completed.size / lessons.length) * 100) : 0;
   const [savedLesson, saveLesson] = useSavedValue(`${keyPrefix}:current`);
   const selected = preview ? 0 : Math.max(0, lessons.findIndex(({ id }) => id === savedLesson));
@@ -100,12 +77,13 @@ export function LearningRoom({ course, subject, preview }: { course: Course; sub
             <p className={styles.previewLabel}>Course Preview</p>
           ) : (
             <div className={styles.progress}>
+              {expires && <p className="mb-3 text-sm">Access until {new Date(expires).toLocaleDateString("en-AU")}</p>}
               <label htmlFor="course-progress">Your Progress <strong>{progress}%</strong></label>
               <progress id="course-progress" max={100} value={progress}>{progress}%</progress>
             </div>
           )}
           {preview ? (
-            <Link className={styles.primaryButton} href={`/courses/${course.slug}/learn`}>Open Demo Course <CourseIcon name="arrow" /></Link>
+            <Link className={styles.primaryButton} href={`/courses/${course.slug}`}>View subject details <CourseIcon name="arrow" /></Link>
           ) : lesson && (
             <a className={styles.primaryButton} href="#lesson"><CourseIcon name="play" /> Continue Learning</a>
           )}
@@ -120,10 +98,16 @@ export function LearningRoom({ course, subject, preview }: { course: Course; sub
               {selected === 0 && <span className={styles.previewBadge}>Preview</span>}
               <span className={styles.lessonDuration}>{lesson.duration}</span>
             </header>
+            {!preview && lesson.video ? (
+              <video className="w-full rounded-xl bg-slate-950" controls preload="metadata" src={lesson.video.source}>
+                <track kind="captions" src={lesson.video.captions} srcLang="en" label="English" />
+              </video>
+            ) : (
             <figure className={styles.lessonMedia}>
               <Image src={course.cover} alt="" fill sizes="(max-width: 860px) 100vw, 590px" />
-              <figcaption>Illustrated lesson preview</figcaption>
+              <figcaption>Lesson illustration · No video uploaded</figcaption>
             </figure>
+            )}
             {!preview && (
               <div className={styles.lessonTabs} role="group" aria-label="Lesson resources">
                 <button type="button" aria-pressed={tab === "overview"} onClick={() => setTab("overview")}>Overview</button>
@@ -144,6 +128,13 @@ export function LearningRoom({ course, subject, preview }: { course: Course; sub
             )}
             {!preview && (
               <>
+                <section className="my-4 rounded-xl border border-slate-200 p-4" aria-labelledby="lesson-files-title">
+                  <h3 id="lesson-files-title" className="font-bold">Lesson Files</h3>
+                  <a className="mt-2 inline-block font-semibold text-blue-800 underline" download={lesson.id + "-study-notes.txt"}
+                    href={"data:text/plain;charset=utf-8," + encodeURIComponent([lesson.title, lesson.description, ...lesson.takeaways].join("\n\n"))}>
+                    {lesson.title} — Study notes (.txt)
+                  </a>
+                </section>
                 <button
                   type="button"
                   className={styles.completeButton}

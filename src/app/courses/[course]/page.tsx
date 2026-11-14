@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { CourseAccess } from "@/components/course-access";
 import { Breadcrumbs } from "@/components/catalog-shell";
 import { CourseHero, CourseIcon, Curriculum } from "@/components/course-shared";
-import { courses, getCourse, getCoursesBySubject, getSubject } from "@/lib/catalog";
+import { courses, formatCoursePrice, getCourse, getCoursesBySubject, getSubject } from "@/lib/catalog";
 import styles from "@/components/course-experience.module.css";
 
 export function generateStaticParams() {
@@ -31,28 +32,30 @@ export default async function CourseDetail({ params }: { params: Promise<{ cours
           { label: course.title },
         ]} />
         <div className={styles.detailGrid}>
-          <CourseHero course={course} subject={subject}>
+          <CourseHero course={course} subject={subject} showDescription>
             <Link className={styles.previewButton} href={`${learnHref}?preview=1`}>
               <CourseIcon name="play" /> View Preview
             </Link>
           </CourseHero>
 
-          <aside className={styles.sidebar} aria-label="Enrollment and instructor">
+          <aside className={styles.sidebar} aria-label="Price and instructor">
             <section className={styles.enrollCard}>
+              <div className={styles.purchaseCover}>
+                <Image src={course.cover} alt={course.title + " cover"} fill sizes="(max-width: 820px) 90vw, 420px" />
+              </div>
               <div className={styles.enrollTitle}>
-                <h2>{course.free ? "Free" : "Course access"}</h2>
+                <h2>{formatCoursePrice(course.price)}</h2>
                 <span>Demo</span>
               </div>
-              <Link className={styles.primaryButton} href={learnHref}>
-                {course.free ? "Enroll Now – It’s Free" : "Open Demo Course"} <CourseIcon name="arrow" />
-              </Link>
+              <CourseAccess slug={course.slug} />
               <h3>This course includes</h3>
               <ul className={styles.includes}>
                 <li><CourseIcon name="book" /> {course.lessonCount} lesson{course.lessonCount === 1 ? "" : "s"}</li>
                 <li><CourseIcon name="clock" /> {course.duration} of content</li>
-                <li><CourseIcon name="check" /> Lesson notes and progress</li>
+                <li><CourseIcon name="check" /> {course.lessonCount} study {course.lessonCount === 1 ? "file" : "files"}</li>
+                <li><CourseIcon name="clock" /> 3 months of access from purchase</li>
               </ul>
-              <p className={styles.enrollNote}>Demo access opens the classroom. Your progress is saved in this browser.</p>
+              <p className={styles.enrollNote}>Example price · One-time purchase per subject.</p>
             </section>
 
             <section className={styles.instructor}>
@@ -83,7 +86,8 @@ export default async function CourseDetail({ params }: { params: Promise<{ cours
             </section>
 
             <section id="curriculum" className={styles.contentSection}>
-              <h2>Curriculum</h2>
+              <h2>Curriculum &amp; Study Files</h2>
+              <p>Each lesson includes study notes in a text file. Videos appear in the classroom once available.</p>
               <Curriculum course={course} />
             </section>
 
@@ -94,7 +98,7 @@ export default async function CourseDetail({ params }: { params: Promise<{ cours
                   {related.map((item) => (
                     <Link key={item.slug} className={styles.relatedCard} href={`/courses/${item.slug}`}>
                       <Image src={item.cover} alt="" width={360} height={180} sizes="(max-width: 500px) 45vw, 230px" />
-                      <div><h3>{item.title}</h3><p><span aria-hidden="true">★</span> {item.rating.toFixed(1)} · {item.lessonCount} lesson{item.lessonCount === 1 ? "" : "s"}</p></div>
+                      <div><h3>{item.title}</h3><p>{item.lessonCount} lesson{item.lessonCount === 1 ? "" : "s"}</p></div>
                     </Link>
                   ))}
                 </div>
@@ -106,4 +110,3 @@ export default async function CourseDetail({ params }: { params: Promise<{ cours
     </div>
   );
 }
-

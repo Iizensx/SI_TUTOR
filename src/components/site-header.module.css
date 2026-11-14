@@ -1,20 +1,20 @@
 .header {
   position: sticky;
   z-index: 30;
-  top: var(--site-header-inset);
-  width: min(1200px, calc(100% - clamp(24px, 5vw, 64px)));
-  min-height: 66px;
-  margin: var(--site-header-inset) auto 14px;
-  padding: 8px clamp(12px, 2vw, 24px);
-  display: flex;
+  top: 0;
+  width: 100%;
+  min-height: 76px;
+  margin: 0 0 14px;
+  padding: 8px 20vw;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  justify-content: space-between;
   gap: clamp(12px, 2vw, 28px);
-  border: 1px solid #dce8f7;
-  border-radius: 24px;
+  border: 0;
+  border-radius: 0;
   color: #111a50;
   background: var(--page-background);
-  box-shadow: 0 6px 20px #19356715, 0 1px 3px #1935670c;
+  box-shadow: none;
 }
 
 .brand {
@@ -68,6 +68,7 @@
 }
 
 .navigation {
+  justify-self: center;
   gap: clamp(2px, .65vw, 10px);
   color: #293653;
 }
@@ -86,8 +87,8 @@
 
 .navigation a:hover,
 .navigation [aria-current] {
-  color: #0759b5;
-  background: #ebf4ff;
+  color: #111a50;
+  background: #f0f1f3;
 }
 
 .header button:disabled {
@@ -96,32 +97,59 @@
 }
 
 .actions {
+  justify-self: end;
   flex: none;
   gap: 8px;
 }
 
-.login {
-  border: 1px solid #d9e4f1;
+.actions .login {
+  padding-inline: 4px;
+  border-radius: 0;
+  color: #111a50;
+  background: transparent;
+  font-weight: 600;
 }
 
-.start {
+.actions .login:hover {
+  color: #0759b5;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.actions .signup {
+  min-width: 96px;
+  padding-inline: 19px;
+  border-radius: 999px;
   color: #fff;
-  background: #095cc1;
-  box-shadow: 0 2px 6px #075cbd2b;
+  background: #202124;
+  box-shadow: 0 2px 6px #111a5026;
+  transition: background .18s ease, box-shadow .18s ease;
 }
 
-.start:hover {
-  background: #064f9f;
+.actions .signup:hover {
+  background: #3a3b3e;
+  box-shadow: 0 4px 12px #111a5030;
 }
 
-@media (max-width: 740px) {
+.actions .login:focus-visible,
+.actions .signup:focus-visible {
+  outline: 3px solid #075cbd;
+  outline-offset: 3px;
+}
+
+@media (min-width: 861px) and (max-width: 1440px) {
+  .header {
+    padding-inline: clamp(64px, calc(65.3vw - 653px), 20vw);
+  }
+}
+
+@media (max-width: 860px) {
   .header {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 3px 6px;
-    padding: 7px 10px 5px;
+    padding: 10px 10px 8px;
     margin-bottom: 10px;
-    border-radius: 20px;
   }
 
   .navigation {
@@ -144,12 +172,17 @@
     grid-row: 1;
   }
 
-  .actions .login {
-    display: none;
+  .actions {
+    gap: 3px;
   }
 
-  .actions .start {
-    padding-inline: 10px;
+  .actions .login {
+    padding-inline: 12px;
+  }
+
+  .actions .signup {
+    min-width: 0;
+    padding-inline: 12px;
   }
 
   .brandRobot {
@@ -164,3 +197,10 @@
     font-size: 9px;
   }
 }
+
+
+
+
+
+
+

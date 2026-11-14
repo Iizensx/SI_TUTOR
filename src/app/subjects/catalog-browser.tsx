@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 
 import { CatalogIcon } from "@/components/catalog-shell";
-import type { Course, Subject } from "@/lib/catalog";
+import { formatCoursePrice, type Course, type Subject } from "@/lib/catalog";
 
+import { ContinueCourses } from "./continue-courses";
 import styles from "./catalog.module.css";
 
 const subjectStyles: Record<string, string> = {
@@ -16,6 +17,32 @@ const subjectStyles: Record<string, string> = {
   mathematics: styles.mathematics,
   citizenship: styles.citizenship,
 };
+
+function getDissolveGlow(input: HTMLInputElement) {
+  const context = document.createElement("canvas").getContext("2d");
+  if (!context) return "";
+
+  const style = getComputedStyle(input);
+  context.font = style.font || `${style.fontSize} ${style.fontFamily}`;
+  const spread = Number.parseFloat(style.getPropertyValue("--glow-spread")) || 1.5;
+  const gradients: string[] = [];
+  let x = -input.scrollLeft;
+
+  for (const segment of input.value.split(/(\s+)/)) {
+    const width = context.measureText(segment).width;
+    if (x > input.clientWidth) break;
+
+    if (segment.trim() && x + width > 0) {
+      const center = x + width / 2;
+      const radius = Math.max(width * .45, 8) * spread;
+      for (const [offset, scale, height, opacity] of [[0, .8, 7, .22], [.45, .55, 8, .18], [-.4, .65, 6, .16]]) {
+        gradients.push(`radial-gradient(ellipse ${radius * scale}px ${height}px at ${center + radius * offset}px 100%, rgb(0 0 0 / ${opacity}), transparent)`);
+      }
+    }
+    x += width;
+  }
+  return gradients.join(", ");
+}
 
 function SearchField({
   value,
@@ -28,17 +55,79 @@ function SearchField({
   placeholder: string;
   label: string;
 }) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [dissolve, setDissolve] = useState<{ text: string; offset: number; glow: string } | null>(null);
+  const clearing = dissolve !== null && value === "";
+
+  function clearSearch() {
+    const input = inputRef.current;
+    if (!input || !value) return;
+
+    setDissolve(window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? null
+      : { text: value, offset: input.scrollLeft, glow: getDissolveGlow(input) });
+    onChange("");
+    input.focus({ preventScroll: true });
+  }
+
   return (
-    <label className={styles.search}>
-      <input
-        aria-label={label}
-        type="search"
-        placeholder={placeholder}
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-      />
-      <CatalogIcon name="search" size={17} />
-    </label>
+    <div className={styles.search}>
+      <span className={styles.searchIcon} aria-hidden="true"><CatalogIcon name="search" size={17} /></span>
+      <div className={styles["t-clear"]} data-clearing={clearing || undefined}>
+        <input
+          ref={inputRef}
+          aria-label={label}
+          type="search"
+          placeholder={placeholder}
+          value={value}
+          onChange={(event) => {
+            setDissolve(null);
+            onChange(event.target.value);
+          }}
+          onKeyDown={(event) => {
+            if (event.key === "Escape" && value && !event.nativeEvent.isComposing) {
+              event.preventDefault();
+              clearSearch();
+            }
+          }}
+        />
+        {clearing && (
+          <>
+            <span className={styles["t-clear-mirror"]} aria-hidden="true">
+              <span style={{ marginLeft: -dissolve.offset }}>
+                {dissolve.text}
+              </span>
+            </span>
+            <span
+              className={styles["t-clear-placeholder"]}
+              aria-hidden="true"
+
+            >
+              {placeholder}
+            </span>
+            <span
+              className={styles["t-clear-glow"]}
+              aria-hidden="true"
+              style={{ backgroundImage: dissolve.glow }}
+              onAnimationEnd={() => setDissolve(null)}
+            />
+          </>
+        )}
+      </div>
+      {value && (
+        <button
+          type="button"
+          className={styles["t-clear-btn"]}
+          aria-label="Clear search"
+          onPointerDown={(event) => {
+            if (document.activeElement === inputRef.current) event.preventDefault();
+          }}
+          onClick={clearSearch}
+        >
+          <span>Clear</span><span aria-hidden="true">×</span>
+        </button>
+      )}
+    </div>
   );
 }
 
@@ -55,11 +144,14 @@ function Sidebar({ subjects, activeSlug }: { subjects: readonly Subject[]; activ
 
   return (
     <nav className={styles.sidebar} aria-label="Subject categories">
+      <p className={styles.sidebarTitle}>Categories</p>
       <ul>
         {links.map(({ label, href, icon, active }) => (
           <li key={href}>
             <Link href={href} scroll={false} aria-current={active ? "page" : undefined} className={subjectStyles[icon]}>
-              <CatalogIcon name={icon} size={20} />
+              <span className={styles.sidebarIcon}>
+                <CatalogIcon name={icon} size={20} />
+              </span>
               <span>{label}</span>
             </Link>
           </li>
@@ -98,9 +190,27 @@ function CatalogFrame({
         </div>
         <div className={styles.subjectSearch}>{search}</div>
       </div>
-      <div className={styles.browserLayout}>
-        <Sidebar subjects={subjects} activeSlug={activeSlug} />
-        {children}
+      <div className={styles.catalogLayout}>
+        <div className={styles.catalogMain}>
+          <section className={styles.catalogBanner} aria-labelledby="catalog-banner-title">
+            <Image
+              className={styles.bannerImage}
+              src="/home/hero.jpg"
+              alt=""
+              fill
+              sizes="(max-width: 1100px) 100vw, 75vw"
+            />
+            <div className={styles.bannerCopy}>
+              <h2 id="catalog-banner-title">Learn at your own pace</h2>
+              <p>Buy a course once and access its lessons and study files for 3 months.</p>
+            </div>
+          </section>
+          <div className={styles.browserLayout}>
+            <Sidebar subjects={subjects} activeSlug={activeSlug} />
+            {children}
+          </div>
+        </div>
+        <ContinueCourses />
       </div>
     </>
   );
@@ -124,7 +234,7 @@ export function SubjectBrowser({ subjects }: { subjects: readonly Subject[] }) {
             <li key={subject.slug} className={subjectStyles[subject.slug]}>
               <Link className={styles.subjectCard} href={`/subjects/${subject.slug}`}>
                 <span className={styles.subjectArt}>
-                  <Image src={subject.image} alt="" width={180} height={155} sizes="180px" />
+                  <Image src={subject.image} alt="" width={180} height={155} sizes="(max-width: 490px) 90px, 140px" />
                 </span>
                 <h2>{subject.name}</h2>
                 <p>{subject.description}</p>
@@ -152,28 +262,18 @@ function CourseCard({ course, subject }: { course: Course; subject: Subject }) {
             sizes="(max-width: 580px) 100vw, (max-width: 1080px) 48vw, 28vw"
           />
           <span className={styles.courseCategory}>{subject.name}</span>
-          {course.free && <span className={styles.free}>Free</span>}
-          {course.status === "completed" && (
-            <span className={styles.completed}><CatalogIcon name="check" size={13} /> Completed</span>
-          )}
         </div>
         <div className={styles.courseBody}>
-          <p className={styles.rating}>
-            <span className={styles.stars} aria-hidden="true">★★★★★</span>
-            <span><span className="sr-only">Rated </span>{course.rating.toFixed(1)} <span className="sr-only">out of 5, </span>({course.reviews})</span>
-          </p>
           <h2>{course.title}</h2>
           <p className={styles.courseDescription}>{course.description}</p>
-          {course.status === "in-progress" && (
-            <div className={styles.progress}>
-              <span>In progress</span>
-              <span className={styles.progressTrack} aria-hidden="true"><span /></span>
-            </div>
-          )}
           <ul className={styles.courseMeta} aria-label="Course information">
             <li><CatalogIcon name="book" size={14} />{course.lessonCount} lesson{course.lessonCount === 1 ? "" : "s"}</li>
             <li><CatalogIcon name="clock" size={14} />{course.duration}</li>
           </ul>
+          <p className="mt-2 text-sm text-slate-700">{course.lessonCount} study {course.lessonCount === 1 ? "file" : "files"} · 3 months of access</p>
+          <p className="mt-2 flex flex-wrap items-center justify-between gap-2 text-sm font-bold text-blue-800">
+            <span>{formatCoursePrice(course.price)}</span><span>View Details →</span>
+          </p>
         </div>
       </Link>
     </article>
@@ -190,16 +290,14 @@ export function CourseBrowser({
   courses: readonly Course[];
 }) {
   const [query, setQuery] = useState("");
-  const [status, setStatus] = useState("all");
   const [sort, setSort] = useState("newest");
   const [view, setView] = useState("grid");
   const normalized = query.trim().toLowerCase();
 
   const filtered = courses.filter((course) =>
-    `${course.title} ${course.description}`.toLowerCase().includes(normalized) &&
-    (status === "all" || course.status === status),
+    `${course.title} ${course.description}`.toLowerCase().includes(normalized),
   );
-  if (sort === "rating") filtered.sort((first, second) => second.rating - first.rating);
+  if (sort === "price") filtered.sort((first, second) => first.price - second.price);
   if (sort === "title") filtered.sort((first, second) => first.title.localeCompare(second.title));
 
   return (
@@ -213,22 +311,13 @@ export function CourseBrowser({
         <div className={styles.courseToolbar}>
           <div className={styles.filterGroup}>
             <p className={styles.results} role="status"><strong>{filtered.length}</strong> {filtered.length === 1 ? "course" : "courses"} found</p>
-            <label className={styles.selectField}>
-              <span>Status:</span>
-              <select value={status} onChange={(event) => setStatus(event.target.value)}>
-                <option value="all">All</option>
-                <option value="new">New</option>
-                <option value="in-progress">In progress</option>
-                <option value="completed">Completed</option>
-              </select>
-            </label>
           </div>
           <div className={styles.filterGroup}>
             <label className={styles.selectField}>
               <span>Sort by:</span>
               <select value={sort} onChange={(event) => setSort(event.target.value)}>
                 <option value="newest">Newest</option>
-                <option value="rating">Highest rated</option>
+                <option value="price">Lowest price</option>
                 <option value="title">Title A–Z</option>
               </select>
             </label>
@@ -243,13 +332,13 @@ export function CourseBrowser({
           </div>
         </div>
         {filtered.length ? (
-          <div className={`${styles.courseGrid} ${view === "list" ? styles.courseList : ""}`}>
+          <div key={subject.slug} className={`${styles.courseGrid} ${view === "list" ? styles.courseList : ""}`}>
             {filtered.map((course) => <CourseCard key={course.slug} course={course} subject={subject} />)}
           </div>
         ) : (
           <EmptyState
-            message={courses.length ? "No courses match your search and filters." : "Courses for this subject are coming soon."}
-            onReset={courses.length ? () => { setQuery(""); setStatus("all"); } : undefined}
+            message={courses.length ? "No courses match your search." : "Courses for this subject are coming soon."}
+            onReset={courses.length ? () => setQuery("") : undefined}
           />
         )}
       </section>

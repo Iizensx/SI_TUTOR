@@ -29,10 +29,11 @@
 
 .detailGrid {
   display: grid;
-  grid-template-columns: minmax(0, 2.25fr) minmax(240px, 1fr);
-  grid-template-areas: "hero aside" "body aside";
+  --detail-gap: clamp(20px, 3vw, 42px);
+  grid-template-columns: minmax(0, 1.65fr) minmax(300px, 1fr);
+  grid-template-areas: "hero hero" "body aside";
   align-items: start;
-  gap: 16px clamp(24px, 4.6vw, 56px);
+  gap: 16px var(--detail-gap);
   margin-top: 14px;
 }
 
@@ -45,6 +46,66 @@
   border-radius: 18px;
   background: #0a204f;
   color: white;
+}
+
+.detailGrid > .hero {
+  min-height: 410px;
+}
+
+.detailGrid .heroImage {
+  filter: blur(20px);
+  transform: scale(1.16);
+}
+
+.detailGrid > .hero::after {
+  background: linear-gradient(100deg, #061220eb, #0a233baf 56%, #17335048);
+}
+
+.detailGrid .heroBody {
+  justify-content: center;
+}
+
+.heroDescription {
+  max-width: 56ch;
+  color: #eef6ff;
+  font-size: clamp(.94rem, 1.4vw, 1.06rem);
+  line-height: 1.6;
+}
+
+.detailGrid .previewButton {
+  margin-top: 22px;
+}
+
+.purchaseCover {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 18px;
+  border-radius: 10px;
+  background: #edf4fc;
+}
+
+.purchaseCover img {
+  object-fit: cover;
+}
+
+@media (min-width: 821px) {
+  .detailGrid > .hero {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+  }
+
+  .detailGrid .heroBody {
+    grid-column: 1;
+    padding-inline: clamp(26px, 4vw, 46px);
+  }
+
+  .detailGrid > .sidebar {
+    z-index: 1;
+    grid-area: 1 / 2 / 3 / 3;
+    margin: 16px 16px 0 0;
+  }
 }
 
 .heroWide {
@@ -873,6 +934,10 @@
   }
 
   .hero {
+    min-height: 320px;
+  }
+
+  .detailGrid > .hero {
     min-height: 320px;
   }
 

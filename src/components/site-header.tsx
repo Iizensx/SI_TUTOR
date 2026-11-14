@@ -3,11 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useDemoAccess } from "./course-access";
 
 import styles from "./site-header.module.css";
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const { signedIn } = useDemoAccess();
   const inSubjects =
     pathname === "/subjects" ||
     pathname.startsWith("/subjects/") ||
@@ -29,15 +31,23 @@ export function SiteHeader() {
           Subjects
         </Link>
         <Link href="/pricing" aria-current={pathname === "/pricing" ? "page" : undefined}>Pricing</Link>
-        <Link href="/#about">About</Link>
+        <Link href="/about" aria-current={pathname === "/about" ? "page" : undefined}>About</Link>
       </nav>
 
       <div className={styles.actions}>
-        <button className={styles.login} type="button" disabled title="Log in is not available yet">
-          Log In
-        </button>
-        <Link className={styles.start} href="/subjects">Get Started</Link>
+        {signedIn ? (
+          <Link className={styles.signup} href="/my-courses">My Courses</Link>
+        ) : (
+          <>
+            <Link className={styles.login} href="/login">Log in</Link>
+            <Link className={styles.signup} href="/login">Sign up</Link>
+          </>
+        )}
       </div>
     </header>
   );
 }
+
+
+
+
