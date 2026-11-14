@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import { CatalogIcon } from "@/components/catalog-shell";
 import { useDemoAccess } from "@/components/course-access";
+import { useAuth } from "@/components/auth-provider";
 import { getCompletedLessons, lessonStorageKey, useSavedValue } from "@/components/lesson-progress";
 import { courses, type Course } from "@/lib/catalog";
 
@@ -17,7 +18,8 @@ const examples = [
 ];
 
 function ContinueCourseCard({ course }: { course: Course }) {
-  const key = lessonStorageKey(course.slug);
+  const { user } = useAuth();
+  const key = lessonStorageKey(course.slug, user?.id);
   const [completion] = useSavedValue(key + ":completed");
   const [current] = useSavedValue(key + ":current");
   const lessons = course.sections.flatMap((section) => section.lessons);

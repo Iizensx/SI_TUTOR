@@ -4,18 +4,19 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { formatCoursePrice, type Course } from "@/lib/catalog";
+import { useAuth } from "./auth-provider";
 import styles from "./course-experience.module.css";
 
-const storageKey = "si-tutor:demo-purchases";
+const storageKey = (userId: string) => `si-tutor:demo-purchases:${userId}`;
 const changeEvent = "si-tutor:demo-purchases-change";
-const empty = '{"signedIn":false,"purchases":{}}';
+const empty = '{"purchases":{}}';
 const methods = ["PayPal", "Stripe (card)", "Afterpay"] as const;
 
-type DemoState = { signedIn: boolean; purchases: Record<string, number> };
+type DemoState = { purchases: Record<string, number> };
 
-function readSnapshot() {
+function readSnapshot(userId: string) {
   try {
-    return localStorage.getItem(storageKey) ?? empty;
+    return localStorage.getItem(storageKey(userId)) ?? empty;
   } catch {
     return empty;
   }
@@ -24,11 +25,11 @@ function readSnapshot() {
 function parseState(snapshot: string): DemoState {
   try {
     const state: DemoState = JSON.parse(snapshot);
-    if (typeof state.signedIn === "boolean" && state.purchases && typeof state.purchases === "object") return state;
+    if (state.purchases && typeof state.purchases === "object" && !Array.isArray(state.purchases)) return state;
   } catch {
     // Use empty demo state when stored data cannot be read.
   }
-  return { signedIn: false, purchases: {} };
+  return { purchases: {} };
 }
 
 function subscribe(onChange: () => void) {
@@ -40,13 +41,16 @@ function subscribe(onChange: () => void) {
   };
 }
 
-function updateState(update: (state: DemoState) => DemoState) {
-  localStorage.setItem(storageKey, JSON.stringify(update(parseState(readSnapshot()))));
+function updateState(userId: string, update: (state: DemoState) => DemoState) {
+  localStorage.setItem(storageKey(userId), JSON.stringify(update(parseState(readSnapshot(userId)))));
   window.dispatchEvent(new Event(changeEvent));
 }
 
 export function useDemoAccess(slug?: string) {
-  const state = parseState(useSyncExternalStore(subscribe, readSnapshot, () => empty));
+  const { user, loading } = useAuth();
+  const saved = parseState(useSyncExternalStore(subscribe, () => user ? readSnapshot(user.id) : empty, () => empty));
+  const seeded = Object.fromEntries((user?.enrollments ?? []).map((item) => [item.courseSlug, Date.parse(item.expiresAt)]));
+  const state = { signedIn: !!user, loading, purchases: { ...seeded, ...saved.purchases } };
   const value = slug ? state.purchases[slug] : undefined;
   const expiry = typeof value === "number" && Number.isFinite(value) ? value : null;
   const [now, setNow] = useState(() => Date.now());
@@ -88,26 +92,8 @@ export function CourseAccess({ slug }: { slug: string }) {
   );
 }
 
-export function DemoLogin({ next }: { next: string }) {
-  const router = useRouter();
-  const [error, setError] = useState("");
-  return (
-    <>
-      <p className="my-4 text-slate-600">Use the demo account to explore the purchase flow. Demo activity is stored in this browser.</p>
-      <button type="button" className={styles.primaryButton} onClick={() => {
-        try {
-          updateState((state) => ({ ...state, signedIn: true }));
-          router.push(next);
-        } catch {
-          setError("Allow browser storage to use the demo.");
-        }
-      }}>Continue as Demo Student</button>
-      {error && <p role="alert" className="mt-3 text-red-700">{error}</p>}
-    </>
-  );
-}
-
 export function DemoCheckout({ course }: { course: Course }) {
+  const { user } = useAuth();
   const access = useDemoAccess(course.slug);
   const router = useRouter();
   const [method, setMethod] = useState<(typeof methods)[number]>("Stripe (card)");
@@ -119,8 +105,9 @@ export function DemoCheckout({ course }: { course: Course }) {
     <form className="mt-5" onSubmit={(event) => {
       event.preventDefault();
       try {
-        updateState((state) => {
-          if (!state.signedIn || (state.purchases[course.slug] ?? 0) > Date.now()) return state;
+        if (!user) return;
+        updateState(user.id, (state) => {
+          if ((state.purchases[course.slug] ?? 0) > Date.now()) return state;
           return { ...state, purchases: { ...state.purchases, [course.slug]: expiryAfterPurchase() } };
         });
         router.push(`/courses/${course.slug}/learn`);
@@ -146,13 +133,17 @@ export function DemoCheckout({ course }: { course: Course }) {
 }
 
 export function DemoLibrary({ courses }: { courses: Pick<Course, "slug" | "title">[] }) {
-  const { signedIn, purchases } = useDemoAccess();
+  const { user, logout } = useAuth();
+  const { signedIn, purchases, loading } = useDemoAccess();
   const [error, setError] = useState("");
+  const [loggingOut, setLoggingOut] = useState(false);
+  if (loading) return <p role="status">Loading your courses…</p>;
   if (!signedIn) return <Link className={styles.primaryButton} href="/login?next=/my-courses">Log In</Link>;
 
   const purchased = courses.filter(({ slug }) => purchases[slug]);
   return (
     <>
+      {user && <p className="my-4 text-slate-600">Welcome, <strong className="text-slate-900">{user.firstName} {user.lastName}</strong> · {user.level}</p>}
       {purchased.length ? (
         <ul className="my-4 grid gap-4">
           {purchased.map(({ slug, title }) => (
@@ -165,13 +156,16 @@ export function DemoLibrary({ courses }: { courses: Pick<Course, "slug" | "title
       ) : <p className="my-4">Choose a subject to start your demo library.</p>}
       <div className="flex flex-wrap items-center gap-4">
         <Link className={styles.outlineButton} href="/subjects">Browse Subjects</Link>
-        <button type="button" className={styles.outlineButton} onClick={() => {
+        <button type="button" className={styles.outlineButton} disabled={loggingOut} onClick={async () => {
+          setLoggingOut(true);
           try {
-            updateState((state) => ({ ...state, signedIn: false }));
+            await logout();
           } catch {
             setError("Unable to clear the demo login in this browser.");
+          } finally {
+            setLoggingOut(false);
           }
-        }}>Log Out</button>
+        }}>{loggingOut ? "Logging out…" : "Log Out"}</button>
       </div>
       {error && <p role="alert" className="mt-3 text-red-700">{error}</p>}
     </>

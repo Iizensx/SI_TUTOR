@@ -3,13 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useDemoAccess } from "./course-access";
+import { useAuth } from "./auth-provider";
 
 import styles from "./site-header.module.css";
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const { signedIn } = useDemoAccess();
+  const { user, loading } = useAuth();
   const inSubjects =
     pathname === "/subjects" ||
     pathname.startsWith("/subjects/") ||
@@ -35,12 +35,12 @@ export function SiteHeader() {
       </nav>
 
       <div className={styles.actions}>
-        {signedIn ? (
+        {loading ? <span role="status" aria-label="Loading account">…</span> : user ? (
           <Link className={styles.signup} href="/my-courses">My Courses</Link>
         ) : (
           <>
             <Link className={styles.login} href="/login">Log in</Link>
-            <Link className={styles.signup} href="/login">Sign up</Link>
+            <Link className={styles.signup} href="/signup">Sign up</Link>
           </>
         )}
       </div>

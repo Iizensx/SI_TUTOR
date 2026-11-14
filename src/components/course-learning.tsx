@@ -6,6 +6,7 @@ import { useRef, useState } from "react";
 import type { Course, Lesson, Subject } from "@/lib/catalog";
 import { CourseHero, CourseIcon, Curriculum } from "./course-shared";
 import { CourseAccess, useDemoAccess } from "./course-access";
+import { useAuth } from "./auth-provider";
 import { getCompletedLessons, lessonStorageKey, useSavedValue } from "./lesson-progress";
 import styles from "./course-experience.module.css";
 
@@ -39,8 +40,9 @@ function LessonNotes({ storageKey }: { storageKey: string }) {
 }
 
 export function LearningRoom(props: { course: Course; subject: Subject; preview: boolean }) {
+  const { user } = useAuth();
   const access = useDemoAccess(props.course.slug);
-  if (props.preview || access.active) return <LessonContent {...props} expires={access.active ? access.expiry : null} />;
+  if (props.preview || access.active) return <LessonContent key={user?.id ?? "guest"} {...props} expires={access.active ? access.expiry : null} />;
 
   return (
     <section className={styles.enrollCard}>
@@ -52,10 +54,11 @@ export function LearningRoom(props: { course: Course; subject: Subject; preview:
 }
 
 function LessonContent({ course, subject, preview, expires }: { course: Course; subject: Subject; preview: boolean; expires: number | null }) {
+  const { user } = useAuth();
   const lessons = course.sections.flatMap(({ lessons }) => lessons);
   const [tab, setTab] = useState<"overview" | "notes">("overview");
   const headingRef = useRef<HTMLHeadingElement>(null);
-  const keyPrefix = lessonStorageKey(course.slug);
+  const keyPrefix = lessonStorageKey(course.slug, user?.id);
   const [savedProgress, saveProgress] = useSavedValue(`${keyPrefix}:completed`);
   const completed = getCompletedLessons(savedProgress, lessons.map(({ id }) => id));
   const progress = lessons.length ? Math.round((completed.size / lessons.length) * 100) : 0;

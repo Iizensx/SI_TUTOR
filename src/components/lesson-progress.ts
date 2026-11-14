@@ -2,8 +2,8 @@
 
 import { useSyncExternalStore } from "react";
 
-export function lessonStorageKey(courseSlug: string) {
-  return `si-tutor:course:${courseSlug}`;
+export function lessonStorageKey(courseSlug: string, userId = "guest") {
+  return `si-tutor:user:${userId}:course:${courseSlug}`;
 }
 
 export function getCompletedLessons(savedProgress: string, lessonIds: readonly string[]) {

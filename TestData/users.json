@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "users": [
+    {
+      "id": "demo-student",
+      "firstName": "Alex",
+      "lastName": "Morgan",
+      "email": "student@si-tutor.example",
+      "level": "High school",
+      "country": "Australia",
+      "learningGoal": "Build confidence in HSC mathematics and explore AI.",
+      "interests": [
+        "hsc",
+        "robotics"
+      ],
+      "enrollments": [
+        {
+          "courseSlug": "hsc-mathematics",
+          "expiresAt": "2027-02-14T23:59:59.000Z"
+        },
+        {
+          "courseSlug": "introduction-to-ai-and-ml",
+          "expiresAt": "2027-02-14T23:59:59.000Z"
+        }
+      ],
+      "role": "student",
+      "createdAt": "2026-11-14T00:00:00.000Z",
+      "passwordHash": "befae1602dc0d2e2cce54b6e9561e290:0c9884c76d9d016f8550d441d5bd2e8817647242760270d974d97f55615e36793de3f9eb35eb6ad4a7a182e5833ee7ae964b440c6c2c2e16438a9c40a5dc230b"
+    },
+    {
+      "id": "demo-university",
+      "firstName": "Maya",
+      "lastName": "Chen",
+      "email": "maya@si-tutor.example",
+      "level": "University",
+      "country": "Australia",
+      "learningGoal": "Strengthen calculus and programming skills for engineering.",
+      "interests": [
+        "mathematics",
+        "robotics"
+      ],
+      "enrollments": [
+        {
+          "courseSlug": "university-calculus",
+          "expiresAt": "2027-02-14T23:59:59.000Z"
+        }
+      ],
+      "role": "student",
+      "createdAt": "2026-11-14T00:00:00.000Z",
+      "passwordHash": "699a17ea97caf9de9d5a607b6f9a30e2:0427c49ebb631d422579d7523e9beca3dd0769a89903aa1cba95492a5416a27a99b3ff9ba5bec3dd1961e4aba8f9905719572a8a47e3c36e6e9883a57754cb11"
+    },
+    {
+      "id": "demo-ielts",
+      "firstName": "Narin",
+      "lastName": "Sukjai",
+      "email": "narin@si-tutor.example",
+      "level": "Lifelong learner",
+      "country": "Thailand",
+      "learningGoal": "Practise speaking clearly and prepare for IELTS.",
+      "interests": [
+        "ielts"
+      ],
+      "enrollments": [
+        {
+          "courseSlug": "ielts-speaking",
+          "expiresAt": "2026-10-01T23:59:59.000Z"
+        }
+      ],
+      "role": "student",
+      "createdAt": "2026-11-14T00:00:00.000Z",
+      "passwordHash": "63992c539ee79470be63c3b04e1fa924:702c1ccb8864014c32e2aa9e7af77d31da3e10e25902923c84aeeb9e2e94d934cd2270ee8bca70db7f5375012b4ef8277f5619c3dedc416dab88fd692059d743"
+    },
+    {
+      "id": "demo-new-student",
+      "firstName": "Jamie",
+      "lastName": "Taylor",
+      "email": "jamie@si-tutor.example",
+      "level": "Lifelong learner",
+      "country": "Australia",
+      "learningGoal": "Discover a new subject and begin a first course.",
+      "interests": [
+        "citizenship"
+      ],
+      "enrollments": [],
+      "role": "student",
+      "createdAt": "2026-11-14T00:00:00.000Z",
+      "passwordHash": "e5c68a546250b48fc165636850fa7803:c9750fe6f8679d99cb47b87beb5a87ea446614cf06e6fa616a87ca62f94ad648cc80e824192ed41a2a507161e097d62e47226e708071c2eed90ed70d59d4e5a3"
+    },
+    {
+      "id": "b4abb4b3-72cb-43b8-9253-5574ac02e8ec",
+      "firstName": "Yuki",
+      "lastName": "Kasubaya",
+      "email": "yukitest@gmail.com",
+      "passwordHash": "e6469f1eb052175c0779712a3bacfae2:96640f8a3ea5eb03e7b14fdf549d0dcc44bcd1013493557412d98e6d1bc3c2838fa1687e4913d15847b03525d4d1bea785dbff78bf5d688e379ca82990fdaa09",
+      "role": "student",
+      "level": "University",
+      "country": "",
+      "learningGoal": "",
+      "interests": [],
+      "createdAt": "2026-11-14T11:52:33.161Z",
+      "enrollments": []
+    }
+  ]
+}
