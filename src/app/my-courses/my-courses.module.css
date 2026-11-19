@@ -1,0 +1,75 @@
+.page{width:min(1160px,calc(100% - 40px));min-height:calc(100svh - 120px);margin:0 auto;padding:clamp(36px,5vw,70px) 0 76px;color:#111a50}
+.page :where(a,button):focus-visible{outline:3px solid #1268da;outline-offset:4px}
+.intro{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:33px}
+.eyebrow{color:#2767ba;font-size:11px;font-weight:850;letter-spacing:.17em}
+.intro h1,.emptyState h1{margin:9px 0 9px;font-size:clamp(38px,5.2vw,60px);font-weight:850;line-height:1.04;letter-spacing:-.055em}
+.intro h1 span{color:#2c65da}
+.greeting{font-size:15px;color:#52627c;line-height:1.6}
+.greeting strong{color:#17264f}
+.greeting span{margin-inline:5px;color:#a0acc0}
+.browseLink,.primaryLink,.courseAction{display:inline-flex;align-items:center;justify-content:center;gap:20px;border-radius:13px;background:#135cba;color:#fff;font-size:13px;font-weight:800;transition:background .2s,transform .2s,box-shadow .2s}
+.browseLink{min-height:45px;padding:0 19px;white-space:nowrap}
+.browseLink:hover,.primaryLink:hover,.courseAction:hover{background:#0d498f;transform:translateY(-2px);box-shadow:0 10px 20px #145cba25}
+.browseLink span,.primaryLink span,.courseAction span{font-size:18px;line-height:1}
+.summary{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:-12px 0 27px;color:#52627c;font-size:13px}
+.summary strong{color:#175db7;font-weight:850}
+.summary span{margin-inline:4px;color:#a5b4cb}
+.featuredSection{margin-bottom:39px}
+.featuredList{list-style:none;margin:0;padding:0}
+.courseCard.featuredCard{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);border-color:#cbdff9;background:#fafdff;box-shadow:0 19px 45px -32px #175aab85}
+.featuredCard .coverLink{height:100%;min-height:315px}
+.featuredCard .cardBody{padding:clamp(22px,3vw,36px)}
+.featuredCard .cardBody h2{min-height:0;font-size:clamp(23px,2.5vw,30px)}
+.featuredCard .cardDescription{min-height:0}
+.featuredEyebrow{margin-bottom:16px;color:#1c66bd;font-size:11px;font-weight:850;letter-spacing:.17em}
+.featuredCard .courseAction{min-height:46px;padding-inline:19px}
+.allCaughtUp{margin:2px 0 0;color:#738099;font-size:13px}
+.visuallyHidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.sectionHeading{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:18px}
+.sectionHeading h2{margin-top:6px;font-size:29px;font-weight:820;letter-spacing:-.045em}
+.sectionHeading>span{color:#67758c;font-size:13px;font-weight:650}
+.courseGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;list-style:none;margin:0;padding:0}
+.courseCard{min-width:0;overflow:hidden;border:1px solid #dce7f6;border-radius:20px;background:#fff;box-shadow:0 15px 38px -32px #173e77;transition:transform .2s,box-shadow .2s}
+.courseCard:hover{transform:translateY(-3px);box-shadow:0 22px 42px -30px #173e775c}
+.coverLink{position:relative;display:block;height:clamp(170px,17vw,235px);overflow:hidden;background:#e9f2fc}
+.cover{object-fit:cover;transition:transform .4s}
+.courseCard:hover .cover{transform:scale(1.035)}
+.cardBody{display:flex;min-height:310px;flex-direction:column;padding:22px 24px 24px}
+.cardTopline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:11px}
+.subject{color:#205bb0;font-size:11px;font-weight:850;letter-spacing:.1em;text-transform:uppercase}
+.activeBadge,.expiredBadge{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:800;white-space:nowrap}
+.activeBadge{background:#e9f7ef;color:#187046}
+.expiredBadge{background:#f4f5f8;color:#697385}
+.activeBadge::before,.expiredBadge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.cardBody h2{min-height:58px;font-size:21px;font-weight:820;line-height:1.3;letter-spacing:-.025em}
+.cardBody h2 a:hover{color:#185db7}
+.cardDescription{display:-webkit-box;min-height:42px;margin:8px 0 22px;overflow:hidden;color:#5c6b83;font-size:13px;line-height:1.6;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.progressHeading{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px;font-size:12px;font-weight:650;color:#52637f}
+.progressHeading strong{color:#175ab8}
+.progress{display:block;width:100%;height:7px;overflow:hidden;border:0;border-radius:20px;background:#e8eef8;accent-color:#286bdb}
+.progress::-webkit-progress-bar{border-radius:20px;background:#e8eef8}
+.progress::-webkit-progress-value{border-radius:20px;background:linear-gradient(90deg,#1670d2,#6558dd)}
+.progress::-moz-progress-bar{border-radius:20px;background:#286bdb}
+.lessonCount{margin-top:8px;color:#748198;font-size:11px}
+.cardFooter{display:flex;align-items:end;justify-content:space-between;gap:14px;margin-top:auto;padding-top:18px;border-top:1px solid #eaf0f8}
+.accessDate{display:grid;gap:4px;color:#66758c;font-size:11px}
+.accessDate strong{color:#1b2b53;font-size:13px}
+.courseAction{min-height:42px;padding:0 14px;white-space:nowrap}
+.pageFooter{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:38px;padding-top:18px;border-top:1px solid #e6edf7;color:#6e7b91;font-size:12px}
+.pageFooter button{padding:8px 0;color:#405778;font-size:12px;font-weight:750;cursor:pointer}
+.pageFooter button:hover{text-decoration:underline;color:#174f9e}
+.pageFooter button:disabled{opacity:.55;cursor:wait}
+.error{margin-top:12px;color:#ae2940;font-size:13px}
+.loading{margin:20vh auto;text-align:center;color:#536583;font-size:16px}
+.emptyState,.emptyLibrary{display:grid;justify-items:center;text-align:center;border:1px solid #dce7f6;border-radius:24px;background:#f8fbff}
+.emptyState{max-width:680px;margin:10vh auto;padding:50px 24px}
+.emptyLibrary{padding:46px 24px}
+.emptyIcon{display:grid;place-items:center;width:56px;height:56px;margin-bottom:17px;border-radius:16px;background:#e7f0ff;color:#225fba;font-size:28px}
+.emptyState>p:not(.eyebrow),.emptyLibrary p{max-width:410px;color:#63728a;font-size:14px;line-height:1.6}
+.emptyLibrary h3{margin-bottom:8px;font-size:22px;font-weight:800}
+.primaryLink{min-height:44px;margin-top:22px;padding:0 18px}
+.secondaryTextLink{margin-top:16px;color:#1c5cad;font-size:13px;font-weight:750}
+@media(max-width:800px){.courseGrid{gap:15px}.cardBody{padding:18px}.featuredCard .coverLink{min-height:280px}}
+@media(max-width:700px){.page{width:calc(100% - 28px);padding-top:30px}.intro{align-items:start;flex-direction:column;margin-bottom:23px}.summary{margin-top:0}.courseCard.featuredCard{grid-template-columns:1fr}.featuredCard .coverLink{height:clamp(175px,48vw,270px);min-height:0}.featuredCard .cardBody{min-height:0;padding:22px}.courseGrid{grid-template-columns:1fr}.coverLink{height:clamp(175px,48vw,270px)}.cardBody h2{min-height:0}.cardDescription{min-height:0}}
+@media(max-width:430px){.cardFooter{align-items:stretch;flex-direction:column}.courseAction{width:100%}}
+@media(prefers-reduced-motion:reduce){.browseLink,.primaryLink,.courseAction,.courseCard,.cover{transition:none}}

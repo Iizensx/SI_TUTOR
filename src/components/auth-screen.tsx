@@ -1,51 +1,49 @@
-import Image from "next/image";
 import Link from "next/link";
 import { AuthForm } from "./auth-form";
 import styles from "./auth.module.css";
 
-export function AuthScreen({ mode, next }: { mode: "login" | "signup"; next: string }) {
-  const signup = mode === "signup";
+const copy = {
+  signup: {
+    title: "Sign Up",
+    subtitle: "Create your free account and start learning smarter with SI Tutor.",
+    switchText: "Already a member?",
+    switchLabel: "Log in",
+    switchHref: "/login",
+  },
+  login: {
+    title: "Log In",
+    subtitle: "Welcome back. Pick up right where you left off.",
+    switchText: "New to SI Tutor?",
+    switchLabel: "Sign up",
+    switchHref: "/signup",
+  },
+} as const;
+
+/** Form side of the auth card. The surrounding card, image and background live in AuthShell. */
+export function AuthScreen({ mode, next, oauthError }: { mode: "login" | "signup"; next: string; oauthError?: string }) {
+  const text = copy[mode];
   return (
-    <main id="main-content" tabIndex={-1} className={styles.page} data-mode={mode}>
-      <div className={styles.topline}>
-        <Link href="/"><span aria-hidden="true">←</span> Back to Home</Link>
-        <span>Your next chapter starts here.</span>
+    <div className={styles.formInner}>
+      <div className={styles.formTop}>
+        <Link href="/" className={styles.backMobile} aria-label="Back to home">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" /></svg>
+        </Link>
+        <p className={styles.switch}>
+          {text.switchText}{" "}
+          <Link href={`${text.switchHref}?next=${encodeURIComponent(next)}`} scroll={false}>{text.switchLabel}</Link>
+        </p>
       </div>
-      <div className={styles.shell} data-mode={mode}>
-        <aside className={styles.story} aria-label="Learn with SI Tutor">
-          <div className={styles.eyebrow}><span /> A LITTLE CURIOSITY. LIMITLESS POSSIBILITIES.</div>
-          <h2>Big dreams.<br />Brighter minds.<br /><span>Start with you.</span></h2>
-          <p>From your first question to your next big breakthrough. Let’s learn beyond limits, together.</p>
-          <div className={styles.illustration}>
-            <span className={styles.orbit} aria-hidden="true" />
-            <div className={styles.robotCircle}>
-              <Image src="/home/robotics.jpg" alt="SI Tutor’s friendly robot exploring a robotic arm" width={750} height={717} sizes="(max-width: 760px) 200px, 350px" priority />
-            </div>
-            <span className={`${styles.subjectTag} ${styles.tagMath}`}><span aria-hidden="true">∑</span> Mathematics</span>
-            <span className={`${styles.subjectTag} ${styles.tagAi}`}><span aria-hidden="true">✧</span> AI & Robotics</span>
-            <span className={`${styles.subjectTag} ${styles.tagEnglish}`}><span aria-hidden="true">Aa</span> IELTS & more</span>
-          </div>
-          <div className={styles.storyFooter}>
-            <span className={styles.smallIcon} aria-hidden="true">↗</span>
-            <div><strong>Small steps. Real progress.</strong><span>Find your subject. Build your confidence.</span></div>
-          </div>
-        </aside>
-        <section className={styles.formPanel} aria-labelledby="auth-title">
-          <div className={styles.formInner}>
-            <nav className={styles.tabs} aria-label="Account access">
-              <Link href={`/login?next=${encodeURIComponent(next)}`} aria-current={!signup ? "page" : undefined}>Log in</Link>
-              <Link href={`/signup?next=${encodeURIComponent(next)}`} aria-current={signup ? "page" : undefined}>Sign up</Link>
-            </nav>
-            <div className={styles.formHeading}>
-              <span className={styles.kicker}>{signup ? "LET’S GET YOU STARTED" : "YOUR LEARNING JOURNEY CONTINUES"}</span>
-              <h1 id="auth-title">{signup ? "Create your account" : "Welcome back"}<span>.</span></h1>
-              <p>{signup ? "A world of learning is waiting for you." : "Ready for your next breakthrough? Log in to keep learning."}</p>
-            </div>
-            <AuthForm key={mode} mode={mode} next={next} />
-          </div>
-        </section>
+
+      <div className={styles.formBody}>
+        <div className={styles.heading}>
+          <h1 id="auth-title">{text.title}</h1>
+          <svg className={styles.squiggle} viewBox="0 0 60 40" aria-hidden="true">
+            <path d="M54 6C40 2 22 8 14 30m0 0-2-9m2 9 8-4" />
+          </svg>
+        </div>
+        <p className={styles.subtitle}>{text.subtitle}</p>
+        <AuthForm key={mode} mode={mode} next={next} oauthError={oauthError} />
       </div>
-      <footer className={styles.footer}><span>© 2026 SI Tutor</span><span>Learn at your pace. Grow beyond limits.</span></footer>
-    </main>
+    </div>
   );
 }

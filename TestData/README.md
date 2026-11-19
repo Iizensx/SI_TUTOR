@@ -28,3 +28,7 @@ All accounts are fictional and use the password **`LearnSI2026!`**.
 ## Database migration
 
 Replace `src/lib/server/user-repository.ts` with a database adapter while keeping `findUser`, `authenticateUser`, and `createUser` contracts. Move in-memory sessions to persistent session storage; enforce a unique normalized email in the database. Replace browser-local course purchases/progress with authenticated server records and server-side course authorization before a production release. Add rate limiting, verification and recovery with the production auth provider.
+
+## Google sign-in
+
+The Google button on `/login` and `/signup` uses OAuth 2.0 (`/api/auth/google` → Google → `/api/auth/google/callback`). Copy `.env.example` to `.env.local`, add `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`, and register `http://localhost:3000/api/auth/google/callback` as an authorised redirect URI. Without these values the button returns to the login page with a friendly message. A verified Google email that matches an existing account is linked to it; otherwise a new Google-only account (no password) is created in `users.json`.

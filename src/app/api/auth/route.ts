@@ -1,13 +1,9 @@
-import { randomBytes } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { AuthError, authenticateUser, createUser, findUser, changeUserPassword, updateUserProfile } from "@/lib/server/user-repository";
 import type { StudentLevel } from "@/lib/auth-types";
+import { endSession, readSession, sessions, startSession } from "@/lib/server/session";
 
 export const runtime = "nodejs";
-const cookieName = "si-tutor-session";
-type Session = { userId: string; expiresAt: number };
-const memory = globalThis as typeof globalThis & { siTutorSessions?: Map<string, Session> };
-const sessions = memory.siTutorSessions ??= new Map<string, Session>();
 const levels: StudentLevel[] = ["High school", "University", "Lifelong learner"];
 
 function json(body: unknown, status = 200) {
@@ -21,12 +17,8 @@ function allowedOrigin(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
-    const token = request.cookies.get(cookieName)?.value ?? "";
-    const session = sessions.get(token);
-    if (!session || session.expiresAt <= Date.now()) {
-      sessions.delete(token);
-      return json({ user: null });
-    }
+    const { session } = readSession(request);
+    if (!session) return json({ user: null });
     return json({ user: await findUser(session.userId) });
   } catch {
     return json({ error: "Unable to load your account. Please try again." }, 503);
@@ -58,17 +50,8 @@ export async function POST(request: NextRequest) {
     } else {
       throw new AuthError("Unknown account action.");
     }
-    for (const [key, value] of sessions) if (value.expiresAt <= Date.now()) sessions.delete(key);
-    const oldToken = request.cookies.get(cookieName)?.value;
-    if (oldToken) sessions.delete(oldToken);
-    const token = randomBytes(32).toString("hex");
-    const maxAge = data.remember === true ? 30 * 24 * 60 * 60 : 12 * 60 * 60;
-    sessions.set(token, { userId: user.id, expiresAt: Date.now() + maxAge * 1000 });
     const response = json({ user }, data.action === "signup" ? 201 : 200);
-    response.cookies.set(cookieName, token, {
-      httpOnly: true, sameSite: "lax", secure: request.nextUrl.protocol === "https:", path: "/",
-      ...(data.remember === true ? { maxAge } : {}),
-    });
+    startSession(request, response, user.id, data.remember === true);
     return response;
   } catch (error) {
     if (error instanceof AuthError) return json({ error: error.message }, error.status);
@@ -81,9 +64,8 @@ export async function PATCH(request: NextRequest) {
   if (!allowedOrigin(request)) return json({ error: "This request is not allowed." }, 403);
   if (!request.headers.get("content-type")?.includes("application/json")) return json({ error: "Expected JSON data." }, 415);
 
-  const token = request.cookies.get(cookieName)?.value ?? "";
-  const session = sessions.get(token);
-  if (!session || session.expiresAt <= Date.now()) return json({ error: "Please log in again." }, 401);
+  const { token, session } = readSession(request);
+  if (!session) return json({ error: "Please log in again." }, 401);
 
   try {
     const body: unknown = await request.json();
@@ -124,8 +106,7 @@ export async function PATCH(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   if (!allowedOrigin(request)) return json({ error: "This request is not allowed." }, 403);
-  sessions.delete(request.cookies.get(cookieName)?.value ?? "");
   const response = json({ user: null });
-  response.cookies.set(cookieName, "", { httpOnly: true, sameSite: "lax", path: "/", maxAge: 0 });
+  endSession(request, response);
   return response;
 }

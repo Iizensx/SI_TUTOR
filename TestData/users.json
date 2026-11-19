@@ -114,6 +114,20 @@
       "createdAt": "2026-11-14T12:03:15.235Z",
       "enrollments": [],
       "avatar": "green"
+    },
+    {
+      "id": "32d73b84-a0d6-4478-8acd-1b3867eb18d7",
+      "firstName": "Tester",
+      "lastName": "test",
+      "email": "tester1@gmail.com",
+      "passwordHash": "8159c7a77d8a8be7c84352cf42ec2e9f:f28ee4de86091c9b1999b87e4a707425dfe66354ebf567b1580dc533d735206925415dc5321cb52ba97e7bb54d5d679e616e70bf5a7123927b648da7b5f5ddea",
+      "role": "student",
+      "level": "University",
+      "country": "",
+      "learningGoal": "",
+      "interests": [],
+      "createdAt": "2026-11-19T07:02:19.250Z",
+      "enrollments": []
     }
   ]
 }

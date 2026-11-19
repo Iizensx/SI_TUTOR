@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { SiteHeader } from "@/components/site-header";
 import { AuthProvider } from "@/components/auth-provider";
+// Self-hosted brand fonts (no network needed at build time):
+// Plus Jakarta Sans for Latin text, Noto Sans Thai for Thai glyphs.
+import "@fontsource-variable/plus-jakarta-sans";
+import "@fontsource-variable/noto-sans-thai";
 import "./globals.css";
 
 export const metadata: Metadata = {

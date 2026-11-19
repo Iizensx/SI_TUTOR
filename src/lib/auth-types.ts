@@ -16,6 +16,6 @@ export type UserProfile = {
 };
 
 export function safeAuthNext(next: unknown) {
-  return typeof next === "string" && /^\/(?:subjects(?:\/[a-z0-9-]+)?|my-courses|my-account|courses\/[a-z0-9-]+(?:\/(?:checkout|learn))?)$/.test(next)
+  return typeof next === "string" && /^\/(?:subjects(?:\/[a-z0-9-]+)?|my-courses|my-account|pricing(?:\/checkout\/(?:bundle|all-access))?|courses\/[a-z0-9-]+(?:\/(?:checkout|learn))?)$/.test(next)
     ? next : "/my-courses";
 }
