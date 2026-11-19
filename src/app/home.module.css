@@ -217,18 +217,58 @@
 
 .heroFrame {
   position: absolute;
-  inset: 0 0 0 4%;
+  top: 50%;
+  left: 50%;
+  width: 88%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
   overflow: hidden;
-  border: 6px solid #fff;
-  border-radius: 40px;
-  background: #e0f2fe;
-  box-shadow: 0 40px 80px -40px #1e3a8a80;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  background: url("/home/hero-background-only.png") center / cover no-repeat;
+  box-shadow: 0 35px 80px -38px #1e3a8a80, 0 0 0 10px #dbeafe66;
 }
 
-.heroImage {
-  object-fit: cover;
-  object-position: 45% 50%;
-  transform: scale(1.04);
+.subjectPopouts {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  perspective: 900px;
+}
+
+.subjectPanel {
+  position: absolute;
+  width: 47%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 20px rgba(13, 37, 92, .34));
+  transform: rotate(var(--panel-turn)) rotateY(var(--panel-y)) translateZ(35px);
+  animation: panel-float 6s ease-in-out infinite;
+}
+.subjectHsc { --panel-turn: -6deg; --panel-y: 12deg; top: -6%; left: -8%; }
+.subjectIelts { --panel-turn: 5deg; --panel-y: -12deg; top: -5%; right: -10%; animation-delay: -1s; }
+.subjectRobotics { --panel-turn: 5deg; --panel-y: 12deg; top: 36%; left: -11%; animation-delay: -2s; }
+.subjectMaths { --panel-turn: -5deg; --panel-y: -12deg; top: 35%; right: -12%; animation-delay: -3s; }
+.subjectCitizenship { --panel-turn: 4deg; --panel-y: -10deg; right: -10%; bottom: 0; animation-delay: -4s; }
+@keyframes panel-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -7px; }
+}
+.heroPopout {
+  position: absolute;
+  z-index: 3;
+  left: 20%;
+  top: 30%;
+  width: 72%;
+  height: 76%;
+  pointer-events: none;
+  filter: drop-shadow(0 24px 22px rgba(15, 23, 42, .25));
+}
+
+.heroPopoutImage {
+  object-fit: contain;
+  object-position: center bottom;
 }
 
 .float {
@@ -977,4 +1017,17 @@
   .ctaGlow {
     animation: none;
   }
+}
+
+@media (max-width: 640px) {
+  .subjectPanel { width: 51%; }
+  .subjectHsc { left: -2%; }
+  .subjectIelts { right: -2%; }
+  .subjectRobotics { left: -3%; }
+  .subjectMaths { right: -3%; }
+  .subjectCitizenship { right: -2%; bottom: 12%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .subjectPanel { animation: none; }
 }

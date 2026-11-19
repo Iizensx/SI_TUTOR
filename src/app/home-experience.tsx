@@ -79,36 +79,20 @@ function Hero({ courseCount }: { courseCount: number }) {
       </div>
 
       <motion.div className={styles.heroVisual} initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, ease, delay: 0.15 }}>
-        <motion.div className={styles.heroFrame} style={{ y: imageY }}>
-          <Image
-            src="/home/hero.jpg"
-            alt="SI Tutor’s robot at a desk surrounded by colourful panels for its five subject categories."
-            fill
-            priority
-            sizes="(max-width: 960px) 100vw, 640px"
-            className={styles.heroImage}
-          />
-        </motion.div>
+        <motion.div className={styles.heroFrame} style={{ y: imageY }} aria-hidden="true" />
 
-        <motion.div className={`${styles.float} ${styles.floatChat}`} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, ease, delay: 0.8 }}>
-          <span className={styles.botDot} aria-hidden="true">SI</span>
-          <span>
-            <strong>AI Tutor</strong>
-            <small>Great work! Ready for the next question?</small>
-          </span>
-        </motion.div>
+        <div className={styles.subjectPopouts} aria-hidden="true">
+          <Image src="/home/subject-panels/hsc.png" alt="" width={1600} height={900} className={`${styles.subjectPanel} ${styles.subjectHsc}`} />
+          <Image src="/home/subject-panels/ielts.png" alt="" width={1600} height={900} className={`${styles.subjectPanel} ${styles.subjectIelts}`} />
+          <Image src="/home/subject-panels/robotics.png" alt="" width={1600} height={900} className={`${styles.subjectPanel} ${styles.subjectRobotics}`} />
+          <Image src="/home/subject-panels/mathematics.png" alt="" width={1600} height={900} className={`${styles.subjectPanel} ${styles.subjectMaths}`} />
+          <Image src="/home/subject-panels/citizenship.png" alt="" width={1600} height={900} className={`${styles.subjectPanel} ${styles.subjectCitizenship}`} />
+        </div>
+        <div className={styles.heroPopout} aria-hidden="true">
+          <Image src="/home/hero-robot-popout.png" alt="" fill sizes="(max-width: 960px) 55vw, 400px" className={styles.heroPopoutImage} />
+        </div>
 
-        <motion.div className={`${styles.float} ${styles.floatProgress}`} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, ease, delay: 1 }}>
-          <span className={styles.progressLabel}><strong>HSC Maths</strong><em>65%</em></span>
-          <span className={styles.progressTrack}>
-            <motion.i initial={{ width: 0 }} animate={{ width: "65%" }} transition={{ duration: 1.4, ease, delay: 1.3 }} />
-          </span>
-          <small>Next: Quadratic graphs</small>
-        </motion.div>
 
-        <motion.span className={`${styles.float} ${styles.floatChip}`} initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} transition={{ type: "spring", stiffness: 260, damping: 18, delay: 1.2 }}>
-          ⚡ 24/7 Q&amp;A
-        </motion.span>
       </motion.div>
     </section>
   );

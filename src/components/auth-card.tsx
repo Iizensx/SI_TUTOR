@@ -29,7 +29,7 @@ const visualCopy = {
 export function AuthShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const mode = pathname.startsWith("/signup") ? "signup" : "login";
-  const imageFirst = mode === "login";
+  const imageFirst = mode === "signup";
   const copy = visualCopy[mode];
 
   return (
@@ -74,9 +74,9 @@ export function AuthShell({ children }: { children: ReactNode }) {
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" /></svg>
               </Link>
               <div className={styles.photo} aria-hidden="true">
-                {/* Login: animated characters. Sign up: study-desk photo. Cross-fades on switch. */}
+                {/* Login: animated characters. Sign up: halftone waveform. Cross-fades on switch. */}
                 <AnimatePresence initial={false}>
-                  {imageFirst ? (
+                  {mode === "login" ? (
                     <motion.div
                       key="characters"
                       className={styles.photoInner}
@@ -96,7 +96,7 @@ export function AuthShell({ children }: { children: ReactNode }) {
                       exit={{ opacity: 0 }}
                       transition={{ duration: 1.2, ease }}
                     >
-                      <Image src="/auth/signup-study-desk.jpg" alt="" fill priority sizes="(max-width: 1024px) 0px, 520px" className={styles.photoImage} />
+                      <Image src="/auth/signup-waveform.png" alt="" fill priority sizes="(max-width: 1024px) 0px, 520px" className={styles.photoImage} />
                     </motion.div>
                   )}
                 </AnimatePresence>
