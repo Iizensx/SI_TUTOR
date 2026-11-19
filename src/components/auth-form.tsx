@@ -123,6 +123,7 @@ export function AuthForm({ mode, next, oauthError }: { mode: "login" | "signup";
 
   function showError(message: string) {
     setError(message);
+    window.dispatchEvent(new CustomEvent("si-auth", { detail: "error" }));
     requestAnimationFrame(() => errorRef.current?.focus());
   }
 
@@ -144,6 +145,7 @@ export function AuthForm({ mode, next, oauthError }: { mode: "login" | "signup";
     setPending(true);
     try {
       await authenticate({ ...data, action: mode, remember: data.remember === "on" });
+      window.dispatchEvent(new CustomEvent("si-auth", { detail: "success" }));
       router.replace(next);
       router.refresh();
     } catch (caught) {

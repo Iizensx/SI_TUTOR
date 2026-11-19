@@ -54,10 +54,6 @@ function useIsDesktop() {
 /* ───────────────────────────── Hero ───────────────────────────── */
 
 function Hero() {
-  const frame = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: frame, offset: ["start end", "end start"] });
-  const imageY = useTransform(scrollYProgress, [0, 1], ["-7%", "7%"]);
-  const frameScale = useTransform(scrollYProgress, [0, 0.45], [0.94, 1]);
 
   return (
     <section className="mx-auto w-full max-w-[1280px] px-4 pt-8 sm:px-6 lg:pt-14" aria-labelledby="about-title">
@@ -94,56 +90,7 @@ function Hero() {
         </motion.div>
       </div>
 
-      <motion.div ref={frame} style={{ scale: frameScale }} className={`${styles.heroFrame} mt-10 lg:mt-14`}>
-        <div className="absolute inset-0 overflow-hidden rounded-[28px] bg-[#e4e2fb] sm:rounded-[40px]">
-          <motion.div className="absolute inset-[-8%_0]" style={{ y: imageY }}>
-            <Image
-              src="/about/si-learning-hub.jpg"
-              alt="Isometric 3D AI learning hub with a robot arm, books, graduation caps and floating progress charts"
-              fill
-              priority
-              sizes="(max-width: 1280px) 100vw, 1240px"
-              className="object-cover object-[70%_50%]"
-            />
-          </motion.div>
-        </div>
 
-        <span className={styles.notchTop} aria-hidden="true" />
-        <span className={styles.notchLeft} aria-hidden="true" />
-        <span className={styles.notchRight} aria-hidden="true" />
-
-        <motion.div
-          className="absolute bottom-5 left-5 z-10 w-[min(320px,calc(100%-40px))] sm:bottom-10 sm:left-16 lg:left-24"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.9, ease, delay: 0.3 }}
-        >
-          <span className={`${styles.hotspot} ${styles.hotspotSoft} -top-9 right-6`} aria-hidden="true" />
-          <div className="rounded-2xl border border-white/70 bg-white/45 p-4 shadow-[0_18px_40px_-18px_rgba(29,78,216,0.45)] backdrop-blur-xl sm:p-5">
-            <p className="text-[11px] font-semibold tracking-[0.18em] text-brand">01 / DISCOVER</p>
-            <p className="mt-2 text-base font-semibold tracking-[-0.02em] text-ink">Start with what interests you.</p>
-            <p className="mt-1 hidden text-sm leading-snug text-slate-600 sm:block">From HSC and IELTS to AI and robotics.</p>
-            <Link href="/subjects" className="group mt-4 flex items-center justify-between rounded-full bg-white py-1.5 pl-4 pr-1.5 text-xs font-semibold text-ink shadow-sm">
-              View subjects
-              <span className="grid h-7 w-7 place-items-center rounded-full bg-ink text-white transition-colors group-hover:bg-brand">
-                <ArrowIcon className="h-3.5 w-3.5" />
-              </span>
-            </Link>
-          </div>
-        </motion.div>
-
-        <div className="absolute bottom-10 right-10 z-10 hidden items-center gap-3 sm:flex">
-          <span className={`${styles.hotspot} ${styles.hotspotInline}`} aria-hidden="true" />
-          <Link
-            href="/signup"
-            className="inline-flex items-center gap-1.5 rounded-full border border-white/70 bg-white/60 px-4 py-2 text-sm font-bold tracking-[-0.01em] text-brand backdrop-blur-md transition hover:bg-white"
-            aria-label="Start learning with SI Tutor"
-          >
-            SI <ArrowIcon className="h-3.5 w-3.5" />
-          </Link>
-        </div>
-      </motion.div>
     </section>
   );
 }

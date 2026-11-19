@@ -68,32 +68,6 @@
 }
 
 /* ─────────── Top bar & footer ─────────── */
-.topbar {
-  position: absolute;
-  top: 18px;
-  left: 50%;
-  translate: -50% 0;
-  width: min(calc(100% - 28px), 1100px);
-  display: flex;
-  align-items: center;
-}
-
-/* Brand lockup reused from the Home header, on a frosted pill for contrast over the sky */
-.brandBadge {
-  padding: 6px 16px 6px 6px;
-  border: 1px solid #ffffffb3;
-  border-radius: 999px;
-  background: #ffffffd9;
-  box-shadow: 0 10px 30px -18px #1e3a8a80;
-  backdrop-filter: blur(12px);
-  transition: transform .25s, box-shadow .25s;
-}
-
-.brandBadge:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 34px -18px #1e3a8a99;
-}
-
 .footer {
   position: absolute;
   bottom: 18px;
@@ -746,6 +720,25 @@
 .photoInner {
   position: absolute;
   inset: 0;
+}
+
+.characters {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(60% 50% at 30% 30%, #ffffff 0%, transparent 70%),
+    linear-gradient(160deg, #eef2ff 0%, #e0f2fe 55%, #ede9fe 100%);
+}
+
+.charactersSvg {
+  width: min(104%, 600px);
+  height: auto;
+  margin-bottom: -2px;
+  overflow: visible;
 }
 
 .photoImage {

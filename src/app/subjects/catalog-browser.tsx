@@ -3,12 +3,24 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState, type ReactNode } from "react";
+import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 
 import { CatalogIcon } from "@/components/catalog-shell";
-import { formatCoursePrice, type Course, type Subject } from "@/lib/catalog";
+import { courses as allCourses, formatCoursePrice, type Course, type Subject } from "@/lib/catalog";
 
 import { ContinueCourses } from "./continue-courses";
 import styles from "./catalog.module.css";
+
+const ease = [0.22, 1, 0.36, 1] as const;
+// Wide illustrated backgrounds prepared for each category (pastel on the left, scene on the right).
+const subjectBackgrounds: Record<string, string> = {
+  hsc: "/catalog/hsc-classroom-background.png",
+  ielts: "/catalog/ielts-category-background.png",
+  robotics: "/catalog/robotics-category-background.png",
+  mathematics: "/catalog/mathematics-category-background.png",
+  citizenship: "/catalog/citizenship-category-background.png",
+};
+const countFor = (slug: string) => allCourses.filter((course) => course.subjectSlug === slug).length;
 
 const subjectStyles: Record<string, string> = {
   hsc: styles.hsc,
@@ -133,12 +145,13 @@ function SearchField({
 
 function Sidebar({ subjects, activeSlug }: { subjects: readonly Subject[]; activeSlug?: string }) {
   const links = [
-    { label: "All Subjects", href: "/subjects", icon: "all", active: !activeSlug },
+    { label: "All Subjects", href: "/subjects", icon: "all", active: !activeSlug, count: allCourses.length },
     ...subjects.map((subject) => ({
       label: subject.name,
       href: `/subjects/${subject.slug}`,
       icon: subject.slug,
       active: subject.slug === activeSlug,
+      count: countFor(subject.slug),
     })),
   ];
 
@@ -146,13 +159,15 @@ function Sidebar({ subjects, activeSlug }: { subjects: readonly Subject[]; activ
     <nav className={styles.sidebar} aria-label="Subject categories">
       <p className={styles.sidebarTitle}>Categories</p>
       <ul>
-        {links.map(({ label, href, icon, active }) => (
+        {links.map(({ label, href, icon, active, count }) => (
           <li key={href}>
             <Link href={href} scroll={false} aria-current={active ? "page" : undefined} className={subjectStyles[icon]}>
+              {active && <motion.span layoutId="sidebar-active" className={styles.sidebarActive} transition={{ type: "spring", stiffness: 400, damping: 34 }} />}
               <span className={styles.sidebarIcon}>
-                <CatalogIcon name={icon} size={20} />
+                <CatalogIcon name={icon} size={19} />
               </span>
-              <span>{label}</span>
+              <span className={styles.sidebarLabel}>{label}</span>
+              <span className={styles.sidebarCount}>{count}</span>
             </Link>
           </li>
         ))}
@@ -173,38 +188,60 @@ function EmptyState({ onReset, message }: { onReset?: () => void; message: strin
 function CatalogFrame({
   subjects,
   activeSlug,
+  title,
+  subtitle,
   search,
   children,
 }: {
   subjects: readonly Subject[];
   activeSlug?: string;
+  title: string;
+  subtitle: string;
   search: ReactNode;
   children: ReactNode;
 }) {
   return (
-    <>
-      <div className={styles.subjectIntro}>
+    <MotionConfig reducedMotion="user">
+      <motion.header
+        className={styles.subjectIntro}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease }}
+      >
         <div>
-          <h1>Subjects</h1>
-          <p>Explore all available subjects and find the best course for you.</p>
+          <p className={styles.eyebrow}>EXPLORE · {subjects.length} SUBJECTS · {allCourses.length} COURSES</p>
+          <h1>{title}</h1>
+          <p>{subtitle}</p>
         </div>
         <div className={styles.subjectSearch}>{search}</div>
-      </div>
+      </motion.header>
       <div className={styles.catalogLayout}>
         <div className={styles.catalogMain}>
-          <section className={styles.catalogBanner} aria-labelledby="catalog-banner-title">
-            <Image
-              className={styles.bannerImage}
-              src="/home/hero.jpg"
-              alt=""
-              fill
-              sizes="(max-width: 1100px) 100vw, 75vw"
-            />
+          <motion.section
+            className={styles.catalogBanner}
+            aria-labelledby="catalog-banner-title"
+            initial={{ opacity: 0, y: 24, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, ease, delay: 0.1 }}
+          >
+            <span className={styles.bannerGlow} aria-hidden="true" />
             <div className={styles.bannerCopy}>
+              <span className={styles.bannerTag}>3 months access · every course</span>
               <h2 id="catalog-banner-title">Learn at your own pace</h2>
-              <p>Buy a course once and access its lessons and study files for 3 months.</p>
+              <p>Buy a course once and keep its lessons and study files for 3 months — or save with a bundle.</p>
+              <Link href="/pricing" className={styles.bannerCta}>
+                View plans <CatalogIcon name="arrow" size={15} />
+              </Link>
             </div>
-          </section>
+            <motion.div
+              className={styles.bannerArt}
+              aria-hidden="true"
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Image src="/catalog/brand-robot.jpg" alt="" width={220} height={220} sizes="220px" />
+            </motion.div>
+          </motion.section>
           <div className={styles.browserLayout}>
             <Sidebar subjects={subjects} activeSlug={activeSlug} />
             {children}
@@ -212,7 +249,7 @@ function CatalogFrame({
         </div>
         <ContinueCourses />
       </div>
-    </>
+    </MotionConfig>
   );
 }
 
@@ -226,22 +263,45 @@ export function SubjectBrowser({ subjects }: { subjects: readonly Subject[] }) {
   return (
     <CatalogFrame
       subjects={subjects}
+      title="Subjects"
+      subtitle="Explore every subject on SI Tutor and find the right course for your goal."
       search={<SearchField value={query} onChange={setQuery} label="Search subjects" placeholder="What would you like to learn today?" />}
     >
       {matchingSubjects.length > 0 ? (
         <ul className={styles.subjectGrid} aria-label="Subjects">
-          {matchingSubjects.map((subject) => (
-            <li key={subject.slug} className={subjectStyles[subject.slug]}>
-              <Link className={styles.subjectCard} href={`/subjects/${subject.slug}`}>
-                <span className={styles.subjectArt}>
-                  <Image src={subject.image} alt="" width={180} height={155} sizes="(max-width: 490px) 90px, 140px" />
-                </span>
-                <h2>{subject.name}</h2>
-                <p>{subject.description}</p>
-                <span className={styles.viewCourses}>View Courses <CatalogIcon name="arrow" size={15} /></span>
-              </Link>
-            </li>
-          ))}
+          <AnimatePresence mode="popLayout">
+            {matchingSubjects.map((subject, index) => (
+              <motion.li
+                key={subject.slug}
+                layout
+                className={subjectStyles[subject.slug]}
+                initial={{ opacity: 0, y: 28, scale: 0.97 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.55, ease, delay: 0.15 + index * 0.06 }}
+              >
+                <Link className={styles.subjectCard} href={`/subjects/${subject.slug}`}>
+                  <Image
+                    className={styles.subjectBg}
+                    src={subjectBackgrounds[subject.slug] ?? subject.image}
+                    alt=""
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 520px"
+                  />
+                  <span className={styles.subjectShade} aria-hidden="true" />
+                  <span className={styles.subjectText}>
+                    <h2>{subject.name}</h2>
+                    <p>{subject.description}</p>
+                  </span>
+                  <span className={styles.viewCourses}>
+                    <i aria-hidden="true" />
+                    View Courses <CatalogIcon name="arrow" size={15} />
+                    <span className="sr-only"> ({countFor(subject.slug)} courses)</span>
+                  </span>
+                </Link>
+              </motion.li>
+            ))}
+          </AnimatePresence>
         </ul>
       ) : (
         <EmptyState onReset={() => setQuery("")} message="No subjects match your search." />
@@ -250,9 +310,28 @@ export function SubjectBrowser({ subjects }: { subjects: readonly Subject[] }) {
   );
 }
 
-function CourseCard({ course, subject }: { course: Course; subject: Subject }) {
+function Stars({ rating }: { rating: number }) {
   return (
-    <article className={styles.courseCard}>
+    <span className={styles.stars} aria-hidden="true">
+      {[1, 2, 3, 4, 5].map((star) => (
+        <svg key={star} viewBox="0 0 24 24" data-on={rating >= star - 0.25 || undefined}>
+          <path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9Z" />
+        </svg>
+      ))}
+    </span>
+  );
+}
+
+function CourseCard({ course, subject, index }: { course: Course; subject: Subject; index: number }) {
+  return (
+    <motion.article
+      className={styles.courseCard}
+      layout
+      initial={{ opacity: 0, y: 26 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.96 }}
+      transition={{ duration: 0.5, ease, delay: Math.min(index, 8) * 0.05 }}
+    >
       <Link href={`/courses/${course.slug}`} className={styles.courseLink}>
         <div className={styles.courseMedia}>
           <Image
@@ -262,21 +341,33 @@ function CourseCard({ course, subject }: { course: Course; subject: Subject }) {
             sizes="(max-width: 580px) 100vw, (max-width: 1080px) 48vw, 28vw"
           />
           <span className={styles.courseCategory}>{subject.name}</span>
+          <span className={styles.coursePrice}>{formatCoursePrice(course.price).replace(" AUD", "")}</span>
         </div>
         <div className={styles.courseBody}>
+          {course.rating > 0 ? (
+            <p className={styles.rating}>
+              <Stars rating={course.rating} />
+              <strong>{course.rating.toFixed(1)}</strong>
+              <span>({course.reviews} reviews)</span>
+              <span className="sr-only">Rated {course.rating} out of 5</span>
+            </p>
+          ) : (
+            <p className={styles.rating}><span className={styles.newBadge}>New course</span></p>
+          )}
           <h2>{course.title}</h2>
           <p className={styles.courseDescription}>{course.description}</p>
           <ul className={styles.courseMeta} aria-label="Course information">
             <li><CatalogIcon name="book" size={14} />{course.lessonCount} lesson{course.lessonCount === 1 ? "" : "s"}</li>
             <li><CatalogIcon name="clock" size={14} />{course.duration}</li>
+            <li><CatalogIcon name="check" size={14} />3 months access</li>
           </ul>
-          <p className="mt-2 text-sm text-slate-700">{course.lessonCount} study {course.lessonCount === 1 ? "file" : "files"} · 3 months of access</p>
-          <p className="mt-2 flex flex-wrap items-center justify-between gap-2 text-sm font-bold text-blue-800">
-            <span>{formatCoursePrice(course.price)}</span><span>View Details →</span>
+          <p className={styles.courseFooter}>
+            <span>{formatCoursePrice(course.price)}</span>
+            <span className={styles.details}>View details <CatalogIcon name="arrow" size={14} /></span>
           </p>
         </div>
       </Link>
-    </article>
+    </motion.article>
   );
 }
 
@@ -304,6 +395,8 @@ export function CourseBrowser({
     <CatalogFrame
       subjects={subjects}
       activeSlug={subject.slug}
+      title={subject.name}
+      subtitle={subject.description}
       search={<SearchField value={query} onChange={setQuery} label="Search courses" placeholder="Search courses..." />}
     >
       <section className={styles.courses} aria-labelledby="courses-heading">
@@ -322,18 +415,20 @@ export function CourseBrowser({
               </select>
             </label>
             <div className={styles.viewControls} aria-label="Course view">
-              <button type="button" aria-label="Grid view" aria-pressed={view === "grid"} onClick={() => setView("grid")}>
-                <CatalogIcon name="grid" size={17} />
-              </button>
-              <button type="button" aria-label="List view" aria-pressed={view === "list"} onClick={() => setView("list")}>
-                <CatalogIcon name="list" size={17} />
-              </button>
+              {(["grid", "list"] as const).map((mode) => (
+                <button key={mode} type="button" aria-label={`${mode === "grid" ? "Grid" : "List"} view`} aria-pressed={view === mode} onClick={() => setView(mode)}>
+                  {view === mode && <motion.span layoutId="view-toggle" className={styles.viewActive} transition={{ type: "spring", stiffness: 420, damping: 32 }} />}
+                  <CatalogIcon name={mode} size={17} />
+                </button>
+              ))}
             </div>
           </div>
         </div>
         {filtered.length ? (
           <div key={subject.slug} className={`${styles.courseGrid} ${view === "list" ? styles.courseList : ""}`}>
-            {filtered.map((course) => <CourseCard key={course.slug} course={course} subject={subject} />)}
+            <AnimatePresence mode="popLayout">
+              {filtered.map((course, index) => <CourseCard key={course.slug} course={course} subject={subject} index={index} />)}
+            </AnimatePresence>
           </div>
         ) : (
           <EmptyState

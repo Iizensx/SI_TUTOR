@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { AnimatePresence, LayoutGroup, MotionConfig, motion } from "framer-motion";
+import { AuthCharacters } from "./auth-characters";
 import styles from "./auth.module.css";
 import headerStyles from "./site-header.module.css";
 
@@ -18,7 +19,7 @@ const visualCopy = {
     text: "Adaptive lessons, study files and progress in one place.",
   },
   login: {
-    chip: "Progress synced",
+    chip: "We won’t peek. Promise.",
     title: "Your learning, all in one place",
     text: "Lessons, notes and progress waiting for you.",
   },
@@ -41,17 +42,6 @@ export function AuthShell({ children }: { children: ReactNode }) {
           <span className={styles.drift} />
           <span className={`${styles.drift} ${styles.driftSlow}`} />
         </div>
-
-        <header className={styles.topbar}>
-          {/* Same brand lockup as the Home page header */}
-          <Link className={`${headerStyles.brand} ${styles.brandBadge}`} href="/" aria-label="SI Tutor home">
-            <Image className={`${headerStyles.brandRobot} ${styles.brandRobot}`} src="/catalog/brand-robot.jpg" alt="" width={48} height={48} priority />
-            <span className={headerStyles.brandCopy}>
-              <span className={`${headerStyles.brandName} ${styles.brandName}`}><span>SI</span> TUTOR</span>
-              <span className={`${headerStyles.brandTagline} ${styles.brandTagline}`}>Super Intelligence Tutor</span>
-            </span>
-          </Link>
-        </header>
 
         <motion.div
           className={styles.card}
@@ -84,14 +74,32 @@ export function AuthShell({ children }: { children: ReactNode }) {
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" /></svg>
               </Link>
               <div className={styles.photo} aria-hidden="true">
-                <motion.div
-                  className={styles.photoInner}
-                  initial={{ scale: 1.12 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 1.6, ease }}
-                >
-                  <Image src="/auth/signup-study-desk.jpg" alt="" fill priority sizes="(max-width: 1024px) 0px, 520px" className={styles.photoImage} />
-                </motion.div>
+                {/* Login: animated characters. Sign up: study-desk photo. Cross-fades on switch. */}
+                <AnimatePresence initial={false}>
+                  {imageFirst ? (
+                    <motion.div
+                      key="characters"
+                      className={styles.photoInner}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <AuthCharacters />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="photo"
+                      className={styles.photoInner}
+                      initial={{ opacity: 0, scale: 1.12 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 1.2, ease }}
+                    >
+                      <Image src="/auth/signup-study-desk.jpg" alt="" fill priority sizes="(max-width: 1024px) 0px, 520px" className={styles.photoImage} />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.div
@@ -108,7 +116,7 @@ export function AuthShell({ children }: { children: ReactNode }) {
                 </AnimatePresence>
 
                 <AnimatePresence mode="wait" initial={false}>
-                  <motion.div
+                  {!imageFirst && <motion.div
                     key={`card-${mode}`}
                     className={styles.glassCard}
                     initial={{ opacity: 0, y: 24 }}
@@ -124,7 +132,7 @@ export function AuthShell({ children }: { children: ReactNode }) {
                       <small>{copy.text}</small>
                     </span>
                     <span className={styles.bars}><i /><i /><i /><i /><i /></span>
-                  </motion.div>
+                  </motion.div>}
                 </AnimatePresence>
               </div>
             </motion.aside>
