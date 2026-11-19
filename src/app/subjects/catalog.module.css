@@ -236,6 +236,10 @@
     align-items: start;
   }
 
+  .catalogLayout:has(> aside[data-collapsed]) {
+    grid-template-columns: minmax(0, 1fr) 76px;
+  }
+
   .catalogLayout > aside {
     position: sticky;
     top: calc(var(--site-header-clearance) + 8px);
@@ -898,6 +902,10 @@
 
 /* ─────────── Responsive ─────────── */
 @media (max-width: 1100px) {
+  .catalogLayout:has(> aside[data-collapsed]) {
+    grid-template-columns: minmax(0, 1fr) 76px;
+  }
+
   .catalogLayout > aside {
     order: -1;
   }

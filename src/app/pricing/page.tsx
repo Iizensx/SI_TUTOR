@@ -1,14 +1,19 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
-import { courses, formatCoursePrice, subjects } from "@/lib/catalog";
+import { connection } from "next/server";
+
+import { formatCoursePrice, subjects } from "@/lib/catalog";
+import { getPublicCourses } from "@/lib/server/catalog-store";
 import { plans } from "@/lib/plans";
 import { PricingPlans } from "./pricing-plans";
 import styles from "./pricing.module.css";
 
 export const metadata: Metadata = { title: "Pricing | SI Tutor" };
 
-export default function PricingPage() {
+export default async function PricingPage() {
+  await connection();
+  const courses = await getPublicCourses();
   return (
     <main id="main-content" tabIndex={-1} className={styles.page}>
       <div className={styles.glow} aria-hidden="true" />

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRef, useState, type FormEvent, type ReactNode } from "react";
 import { motion } from "framer-motion";
+import { createPortal } from "react-dom";
 import { useAuth } from "./auth-provider";
 import styles from "./auth.module.css";
 
@@ -102,6 +103,7 @@ export function AuthForm({ mode, next, oauthError }: { mode: "login" | "signup";
   const formRef = useRef<HTMLFormElement>(null);
   const errorRef = useRef<HTMLDivElement>(null);
   const [pending, setPending] = useState(false);
+  const [showLoginLoading, setShowLoginLoading] = useState(false);
   const [error, setError] = useState(oauthError ? oauthMessages[oauthError] ?? oauthMessages.google_failed : "");
   const [values, setValues] = useState({ firstName: "", lastName: "", email: "", password: "", confirmPassword: "", level: "" });
   const [showPassword, setShowPassword] = useState(false);
@@ -144,15 +146,29 @@ export function AuthForm({ mode, next, oauthError }: { mode: "login" | "signup";
     }
     setPending(true);
     try {
-      await authenticate({ ...data, action: mode, remember: data.remember === "on" });
+      const signedIn = await authenticate({ ...data, action: mode, remember: data.remember === "on" });
       window.dispatchEvent(new CustomEvent("si-auth", { detail: "success" }));
-      router.replace(next);
+      if (!signup) {
+        setShowLoginLoading(true);
+        await new Promise((resolve) => window.setTimeout(resolve, 2000));
+      }
+      // Admins go straight to the dashboard unless they were heading somewhere specific.
+      router.replace(signedIn?.role === "admin" && next === "/my-courses" ? "/admin" : next);
       router.refresh();
     } catch (caught) {
       showError(caught instanceof Error ? caught.message : "Unable to connect. Please try again.");
     } finally {
       setPending(false);
     }
+  }
+
+  if (showLoginLoading) {
+    return createPortal(
+      <div className={styles.loginLoading} role="status" aria-label="Logging in">
+        <span className={styles.fadeDots} aria-hidden="true"><i /><i /><i /><i /></span>
+      </div>,
+      document.body
+    );
   }
 
   if (!loading && user) {
@@ -191,8 +207,8 @@ export function AuthForm({ mode, next, oauthError }: { mode: "login" | "signup";
           )}
 
           <motion.div variants={rise}>
-            <Field id="email" label="Email address" icon="email" valid={emailPattern.test(values.email.trim())}>
-              <input id="email" name="email" type="email" placeholder=" " autoComplete="email" autoCapitalize="none" spellCheck={false} required maxLength={254} value={values.email} onChange={update("email")} />
+            <Field id="email" label={signup ? "Email address" : "Email or username"} icon="email" valid={emailPattern.test(values.email.trim()) || (!signup && values.email.trim().toLowerCase() === "admin")}>
+              <input id="email" name="email" type={signup ? "email" : "text"} placeholder=" " autoComplete="email" autoCapitalize="none" spellCheck={false} required maxLength={254} value={values.email} onChange={update("email")} />
             </Field>
           </motion.div>
 

@@ -14,6 +14,10 @@ export type Lesson = {
   description: string;
   takeaways: string[];
   video?: { source: string; captions: string };
+  /** Shown to visitors who have not bought the course. */
+  preview?: boolean;
+  /** Extra study files attached by an admin. */
+  files?: { name: string; url: string }[];
 };
 
 export type CourseSection = {

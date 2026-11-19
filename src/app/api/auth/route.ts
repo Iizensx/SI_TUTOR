@@ -32,7 +32,8 @@ export async function POST(request: NextRequest) {
     const body: unknown = await request.json();
     if (!body || typeof body !== "object") throw new AuthError("Please complete the form.");
     const data = body as Record<string, unknown>;
-    const email = typeof data.email === "string" ? data.email.trim().toLowerCase() : "";
+    const identifier = typeof data.email === "string" ? data.email.trim().toLowerCase() : "";
+    const email = data.action === "login" && identifier === "admin" ? "admin@si-tutor.example" : identifier;
     const password = typeof data.password === "string" ? data.password : "";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254) throw new AuthError("Enter a valid email address.");
     if (!password || password.length > 128) throw new AuthError("Enter a password of up to 128 characters.");

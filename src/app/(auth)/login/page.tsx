@@ -6,5 +6,5 @@ export const metadata: Metadata = { title: "Log in | SI Tutor" };
 
 export default async function Page({ searchParams }: { searchParams: Promise<{ next?: string | string[]; error?: string | string[] }> }) {
   const { next, error } = await searchParams;
-  return <AuthScreen mode="login" next={safeAuthNext(next)} oauthError={typeof error === "string" ? error : undefined} />;
+  return <AuthScreen mode="login" next={next === undefined ? "/" : safeAuthNext(next)} oauthError={typeof error === "string" ? error : undefined} />;
 }

@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { connection } from "next/server";
 import { DemoCheckout } from "@/components/course-access";
-import { getCourse } from "@/lib/catalog";
+import { getPublicCourse } from "@/lib/server/catalog-store";
 
 export default async function CheckoutPage({ params }: { params: Promise<{ course: string }> }) {
-  const course = getCourse((await params).course);
+  await connection();
+  const course = await getPublicCourse((await params).course);
   if (!course) notFound();
   return (
     <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-2xl px-4 py-8 sm:py-14">

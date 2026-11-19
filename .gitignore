@@ -7,3 +7,4 @@ coverage/
 !.env.example
 *.log
 /ต้นฉบับจากพี่ Amy/
+/public/uploads/

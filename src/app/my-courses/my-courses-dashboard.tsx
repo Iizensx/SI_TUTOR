@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useAuth } from "@/components/auth-provider";
 import { useDemoAccess } from "@/components/course-access";
 import { getCompletedLessons, lessonStorageKey, useSavedValue } from "@/components/lesson-progress";
-import { courses, subjects, type Course } from "@/lib/catalog";
+import { subjects, type Course } from "@/lib/catalog";
 
 import styles from "./my-courses.module.css";
 
@@ -53,9 +53,11 @@ function CourseCard({ course, expiry, now, userId, featured = false }: { course:
   );
 }
 
-export function MyCoursesDashboard() {
+export function MyCoursesDashboard({ catalog: courses }: { catalog: Course[] }) {
   const { user, logout } = useAuth();
-  const { signedIn, purchases, loading, now } = useDemoAccess();
+  const { signedIn, purchases: owned, allAccessExpiry, loading, now } = useDemoAccess();
+  // The All-Access Pass also covers courses an admin added after the pass was bought.
+  const purchases: Record<string, number> = Object.fromEntries(courses.map(({ slug }) => [slug, owned[slug] ?? allAccessExpiry ?? NaN]));
   const [loggingOut, setLoggingOut] = useState(false);
   const [error, setError] = useState("");
 

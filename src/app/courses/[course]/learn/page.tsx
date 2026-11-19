@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { connection } from "next/server";
 import { CourseIcon } from "@/components/course-shared";
 import { LearningRoom } from "@/components/course-learning";
-import { getCourse, getSubject } from "@/lib/catalog";
+import { getSubject } from "@/lib/catalog";
+import { getPublicCourse } from "@/lib/server/catalog-store";
 import styles from "@/components/course-experience.module.css";
 
 export default async function LearnPage({
@@ -14,7 +16,8 @@ export default async function LearnPage({
 }) {
   const { course: slug } = await params;
   const { preview } = await searchParams;
-  const course = getCourse(slug);
+  await connection();
+  const course = await getPublicCourse(slug);
   if (!course) notFound();
 
   const subject = getSubject(course.subjectSlug);

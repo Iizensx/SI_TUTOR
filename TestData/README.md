@@ -32,3 +32,19 @@ Replace `src/lib/server/user-repository.ts` with a database adapter while keepin
 ## Google sign-in
 
 The Google button on `/login` and `/signup` uses OAuth 2.0 (`/api/auth/google` → Google → `/api/auth/google/callback`). Copy `.env.example` to `.env.local`, add `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`, and register `http://localhost:3000/api/auth/google/callback` as an authorised redirect URI. Without these values the button returns to the login page with a friendly message. A verified Google email that matches an existing account is linked to it; otherwise a new Google-only account (no password) is created in `users.json`.
+
+## Admin dashboard
+
+Open `/admin` (or log in with an admin account — admins land on the dashboard). Admin accounts use the same password **`LearnSI2026!`**:
+
+| Email | Role | Can do |
+| --- | --- | --- |
+| `admin@si-tutor.example` | owner | Everything, including team, roles and site settings |
+| `editor@si-tutor.example` | editor | Subjects, courses, lessons and files |
+
+Support staff (orders, refunds and student access) can be added in **Settings → Admin accounts**.
+
+- Admin data lives in `TestData/admin.json`. It is created on first use with **example orders** (marked as demo) so charts have data; delete the file to start again.
+- Course edits (price, title, cover, description, instructor, hidden), lesson order, videos, files and previews apply to the public site immediately.
+- Checkouts now record orders on the server; Afterpay orders wait for an admin to confirm. Access changes need a reason and are kept in the access history and audit log.
+- Uploaded files are saved to `public/uploads/` (ignored by git). Use cloud storage for a deployed site.

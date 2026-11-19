@@ -115,25 +115,7 @@ export function AuthShell({ children }: { children: ReactNode }) {
                   </motion.div>
                 </AnimatePresence>
 
-                <AnimatePresence mode="wait" initial={false}>
-                  {!imageFirst && <motion.div
-                    key={`card-${mode}`}
-                    className={styles.glassCard}
-                    initial={{ opacity: 0, y: 24 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 12 }}
-                    transition={{ duration: 0.55, ease, delay: 0.3 }}
-                  >
-                    <span className={styles.glassIcon}>
-                      <svg viewBox="0 0 24 24"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M6.3 6.3l2.1 2.1m7.2 7.2 2.1 2.1m0-11.4-2.1 2.1m-7.2 7.2-2.1 2.1" /><circle cx="12" cy="12" r="3" /></svg>
-                    </span>
-                    <span>
-                      <strong>{copy.title}</strong>
-                      <small>{copy.text}</small>
-                    </span>
-                    <span className={styles.bars}><i /><i /><i /><i /><i /></span>
-                  </motion.div>}
-                </AnimatePresence>
+
               </div>
             </motion.aside>
           </LayoutGroup>

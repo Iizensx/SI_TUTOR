@@ -1,4 +1,7 @@
-import { courses, subjects } from "@/lib/catalog";
+import { connection } from "next/server";
+
+import { subjects } from "@/lib/catalog";
+import { getPublicCourses } from "@/lib/server/catalog-store";
 
 import { HomeExperience } from "./home-experience";
 
@@ -8,7 +11,9 @@ function reviewCount(value: string) {
   return value.toLowerCase().endsWith("k") ? number * 1000 : number;
 }
 
-export default function Home() {
+export default async function Home() {
+  await connection();
+  const courses = await getPublicCourses();
   const counts = Object.fromEntries(subjects.map(({ slug }) => [slug, courses.filter((course) => course.subjectSlug === slug).length]));
   // The best-rated course from each subject, so the row shows a variety of categories.
   const score = (course: (typeof courses)[number]) => reviewCount(course.reviews) * course.rating;

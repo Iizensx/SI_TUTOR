@@ -284,6 +284,11 @@
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") right 2px center / 16px no-repeat;
 }
 
+.field select option {
+  color: #0f172a;
+  background: #fff;
+}
+
 .field select[data-empty] {
   color: transparent;
 }
@@ -944,3 +949,26 @@
     animation: none;
   }
 }
+
+.loginLoading {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  width: 100vw;
+  height: 100dvh;
+  display: grid;
+  place-items: center;
+  background: #fff;
+}
+
+.fadeDots { display: flex; align-items: center; gap: 8px; }
+.fadeDots i { width: 10px; height: 10px; border-radius: 50%; background: #171717; animation: loginFadeDot 1.5s linear infinite; }
+.fadeDots i:nth-child(2) { animation-delay: .2s; }
+.fadeDots i:nth-child(3) { animation-delay: .4s; }
+.fadeDots i:nth-child(4) { animation-delay: .6s; }
+@keyframes loginFadeDot { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .fadeDots i { animation: none; opacity: 1; } }
+
+.fadeDots i:nth-child(2) { background: #52525b; }
+.fadeDots i:nth-child(3) { background: #71717a; }
+.fadeDots i:nth-child(4) { background: #171717; }

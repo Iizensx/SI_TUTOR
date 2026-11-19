@@ -11,7 +11,7 @@ import styles from "./site-header.module.css";
 export function SiteHeader() {
   const pathname = usePathname();
   const { user, loading } = useAuth();
-  if (pathname === "/login" || pathname === "/signup") return null;
+  if (pathname === "/login" || pathname === "/signup" || pathname.startsWith("/admin")) return null;
 
   const inSubjects =
     pathname === "/subjects" ||

@@ -6,7 +6,9 @@ import type { UserProfile } from "@/lib/auth-types";
 type AuthContextValue = {
   user: UserProfile | null;
   loading: boolean;
-  authenticate: (data: Record<string, unknown>) => Promise<void>;
+  authenticate: (data: Record<string, unknown>) => Promise<UserProfile | null>;
+  /** Re-read the signed-in account (e.g. after a purchase changes enrollments). */
+  reload: () => Promise<void>;
   updateAccount: (data: Record<string, unknown>) => Promise<void>;
   logout: () => Promise<void>;
 };
@@ -53,9 +55,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(result.user);
     setLoading(false);
     try { localStorage.setItem(authEventKey, `${Date.now()}-${Math.random()}`); } catch { /* Cookie sessions also work without local storage. */ }
+    return result.user as UserProfile;
+    return result.user as UserProfile | null;
   }
 
-  return <AuthContext.Provider value={{ user, loading, authenticate: (data) => update("POST", data), updateAccount: (data) => update("PATCH", data), logout: () => update("DELETE") }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ user, loading, authenticate: (data) => update("POST", data), reload: refresh, updateAccount: async (data) => { await update("PATCH", data); }, logout: async () => { await update("DELETE"); } }}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {

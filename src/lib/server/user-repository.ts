@@ -2,7 +2,7 @@ import { randomBytes, randomUUID, scrypt, timingSafeEqual } from "node:crypto";
 import { readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { promisify } from "node:util";
-import type { UserProfile } from "@/lib/auth-types";
+import type { AdminRole, UserProfile } from "@/lib/auth-types";
 
 // Google-only accounts have an empty passwordHash and a googleId instead.
 type StoredUser = UserProfile & { passwordHash: string; googleId?: string };
@@ -131,4 +131,32 @@ function writeUserChange(id: string, update: (user: StoredUser) => unknown) {
   });
   state.siTutorUserWrites = operation.catch(() => undefined);
   return operation;
+}
+
+/** All accounts (without password hashes), for the admin area. */
+export async function listUsers() {
+  return (await readUsers()).users.map(publicProfile);
+}
+
+/** Set (or clear, with expiresAt = null) a learner's access to one course. */
+export async function setEnrollment(userId: string, courseSlug: string, expiresAt: string | null) {
+  return writeUserChange(userId, (user) => {
+    const others = user.enrollments.filter((item) => item.courseSlug !== courseSlug);
+    user.enrollments = expiresAt ? [...others, { courseSlug, expiresAt }] : others;
+  });
+}
+
+/** Grant or remove admin rights by email. */
+export async function setAdminRole(email: string, adminRole: AdminRole | null) {
+  const user = (await readUsers()).users.find((item) => item.email.toLowerCase() === email.trim().toLowerCase());
+  if (!user) throw new AuthError("No account uses that email. Ask them to sign up first.", 404);
+  return writeUserChange(user.id, (stored) => {
+    if (adminRole) {
+      stored.role = "admin";
+      stored.adminRole = adminRole;
+    } else {
+      stored.role = "student";
+      delete stored.adminRole;
+    }
+  });
 }

@@ -6,7 +6,7 @@ import { useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 
 import { CatalogIcon } from "@/components/catalog-shell";
-import { courses as allCourses, formatCoursePrice, type Course, type Subject } from "@/lib/catalog";
+import { formatCoursePrice, type Course, type Subject } from "@/lib/catalog";
 
 import { ContinueCourses } from "./continue-courses";
 import styles from "./catalog.module.css";
@@ -20,7 +20,7 @@ const subjectBackgrounds: Record<string, string> = {
   mathematics: "/catalog/mathematics-category-background.png",
   citizenship: "/catalog/citizenship-category-background.png",
 };
-const countFor = (slug: string) => allCourses.filter((course) => course.subjectSlug === slug).length;
+const countIn = (catalog: readonly Course[], slug: string) => catalog.filter((course) => course.subjectSlug === slug).length;
 
 const subjectStyles: Record<string, string> = {
   hsc: styles.hsc,
@@ -143,15 +143,15 @@ function SearchField({
   );
 }
 
-function Sidebar({ subjects, activeSlug }: { subjects: readonly Subject[]; activeSlug?: string }) {
+function Sidebar({ subjects, catalog, activeSlug }: { subjects: readonly Subject[]; catalog: readonly Course[]; activeSlug?: string }) {
   const links = [
-    { label: "All Subjects", href: "/subjects", icon: "all", active: !activeSlug, count: allCourses.length },
+    { label: "All Subjects", href: "/subjects", icon: "all", active: !activeSlug, count: catalog.length },
     ...subjects.map((subject) => ({
       label: subject.name,
       href: `/subjects/${subject.slug}`,
       icon: subject.slug,
       active: subject.slug === activeSlug,
-      count: countFor(subject.slug),
+      count: countIn(catalog, subject.slug),
     })),
   ];
 
@@ -187,6 +187,7 @@ function EmptyState({ onReset, message }: { onReset?: () => void; message: strin
 
 function CatalogFrame({
   subjects,
+  catalog,
   activeSlug,
   title,
   subtitle,
@@ -194,6 +195,7 @@ function CatalogFrame({
   children,
 }: {
   subjects: readonly Subject[];
+  catalog: readonly Course[];
   activeSlug?: string;
   title: string;
   subtitle: string;
@@ -209,7 +211,7 @@ function CatalogFrame({
         transition={{ duration: 0.7, ease }}
       >
         <div>
-          <p className={styles.eyebrow}>EXPLORE · {subjects.length} SUBJECTS · {allCourses.length} COURSES</p>
+          <p className={styles.eyebrow}>EXPLORE · {subjects.length} SUBJECTS · {catalog.length} COURSES</p>
           <h1>{title}</h1>
           <p>{subtitle}</p>
         </div>
@@ -243,7 +245,7 @@ function CatalogFrame({
             </motion.div>
           </motion.section>
           <div className={styles.browserLayout}>
-            <Sidebar subjects={subjects} activeSlug={activeSlug} />
+            <Sidebar subjects={subjects} catalog={catalog} activeSlug={activeSlug} />
             {children}
           </div>
         </div>
@@ -253,7 +255,7 @@ function CatalogFrame({
   );
 }
 
-export function SubjectBrowser({ subjects }: { subjects: readonly Subject[] }) {
+export function SubjectBrowser({ subjects, catalog }: { subjects: readonly Subject[]; catalog: readonly Course[] }) {
   const [query, setQuery] = useState("");
   const normalized = query.trim().toLowerCase();
   const matchingSubjects = subjects.filter(({ name, description }) =>
@@ -263,6 +265,7 @@ export function SubjectBrowser({ subjects }: { subjects: readonly Subject[] }) {
   return (
     <CatalogFrame
       subjects={subjects}
+      catalog={catalog}
       title="Subjects"
       subtitle="Explore every subject on SI Tutor and find the right course for your goal."
       search={<SearchField value={query} onChange={setQuery} label="Search subjects" placeholder="What would you like to learn today?" />}
@@ -296,7 +299,7 @@ export function SubjectBrowser({ subjects }: { subjects: readonly Subject[] }) {
                   <span className={styles.viewCourses}>
                     <i aria-hidden="true" />
                     View Courses <CatalogIcon name="arrow" size={15} />
-                    <span className="sr-only"> ({countFor(subject.slug)} courses)</span>
+                    <span className="sr-only"> ({countIn(catalog, subject.slug)} courses)</span>
                   </span>
                 </Link>
               </motion.li>
@@ -373,10 +376,12 @@ function CourseCard({ course, subject, index }: { course: Course; subject: Subje
 
 export function CourseBrowser({
   subjects,
+  catalog,
   subject,
   courses,
 }: {
   subjects: readonly Subject[];
+  catalog: readonly Course[];
   subject: Subject;
   courses: readonly Course[];
 }) {
@@ -394,6 +399,7 @@ export function CourseBrowser({
   return (
     <CatalogFrame
       subjects={subjects}
+      catalog={catalog}
       activeSlug={subject.slug}
       title={subject.name}
       subtitle={subject.description}

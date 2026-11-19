@@ -53,6 +53,15 @@ export function LearningRoom(props: { course: Course; subject: Subject; preview:
   );
 }
 
+/** YouTube / Vimeo links play in an embedded player; other links use the <video> element. */
+function embedUrl(source: string) {
+  const youtube = source.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]{6,})/);
+  if (youtube) return `https://www.youtube-nocookie.com/embed/${youtube[1]}`;
+  const vimeo = source.match(/vimeo\.com\/(\d+)/);
+  if (vimeo) return `https://player.vimeo.com/video/${vimeo[1]}`;
+  return null;
+}
+
 function LessonContent({ course, subject, preview, expires }: { course: Course; subject: Subject; preview: boolean; expires: number | null }) {
   const { user } = useAuth();
   const lessons = course.sections.flatMap(({ lessons }) => lessons);
@@ -63,7 +72,9 @@ function LessonContent({ course, subject, preview, expires }: { course: Course; 
   const completed = getCompletedLessons(savedProgress, lessons.map(({ id }) => id));
   const progress = lessons.length ? Math.round((completed.size / lessons.length) * 100) : 0;
   const [savedLesson, saveLesson] = useSavedValue(`${keyPrefix}:current`);
-  const selected = preview ? 0 : Math.max(0, lessons.findIndex(({ id }) => id === savedLesson));
+  // Preview mode opens the lesson an admin marked as a preview (the first lesson by default).
+  const previewIndex = Math.max(0, lessons.findIndex((item) => item.preview));
+  const selected = preview ? previewIndex : Math.max(0, lessons.findIndex(({ id }) => id === savedLesson));
   const lesson = lessons[selected];
 
   function selectLesson(next: Lesson) {
@@ -98,12 +109,20 @@ function LessonContent({ course, subject, preview, expires }: { course: Course; 
           <article className={styles.lessonPanel} id="lesson" aria-labelledby="lesson-title">
             <header className={styles.lessonHeader}>
               <h2 id="lesson-title" ref={headingRef} tabIndex={-1}>{String(selected + 1).padStart(2, "0")}. {lesson.title}</h2>
-              {selected === 0 && <span className={styles.previewBadge}>Preview</span>}
+              {(lesson.preview || (selected === 0 && !lessons.some((item) => item.preview))) && <span className={styles.previewBadge}>Preview</span>}
               <span className={styles.lessonDuration}>{lesson.duration}</span>
             </header>
-            {!preview && lesson.video ? (
+            {(!preview || lesson.preview) && lesson.video && embedUrl(lesson.video.source) ? (
+              <iframe
+                className="aspect-video w-full rounded-xl bg-slate-950"
+                src={embedUrl(lesson.video.source)!}
+                title={lesson.title}
+                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                allowFullScreen
+              />
+            ) : (!preview || lesson.preview) && lesson.video ? (
               <video className="w-full rounded-xl bg-slate-950" controls preload="metadata" src={lesson.video.source}>
-                <track kind="captions" src={lesson.video.captions} srcLang="en" label="English" />
+                {lesson.video.captions && <track kind="captions" src={lesson.video.captions} srcLang="en" label="English" />}
               </video>
             ) : (
             <figure className={styles.lessonMedia}>
@@ -137,6 +156,11 @@ function LessonContent({ course, subject, preview, expires }: { course: Course; 
                     href={"data:text/plain;charset=utf-8," + encodeURIComponent([lesson.title, lesson.description, ...lesson.takeaways].join("\n\n"))}>
                     {lesson.title} — Study notes (.txt)
                   </a>
+                  {lesson.files?.map((file) => (
+                    <a key={file.url} className="mt-2 block font-semibold text-blue-800 underline" href={file.url} target="_blank" rel="noreferrer">
+                      {file.name}
+                    </a>
+                  ))}
                 </section>
                 <button
                   type="button"

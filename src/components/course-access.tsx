@@ -45,22 +45,20 @@ function subscribe(onChange: () => void) {
   };
 }
 
-function updateState(userId: string, update: (state: DemoState) => DemoState) {
-  localStorage.setItem(storageKey(userId), JSON.stringify(update(parseState(readSnapshot(userId)))));
-  window.dispatchEvent(new Event(changeEvent));
-}
 
 export function useDemoAccess(slug?: string) {
   const { user, loading } = useAuth();
   const saved = parseState(useSyncExternalStore(subscribe, () => user ? readSnapshot(user.id) : empty, () => empty));
   const seeded = Object.fromEntries((user?.enrollments ?? []).map((item) => [item.courseSlug, Date.parse(item.expiresAt)]));
-  const purchases: Record<string, number> = { ...seeded, ...saved.purchases };
+  // Server records (purchases, admin extensions or revocations) win over older browser-only demo purchases.
+  const purchases: Record<string, number> = { ...saved.purchases, ...seeded };
   const allAccess = purchases[allAccessKey];
   if (typeof allAccess === "number" && Number.isFinite(allAccess)) {
     for (const course of allCourses) purchases[course.slug] = Math.max(purchases[course.slug] ?? 0, allAccess);
   }
   const state = { signedIn: !!user, loading, purchases, allAccessExpiry: Number.isFinite(allAccess) ? allAccess : null };
-  const value = slug ? state.purchases[slug] : undefined;
+  // Courses added by an admin are not in the static list, so the All-Access Pass also covers them here.
+  const value = slug ? (state.purchases[slug] ?? (Number.isFinite(allAccess) ? allAccess : undefined)) : undefined;
   const expiry = typeof value === "number" && Number.isFinite(value) ? value : null;
   const [now, setNow] = useState(() => Date.now());
 
@@ -76,15 +74,13 @@ export function useDemoAccess(slug?: string) {
   return { ...state, now, expiry, active: state.signedIn && expiry !== null && expiry > now, expired: expiry !== null && expiry <= now };
 }
 
-function expiryAfterPurchase() {
-  const expiry = new Date();
-  const day = expiry.getDate();
-  expiry.setDate(1);
-  expiry.setMonth(expiry.getMonth() + 3);
-  const lastDay = new Date(expiry.getFullYear(), expiry.getMonth() + 1, 0).getDate();
-  expiry.setDate(Math.min(day, lastDay));
-  return expiry.getTime();
+/** Records the demo order on the server (so admins see it) and refreshes the account's enrollments. */
+async function recordOrder(body: { plan: "single" | "bundle" | "all-access"; slugs: string[]; method: string }) {
+  const response = await fetch("/api/orders", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(result.error ?? "We could not complete the order.");
 }
+
 
 export function CourseAccess({ slug }: { slug: string }) {
   const access = useDemoAccess(slug);
@@ -102,26 +98,28 @@ export function CourseAccess({ slug }: { slug: string }) {
 }
 
 export function DemoCheckout({ course }: { course: Course }) {
-  const { user } = useAuth();
+  const { user, reload } = useAuth();
   const access = useDemoAccess(course.slug);
   const router = useRouter();
   const [method, setMethod] = useState<(typeof methods)[number]>("Stripe (card)");
   const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
 
   if (!access.signedIn || access.active) return <CourseAccess slug={course.slug} />;
 
   return (
-    <form className="mt-5" onSubmit={(event) => {
+    <form className="mt-5" aria-busy={busy} onSubmit={async (event) => {
       event.preventDefault();
+      if (!user || busy) return;
+      setBusy(true);
+      setError("");
       try {
-        if (!user) return;
-        updateState(user.id, (state) => {
-          if ((state.purchases[course.slug] ?? 0) > Date.now()) return state;
-          return { ...state, purchases: { ...state.purchases, [course.slug]: expiryAfterPurchase() } };
-        });
+        await recordOrder({ plan: "single", slugs: [course.slug], method });
+        await reload();
         router.push(`/courses/${course.slug}/learn`);
-      } catch {
-        setError("Allow browser storage to save demo access.");
+      } catch (cause) {
+        setError(cause instanceof Error ? cause.message : "We could not complete the order.");
+        setBusy(false);
       }
     }}>
       <p className="text-lg font-bold">{formatCoursePrice(course.price)} · 3 months of access</p>
@@ -135,7 +133,7 @@ export function DemoCheckout({ course }: { course: Course }) {
           </label>
         ))}
       </fieldset>
-      <button type="submit" className={styles.primaryButton}>Simulate purchase</button>
+      <button type="submit" className={styles.primaryButton} disabled={busy}>{busy ? "Processing…" : "Simulate purchase"}</button>
       {error && <p role="alert" className="mt-3 text-red-700">{error}</p>}
     </form>
   );
@@ -143,7 +141,7 @@ export function DemoCheckout({ course }: { course: Course }) {
 
 /** Demo checkout for the 3-Course Bundle and the All-Access Pass. No money is charged. */
 export function PlanCheckout({ plan, price }: { plan: Exclude<PlanId, "single">; price: number }) {
-  const { user } = useAuth();
+  const { user, reload } = useAuth();
   const access = useDemoAccess();
   const router = useRouter();
   const [method, setMethod] = useState<(typeof methods)[number]>("Stripe (card)");
@@ -168,7 +166,7 @@ export function PlanCheckout({ plan, price }: { plan: Exclude<PlanId, "single">;
     current.includes(slug) ? current.filter((item) => item !== slug) : current.length >= 3 ? current : [...current, slug]);
 
   return (
-    <form className="mt-6" onSubmit={(event) => {
+    <form className="mt-6" onSubmit={async (event) => {
       event.preventDefault();
       if (!user) return;
       if (bundle && selected.length !== 3) {
@@ -176,15 +174,11 @@ export function PlanCheckout({ plan, price }: { plan: Exclude<PlanId, "single">;
         return;
       }
       try {
-        const expiry = expiryAfterPurchase();
-        updateState(user.id, (state) => {
-          const purchases = { ...state.purchases };
-          for (const key of bundle ? selected : [allAccessKey]) purchases[key] = Math.max(purchases[key] ?? 0, expiry);
-          return { ...state, purchases };
-        });
+        await recordOrder({ plan, slugs: bundle ? selected : [], method });
+        await reload();
         router.push("/my-courses");
-      } catch {
-        setError("Allow browser storage to save demo access.");
+      } catch (cause) {
+        setError(cause instanceof Error ? cause.message : "We could not complete the order.");
       }
     }}>
       {allActive && <p className="mb-4 rounded-xl bg-emerald-50 p-3 text-sm text-emerald-800">Your All-Access Pass is active until {new Date(access.allAccessExpiry!).toLocaleDateString("en-AU")}.</p>}

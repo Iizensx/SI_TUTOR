@@ -1,0 +1,3138 @@
+{
+  "schemaVersion": 1,
+  "site": {
+    "name": "SI Tutor",
+    "tagline": "Super Intelligence Tutor · Learn Beyond Limits.",
+    "supportEmail": "support@si-tutor.example",
+    "currency": "AUD",
+    "accessMonths": 3,
+    "announcement": ""
+  },
+  "courseOverrides": {},
+  "customCourses": [],
+  "lessons": {
+    "introduction-to-ai-and-ml": {
+      "patches": {
+        "introduction": {
+          "preview": false
+        }
+      }
+    }
+  },
+  "orders": [
+    {
+      "id": "SI-10389",
+      "createdAt": "2026-11-19T13:36:46.693Z",
+      "studentName": "Jade Hill",
+      "studentEmail": "jade.hill@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "control-systems",
+          "title": "Control Systems & Mechatronics",
+          "price": 39
+        }
+      ],
+      "total": 39,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10388",
+      "createdAt": "2026-11-19T13:32:17.259Z",
+      "studentName": "Finn Moore",
+      "studentEmail": "finn.moore@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "ielts-reading",
+          "title": "IELTS Reading Foundations",
+          "price": 23
+        },
+        {
+          "slug": "rights-and-responsibilities",
+          "title": "Rights and Responsibilities",
+          "price": 23
+        },
+        {
+          "slug": "hsc-chemistry",
+          "title": "HSC Chemistry",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "PayPal",
+      "status": "pending",
+      "demo": true
+    },
+    {
+      "id": "SI-10387",
+      "createdAt": "2026-11-19T07:19:38.571Z",
+      "studentName": "Zoe Harris",
+      "studentEmail": "zoe.h@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "university-calculus",
+          "title": "University Calculus Essentials",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10386",
+      "createdAt": "2026-11-19T05:56:43.309Z",
+      "studentName": "Leo Park",
+      "studentEmail": "leo.park@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "hsc-english",
+          "title": "HSC English",
+          "price": 23
+        },
+        {
+          "slug": "ielts-writing",
+          "title": "IELTS Writing Foundations",
+          "price": 23
+        },
+        {
+          "slug": "hsc-mathematics",
+          "title": "Mathematics for HSC: Advanced Level",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10385",
+      "createdAt": "2026-11-18T18:14:52.255Z",
+      "studentId": "demo-ielts",
+      "studentName": "Narin Sukjai",
+      "studentEmail": "narin@si-tutor.example",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "internet-of-things",
+          "title": "Internet of Things (IoT) Masterclass",
+          "price": 23
+        },
+        {
+          "slug": "hsc-biology",
+          "title": "HSC Biology",
+          "price": 23
+        },
+        {
+          "slug": "introduction-to-ai-and-ml",
+          "title": "Introduction to Artificial Intelligence & ML",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Afterpay",
+      "status": "pending",
+      "demo": true
+    },
+    {
+      "id": "SI-10384",
+      "createdAt": "2026-11-18T13:46:42.178Z",
+      "studentName": "Ryan Hill",
+      "studentEmail": "ryan.hill@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "university-calculus",
+          "title": "University Calculus Essentials",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10383",
+      "createdAt": "2026-11-17T20:28:38.281Z",
+      "studentName": "Omar Tran",
+      "studentEmail": "omar.tran@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "introduction-to-ai-and-ml",
+          "title": "Introduction to Artificial Intelligence & ML",
+          "price": 23
+        },
+        {
+          "slug": "linear-algebra",
+          "title": "Linear Algebra Essentials",
+          "price": 23
+        },
+        {
+          "slug": "discrete-mathematics",
+          "title": "Discrete Mathematics",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10382",
+      "createdAt": "2026-11-17T11:22:42.005Z",
+      "studentName": "Theo Clarke",
+      "studentEmail": "theo.clarke@example.com",
+      "plan": "all-access",
+      "items": [
+        {
+          "slug": "plan:all-access",
+          "title": "All-Access Pass",
+          "price": 149
+        }
+      ],
+      "total": 149,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10381",
+      "createdAt": "2026-11-17T06:01:37.007Z",
+      "studentName": "Arjun Rao",
+      "studentEmail": "arjun.rao@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "internet-of-things",
+          "title": "Internet of Things (IoT) Masterclass",
+          "price": 23
+        },
+        {
+          "slug": "cybersecurity-essentials",
+          "title": "Cybersecurity Essentials for Robotics",
+          "price": 23
+        },
+        {
+          "slug": "hsc-english",
+          "title": "HSC English",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10380",
+      "createdAt": "2026-11-17T01:20:18.283Z",
+      "studentName": "Aria Tran",
+      "studentEmail": "aria.tran@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "internet-of-things",
+          "title": "Internet of Things (IoT) Masterclass",
+          "price": 39
+        }
+      ],
+      "total": 39,
+      "method": "Stripe",
+      "status": "refund_requested",
+      "note": "Duplicate purchase",
+      "demo": true
+    },
+    {
+      "id": "SI-10379",
+      "createdAt": "2026-11-15T22:48:44.433Z",
+      "studentName": "Theo Clarke",
+      "studentEmail": "theo.clarke@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "control-systems",
+          "title": "Control Systems & Mechatronics",
+          "price": 39
+        }
+      ],
+      "total": 39,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10378",
+      "createdAt": "2026-11-14T23:23:07.178Z",
+      "studentName": "Mia Thompson",
+      "studentEmail": "mia.t@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "hsc-biology",
+          "title": "HSC Biology",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10377",
+      "createdAt": "2026-11-14T08:21:19.377Z",
+      "studentName": "Ava Patel",
+      "studentEmail": "ava.patel@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "government-and-laws",
+          "title": "Government and Laws",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10376",
+      "createdAt": "2026-11-13T20:00:12.651Z",
+      "studentName": "Henry Wong",
+      "studentEmail": "henry.wong@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "discrete-mathematics",
+          "title": "Discrete Mathematics",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10375",
+      "createdAt": "2026-11-13T19:58:10.542Z",
+      "studentName": "Omar Tran",
+      "studentEmail": "omar.tran@example.com",
+      "plan": "all-access",
+      "items": [
+        {
+          "slug": "plan:all-access",
+          "title": "All-Access Pass",
+          "price": 149
+        }
+      ],
+      "total": 149,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10374",
+      "createdAt": "2026-11-13T01:49:04.144Z",
+      "studentName": "Arjun Rao",
+      "studentEmail": "arjun.rao@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "statistics",
+          "title": "Statistics Essentials",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10373",
+      "createdAt": "2026-11-12T13:23:38.959Z",
+      "studentName": "Lina Moore",
+      "studentEmail": "lina.moore@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "ielts-reading",
+          "title": "IELTS Reading Foundations",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10372",
+      "createdAt": "2026-11-11T17:21:24.583Z",
+      "studentName": "Nat Wong",
+      "studentEmail": "nat.wong@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "robotics-101",
+          "title": "Robotics 101: Building Your First Autonomous Car",
+          "price": 39
+        }
+      ],
+      "total": 39,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10371",
+      "createdAt": "2026-11-10T03:25:27.430Z",
+      "studentName": "Daniel Kim",
+      "studentEmail": "daniel.kim@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "vr-and-ar",
+          "title": "Introduction to VR & AR Technology",
+          "price": 23
+        },
+        {
+          "slug": "government-and-laws",
+          "title": "Government and Laws",
+          "price": 23
+        },
+        {
+          "slug": "ielts-listening",
+          "title": "IELTS Listening Foundations",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10370",
+      "createdAt": "2026-11-10T00:54:18.925Z",
+      "studentName": "Noah Williams",
+      "studentEmail": "noah.w@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "control-systems",
+          "title": "Control Systems & Mechatronics",
+          "price": 39
+        }
+      ],
+      "total": 39,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10369",
+      "createdAt": "2026-11-09T10:33:01.108Z",
+      "studentName": "Ivy Reid",
+      "studentEmail": "ivy.reid@example.com",
+      "plan": "all-access",
+      "items": [
+        {
+          "slug": "plan:all-access",
+          "title": "All-Access Pass",
+          "price": 149
+        }
+      ],
+      "total": 149,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10368",
+      "createdAt": "2026-11-09T06:15:57.440Z",
+      "studentName": "Finn Moore",
+      "studentEmail": "finn.moore@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "government-and-laws",
+          "title": "Government and Laws",
+          "price": 23
+        },
+        {
+          "slug": "advanced-linear-algebra",
+          "title": "Advanced Linear Algebra for Engineers",
+          "price": 23
+        },
+        {
+          "slug": "vr-and-ar",
+          "title": "Introduction to VR & AR Technology",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Stripe",
+      "status": "refund_requested",
+      "note": "Bought the wrong course",
+      "demo": true
+    },
+    {
+      "id": "SI-10367",
+      "createdAt": "2026-11-08T22:33:24.145Z",
+      "studentName": "Sophie Taylor",
+      "studentEmail": "sophie.t@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "vr-and-ar",
+          "title": "Introduction to VR & AR Technology",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Afterpay",
+      "status": "refunded",
+      "demo": true
+    },
+    {
+      "id": "SI-10366",
+      "createdAt": "2026-11-08T20:43:22.812Z",
+      "studentName": "Isla Wilson",
+      "studentEmail": "isla.w@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "advanced-linear-algebra",
+          "title": "Advanced Linear Algebra for Engineers",
+          "price": 23
+        },
+        {
+          "slug": "discrete-mathematics",
+          "title": "Discrete Mathematics",
+          "price": 23
+        },
+        {
+          "slug": "ielts-reading",
+          "title": "IELTS Reading Foundations",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10365",
+      "createdAt": "2026-11-08T05:07:40.842Z",
+      "studentName": "Liam Nguyen",
+      "studentEmail": "liam.nguyen@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "linear-algebra",
+          "title": "Linear Algebra Essentials",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10364",
+      "createdAt": "2026-11-08T02:29:33.528Z",
+      "studentName": "Zoe Harris",
+      "studentEmail": "zoe.h@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "hsc-chemistry",
+          "title": "HSC Chemistry",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10363",
+      "createdAt": "2026-11-06T19:35:40.138Z",
+      "studentName": "Lina Moore",
+      "studentEmail": "lina.moore@example.com",
+      "plan": "all-access",
+      "items": [
+        {
+          "slug": "plan:all-access",
+          "title": "All-Access Pass",
+          "price": 149
+        }
+      ],
+      "total": 149,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10362",
+      "createdAt": "2026-11-06T14:02:53.629Z",
+      "studentName": "Leo Park",
+      "studentEmail": "leo.park@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "internet-of-things",
+          "title": "Internet of Things (IoT) Masterclass",
+          "price": 39
+        }
+      ],
+      "total": 39,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10361",
+      "createdAt": "2026-11-06T09:10:54.712Z",
+      "studentName": "Sophie Taylor",
+      "studentEmail": "sophie.t@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "vr-and-ar",
+          "title": "Introduction to VR & AR Technology",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "failed",
+      "demo": true
+    },
+    {
+      "id": "SI-10360",
+      "createdAt": "2026-11-04T11:14:50.496Z",
+      "studentName": "Jack Clarke",
+      "studentEmail": "jack.clarke@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "ethics-in-ai",
+          "title": "Ethics in Artificial Intelligence",
+          "price": 23
+        },
+        {
+          "slug": "advanced-linear-algebra",
+          "title": "Advanced Linear Algebra for Engineers",
+          "price": 23
+        },
+        {
+          "slug": "statistics",
+          "title": "Statistics Essentials",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10359",
+      "createdAt": "2026-11-04T06:41:18.731Z",
+      "studentName": "Aria Tran",
+      "studentEmail": "aria.tran@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "hsc-mathematics",
+          "title": "Mathematics for HSC: Advanced Level",
+          "price": 23
+        },
+        {
+          "slug": "linear-algebra",
+          "title": "Linear Algebra Essentials",
+          "price": 23
+        },
+        {
+          "slug": "advanced-linear-algebra",
+          "title": "Advanced Linear Algebra for Engineers",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10358",
+      "createdAt": "2026-11-04T02:55:31.535Z",
+      "studentName": "Tom Clarke",
+      "studentEmail": "tom.clarke@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "linear-algebra",
+          "title": "Linear Algebra Essentials",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10357",
+      "createdAt": "2026-11-04T01:51:38.532Z",
+      "studentName": "Nat Wong",
+      "studentEmail": "nat.wong@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "hsc-chemistry",
+          "title": "HSC Chemistry",
+          "price": 23
+        },
+        {
+          "slug": "robotics-101",
+          "title": "Robotics 101: Building Your First Autonomous Car",
+          "price": 23
+        },
+        {
+          "slug": "university-calculus",
+          "title": "University Calculus Essentials",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10356",
+      "createdAt": "2026-11-03T17:19:17.099Z",
+      "studentName": "Lina Moore",
+      "studentEmail": "lina.moore@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "ielts-listening",
+          "title": "IELTS Listening Foundations",
+          "price": 23
+        },
+        {
+          "slug": "python-for-beginners",
+          "title": "Python for Beginners: From Scripting to Apps",
+          "price": 23
+        },
+        {
+          "slug": "advanced-linear-algebra",
+          "title": "Advanced Linear Algebra for Engineers",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10355",
+      "createdAt": "2026-11-03T06:42:08.889Z",
+      "studentName": "Ploy Srisuk",
+      "studentEmail": "ploy.s@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "advanced-linear-algebra",
+          "title": "Advanced Linear Algebra for Engineers",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10354",
+      "createdAt": "2026-11-03T01:54:45.434Z",
+      "studentName": "Lucas Martin",
+      "studentEmail": "lucas.m@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "introduction-to-ai-and-ml",
+          "title": "Introduction to Artificial Intelligence & ML",
+          "price": 23
+        },
+        {
+          "slug": "hsc-physics",
+          "title": "HSC Physics",
+          "price": 23
+        },
+        {
+          "slug": "ielts-writing",
+          "title": "IELTS Writing Foundations",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10353",
+      "createdAt": "2026-11-02T15:15:30.642Z",
+      "studentName": "Mia Thompson",
+      "studentEmail": "mia.t@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "australian-values",
+          "title": "Australian Values",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10352",
+      "createdAt": "2026-11-02T03:40:32.283Z",
+      "studentId": "demo-student",
+      "studentName": "Alex Morgan",
+      "studentEmail": "student@si-tutor.example",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "internet-of-things",
+          "title": "Internet of Things (IoT) Masterclass",
+          "price": 23
+        },
+        {
+          "slug": "university-calculus",
+          "title": "University Calculus Essentials",
+          "price": 23
+        },
+        {
+          "slug": "statistics",
+          "title": "Statistics Essentials",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Afterpay",
+      "status": "refunded",
+      "demo": true
+    },
+    {
+      "id": "SI-10351",
+      "createdAt": "2026-11-02T03:18:02.617Z",
+      "studentName": "Ryan Hill",
+      "studentEmail": "ryan.hill@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "introduction-to-ai-and-ml",
+          "title": "Introduction to Artificial Intelligence & ML",
+          "price": 49
+        }
+      ],
+      "total": 49,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10350",
+      "createdAt": "2026-10-31T23:29:19.363Z",
+      "studentName": "Ben Park",
+      "studentEmail": "ben.park@example.com",
+      "plan": "all-access",
+      "items": [
+        {
+          "slug": "plan:all-access",
+          "title": "All-Access Pass",
+          "price": 149
+        }
+      ],
+      "total": 149,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10349",
+      "createdAt": "2026-10-31T10:58:31.841Z",
+      "studentName": "Ella Ali",
+      "studentEmail": "ella.ali@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "control-systems",
+          "title": "Control Systems & Mechatronics",
+          "price": 39
+        }
+      ],
+      "total": 39,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10348",
+      "createdAt": "2026-10-30T12:58:17.591Z",
+      "studentName": "Nina Singh",
+      "studentEmail": "nina.singh@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "ielts-speaking",
+          "title": "IELTS Speaking Foundations",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10347",
+      "createdAt": "2026-10-30T03:01:46.318Z",
+      "studentName": "Ella Ali",
+      "studentEmail": "ella.ali@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "ielts-reading",
+          "title": "IELTS Reading Foundations",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10346",
+      "createdAt": "2026-10-29T04:53:21.844Z",
+      "studentName": "Lina Moore",
+      "studentEmail": "lina.moore@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "discrete-mathematics",
+          "title": "Discrete Mathematics",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10345",
+      "createdAt": "2026-10-28T15:28:13.206Z",
+      "studentName": "Ava Patel",
+      "studentEmail": "ava.patel@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "hsc-physics",
+          "title": "HSC Physics",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10344",
+      "createdAt": "2026-10-27T04:56:01.499Z",
+      "studentName": "Ethan Brown",
+      "studentEmail": "ethan.b@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "university-calculus",
+          "title": "University Calculus Essentials",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10343",
+      "createdAt": "2026-10-26T18:22:29.921Z",
+      "studentName": "Lina Moore",
+      "studentEmail": "lina.moore@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "hsc-english",
+          "title": "HSC English",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10342",
+      "createdAt": "2026-10-26T12:25:40.987Z",
+      "studentName": "Arjun Rao",
+      "studentEmail": "arjun.rao@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "robotics-101",
+          "title": "Robotics 101: Building Your First Autonomous Car",
+          "price": 39
+        }
+      ],
+      "total": 39,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10341",
+      "createdAt": "2026-10-26T06:59:51.948Z",
+      "studentId": "demo-ielts",
+      "studentName": "Narin Sukjai",
+      "studentEmail": "narin@si-tutor.example",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "australian-values",
+          "title": "Australian Values",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10340",
+      "createdAt": "2026-10-25T04:11:14.523Z",
+      "studentName": "Nina Singh",
+      "studentEmail": "nina.singh@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "citizenship-preparation",
+          "title": "Australian Citizenship Test Preparation",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10339",
+      "createdAt": "2026-10-24T23:18:00.649Z",
+      "studentName": "Oscar Moore",
+      "studentEmail": "oscar.moore@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "hsc-physics",
+          "title": "HSC Physics",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "refunded",
+      "demo": true
+    },
+    {
+      "id": "SI-10338",
+      "createdAt": "2026-10-24T09:08:08.188Z",
+      "studentName": "Jack Clarke",
+      "studentEmail": "jack.clarke@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "rights-and-responsibilities",
+          "title": "Rights and Responsibilities",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10337",
+      "createdAt": "2026-10-23T22:42:34.404Z",
+      "studentName": "Ken Watanabe",
+      "studentEmail": "ken.w@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "control-systems",
+          "title": "Control Systems & Mechatronics",
+          "price": 39
+        }
+      ],
+      "total": 39,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10336",
+      "createdAt": "2026-10-23T11:57:29.391Z",
+      "studentName": "Grace Singh",
+      "studentEmail": "grace.singh@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "control-systems",
+          "title": "Control Systems & Mechatronics",
+          "price": 23
+        },
+        {
+          "slug": "introduction-to-ai-and-ml",
+          "title": "Introduction to Artificial Intelligence & ML",
+          "price": 23
+        },
+        {
+          "slug": "hsc-physics",
+          "title": "HSC Physics",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10335",
+      "createdAt": "2026-10-23T08:50:05.642Z",
+      "studentId": "demo-student",
+      "studentName": "Alex Morgan",
+      "studentEmail": "student@si-tutor.example",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "citizenship-preparation",
+          "title": "Australian Citizenship Test Preparation",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10334",
+      "createdAt": "2026-10-22T07:00:31.854Z",
+      "studentName": "Arjun Rao",
+      "studentEmail": "arjun.rao@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "hsc-mathematics",
+          "title": "Mathematics for HSC: Advanced Level",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10333",
+      "createdAt": "2026-10-21T11:31:56.903Z",
+      "studentName": "Hannah Brooks",
+      "studentEmail": "hannah.b@example.com",
+      "plan": "all-access",
+      "items": [
+        {
+          "slug": "plan:all-access",
+          "title": "All-Access Pass",
+          "price": 149
+        }
+      ],
+      "total": 149,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10332",
+      "createdAt": "2026-10-21T06:32:49.424Z",
+      "studentName": "Ella Ali",
+      "studentEmail": "ella.ali@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "vr-and-ar",
+          "title": "Introduction to VR & AR Technology",
+          "price": 23
+        },
+        {
+          "slug": "ielts-speaking",
+          "title": "IELTS Speaking Foundations",
+          "price": 23
+        },
+        {
+          "slug": "ielts-listening",
+          "title": "IELTS Listening Foundations",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Stripe",
+      "status": "refunded",
+      "demo": true
+    },
+    {
+      "id": "SI-10331",
+      "createdAt": "2026-10-20T01:08:59.098Z",
+      "studentName": "Sophie Taylor",
+      "studentEmail": "sophie.t@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "university-calculus",
+          "title": "University Calculus Essentials",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10330",
+      "createdAt": "2026-10-19T12:32:32.316Z",
+      "studentName": "Ben Park",
+      "studentEmail": "ben.park@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "citizenship-preparation",
+          "title": "Australian Citizenship Test Preparation",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10329",
+      "createdAt": "2026-10-18T12:19:27.364Z",
+      "studentName": "Chloe Lee",
+      "studentEmail": "chloe.lee@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "ielts-reading",
+          "title": "IELTS Reading Foundations",
+          "price": 23
+        },
+        {
+          "slug": "hsc-chemistry",
+          "title": "HSC Chemistry",
+          "price": 23
+        },
+        {
+          "slug": "ielts-listening",
+          "title": "IELTS Listening Foundations",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10328",
+      "createdAt": "2026-10-17T21:13:36.738Z",
+      "studentName": "Sophie Taylor",
+      "studentEmail": "sophie.t@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "discrete-mathematics",
+          "title": "Discrete Mathematics",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "failed",
+      "demo": true
+    },
+    {
+      "id": "SI-10327",
+      "createdAt": "2026-10-17T10:11:01.701Z",
+      "studentName": "Jack Clarke",
+      "studentEmail": "jack.clarke@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "hsc-chemistry",
+          "title": "HSC Chemistry",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10326",
+      "createdAt": "2026-10-17T06:07:44.490Z",
+      "studentName": "Max Hill",
+      "studentEmail": "max.hill@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "university-calculus",
+          "title": "University Calculus Essentials",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10325",
+      "createdAt": "2026-10-16T20:53:27.739Z",
+      "studentId": "demo-ielts",
+      "studentName": "Narin Sukjai",
+      "studentEmail": "narin@si-tutor.example",
+      "plan": "all-access",
+      "items": [
+        {
+          "slug": "plan:all-access",
+          "title": "All-Access Pass",
+          "price": 149
+        }
+      ],
+      "total": 149,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10324",
+      "createdAt": "2026-10-16T07:02:09.649Z",
+      "studentName": "Lucas Martin",
+      "studentEmail": "lucas.m@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "ielts-writing",
+          "title": "IELTS Writing Foundations",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10323",
+      "createdAt": "2026-10-15T13:31:57.099Z",
+      "studentName": "Noah Williams",
+      "studentEmail": "noah.w@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "ethics-in-ai",
+          "title": "Ethics in Artificial Intelligence",
+          "price": 39
+        }
+      ],
+      "total": 39,
+      "method": "Stripe",
+      "status": "refunded",
+      "demo": true
+    },
+    {
+      "id": "SI-10322",
+      "createdAt": "2026-10-15T08:22:17.502Z",
+      "studentName": "Sophie Taylor",
+      "studentEmail": "sophie.t@example.com",
+      "plan": "all-access",
+      "items": [
+        {
+          "slug": "plan:all-access",
+          "title": "All-Access Pass",
+          "price": 149
+        }
+      ],
+      "total": 149,
+      "method": "Stripe",
+      "status": "refunded",
+      "demo": true
+    },
+    {
+      "id": "SI-10321",
+      "createdAt": "2026-10-14T15:25:08.757Z",
+      "studentName": "Aria Tran",
+      "studentEmail": "aria.tran@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "ielts-reading",
+          "title": "IELTS Reading Foundations",
+          "price": 23
+        },
+        {
+          "slug": "hsc-mathematics",
+          "title": "Mathematics for HSC: Advanced Level",
+          "price": 23
+        },
+        {
+          "slug": "internet-of-things",
+          "title": "Internet of Things (IoT) Masterclass",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10320",
+      "createdAt": "2026-10-13T13:45:28.281Z",
+      "studentName": "Grace Singh",
+      "studentEmail": "grace.singh@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "hsc-biology",
+          "title": "HSC Biology",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10319",
+      "createdAt": "2026-10-12T01:37:29.820Z",
+      "studentName": "Nina Singh",
+      "studentEmail": "nina.singh@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "ielts-writing",
+          "title": "IELTS Writing Foundations",
+          "price": 23
+        },
+        {
+          "slug": "rights-and-responsibilities",
+          "title": "Rights and Responsibilities",
+          "price": 23
+        },
+        {
+          "slug": "advanced-linear-algebra",
+          "title": "Advanced Linear Algebra for Engineers",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10318",
+      "createdAt": "2026-10-10T17:33:31.666Z",
+      "studentName": "Grace Singh",
+      "studentEmail": "grace.singh@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "hsc-mathematics",
+          "title": "Mathematics for HSC: Advanced Level",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10317",
+      "createdAt": "2026-10-09T21:46:01.546Z",
+      "studentName": "Nat Wong",
+      "studentEmail": "nat.wong@example.com",
+      "plan": "all-access",
+      "items": [
+        {
+          "slug": "plan:all-access",
+          "title": "All-Access Pass",
+          "price": 149
+        }
+      ],
+      "total": 149,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10316",
+      "createdAt": "2026-10-08T04:42:38.215Z",
+      "studentName": "Kai Wong",
+      "studentEmail": "kai.wong@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "ielts-listening",
+          "title": "IELTS Listening Foundations",
+          "price": 23
+        },
+        {
+          "slug": "ielts-speaking",
+          "title": "IELTS Speaking Foundations",
+          "price": 23
+        },
+        {
+          "slug": "rights-and-responsibilities",
+          "title": "Rights and Responsibilities",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10315",
+      "createdAt": "2026-10-07T23:44:30.922Z",
+      "studentName": "Olivia Reid",
+      "studentEmail": "olivia.reid@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "ielts-listening",
+          "title": "IELTS Listening Foundations",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10314",
+      "createdAt": "2026-10-06T22:59:17.222Z",
+      "studentName": "Mila Ali",
+      "studentEmail": "mila.ali@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "rights-and-responsibilities",
+          "title": "Rights and Responsibilities",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10313",
+      "createdAt": "2026-10-06T22:14:32.263Z",
+      "studentName": "Zoe Harris",
+      "studentEmail": "zoe.h@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "australian-values",
+          "title": "Australian Values",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10312",
+      "createdAt": "2026-10-06T13:03:50.677Z",
+      "studentName": "Theo Clarke",
+      "studentEmail": "theo.clarke@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "hsc-chemistry",
+          "title": "HSC Chemistry",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10311",
+      "createdAt": "2026-10-06T03:55:01.351Z",
+      "studentName": "Mia Thompson",
+      "studentEmail": "mia.t@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "hsc-mathematics",
+          "title": "Mathematics for HSC: Advanced Level",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10310",
+      "createdAt": "2026-10-04T09:18:07.001Z",
+      "studentName": "Liam Nguyen",
+      "studentEmail": "liam.nguyen@example.com",
+      "plan": "all-access",
+      "items": [
+        {
+          "slug": "plan:all-access",
+          "title": "All-Access Pass",
+          "price": 149
+        }
+      ],
+      "total": 149,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10309",
+      "createdAt": "2026-10-04T06:25:06.737Z",
+      "studentName": "Ken Watanabe",
+      "studentEmail": "ken.w@example.com",
+      "plan": "all-access",
+      "items": [
+        {
+          "slug": "plan:all-access",
+          "title": "All-Access Pass",
+          "price": 149
+        }
+      ],
+      "total": 149,
+      "method": "PayPal",
+      "status": "refunded",
+      "demo": true
+    },
+    {
+      "id": "SI-10308",
+      "createdAt": "2026-10-03T12:51:07.829Z",
+      "studentName": "Noah Williams",
+      "studentEmail": "noah.w@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "discrete-mathematics",
+          "title": "Discrete Mathematics",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10307",
+      "createdAt": "2026-10-03T11:06:55.100Z",
+      "studentId": "demo-ielts",
+      "studentName": "Narin Sukjai",
+      "studentEmail": "narin@si-tutor.example",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "australian-values",
+          "title": "Australian Values",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10306",
+      "createdAt": "2026-10-03T03:40:46.189Z",
+      "studentName": "Noah Williams",
+      "studentEmail": "noah.w@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "hsc-mathematics",
+          "title": "Mathematics for HSC: Advanced Level",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10305",
+      "createdAt": "2026-10-01T10:03:21.622Z",
+      "studentName": "Jade Hill",
+      "studentEmail": "jade.hill@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "cybersecurity-essentials",
+          "title": "Cybersecurity Essentials for Robotics",
+          "price": 39
+        }
+      ],
+      "total": 39,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10304",
+      "createdAt": "2026-09-29T14:38:30.173Z",
+      "studentName": "Lucas Martin",
+      "studentEmail": "lucas.m@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "australian-values",
+          "title": "Australian Values",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10303",
+      "createdAt": "2026-09-27T16:03:27.164Z",
+      "studentName": "Omar Tran",
+      "studentEmail": "omar.tran@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "hsc-english",
+          "title": "HSC English",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10302",
+      "createdAt": "2026-09-26T18:34:38.946Z",
+      "studentId": "demo-university",
+      "studentName": "Maya Chen",
+      "studentEmail": "maya@si-tutor.example",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "python-for-beginners",
+          "title": "Python for Beginners: From Scripting to Apps",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10301",
+      "createdAt": "2026-09-23T14:01:59.742Z",
+      "studentName": "Theo Clarke",
+      "studentEmail": "theo.clarke@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "hsc-physics",
+          "title": "HSC Physics",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10300",
+      "createdAt": "2026-09-23T09:59:34.944Z",
+      "studentId": "demo-student",
+      "studentName": "Alex Morgan",
+      "studentEmail": "student@si-tutor.example",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "ielts-reading",
+          "title": "IELTS Reading Foundations",
+          "price": 23
+        },
+        {
+          "slug": "linear-algebra",
+          "title": "Linear Algebra Essentials",
+          "price": 23
+        },
+        {
+          "slug": "ethics-in-ai",
+          "title": "Ethics in Artificial Intelligence",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10299",
+      "createdAt": "2026-09-22T19:15:17.900Z",
+      "studentName": "Ryan Hill",
+      "studentEmail": "ryan.hill@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "university-calculus",
+          "title": "University Calculus Essentials",
+          "price": 23
+        },
+        {
+          "slug": "robotics-101",
+          "title": "Robotics 101: Building Your First Autonomous Car",
+          "price": 23
+        },
+        {
+          "slug": "advanced-linear-algebra",
+          "title": "Advanced Linear Algebra for Engineers",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "PayPal",
+      "status": "refunded",
+      "demo": true
+    },
+    {
+      "id": "SI-10298",
+      "createdAt": "2026-09-22T04:10:50.963Z",
+      "studentName": "Oscar Moore",
+      "studentEmail": "oscar.moore@example.com",
+      "plan": "all-access",
+      "items": [
+        {
+          "slug": "plan:all-access",
+          "title": "All-Access Pass",
+          "price": 149
+        }
+      ],
+      "total": 149,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10297",
+      "createdAt": "2026-09-21T07:56:33.273Z",
+      "studentName": "Olivia Reid",
+      "studentEmail": "olivia.reid@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "hsc-biology",
+          "title": "HSC Biology",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10296",
+      "createdAt": "2026-09-16T23:19:57.626Z",
+      "studentName": "Bao Ali",
+      "studentEmail": "bao.ali@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "python-for-beginners",
+          "title": "Python for Beginners: From Scripting to Apps",
+          "price": 23
+        },
+        {
+          "slug": "discrete-mathematics",
+          "title": "Discrete Mathematics",
+          "price": 23
+        },
+        {
+          "slug": "ielts-speaking",
+          "title": "IELTS Speaking Foundations",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10295",
+      "createdAt": "2026-09-16T05:31:41.934Z",
+      "studentName": "Lina Moore",
+      "studentEmail": "lina.moore@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "robotics-101",
+          "title": "Robotics 101: Building Your First Autonomous Car",
+          "price": 39
+        }
+      ],
+      "total": 39,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10294",
+      "createdAt": "2026-09-15T07:26:49.400Z",
+      "studentName": "Daniel Kim",
+      "studentEmail": "daniel.kim@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "discrete-mathematics",
+          "title": "Discrete Mathematics",
+          "price": 23
+        },
+        {
+          "slug": "control-systems",
+          "title": "Control Systems & Mechatronics",
+          "price": 23
+        },
+        {
+          "slug": "ethics-in-ai",
+          "title": "Ethics in Artificial Intelligence",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10293",
+      "createdAt": "2026-09-15T03:20:19.527Z",
+      "studentName": "Isla Wilson",
+      "studentEmail": "isla.w@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "vr-and-ar",
+          "title": "Introduction to VR & AR Technology",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10292",
+      "createdAt": "2026-09-13T23:45:15.168Z",
+      "studentName": "Omar Tran",
+      "studentEmail": "omar.tran@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "rights-and-responsibilities",
+          "title": "Rights and Responsibilities",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10291",
+      "createdAt": "2026-09-11T20:56:20.108Z",
+      "studentName": "Daniel Kim",
+      "studentEmail": "daniel.kim@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "ielts-speaking",
+          "title": "IELTS Speaking Foundations",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10290",
+      "createdAt": "2026-09-10T16:26:43.171Z",
+      "studentName": "Grace Singh",
+      "studentEmail": "grace.singh@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "internet-of-things",
+          "title": "Internet of Things (IoT) Masterclass",
+          "price": 39
+        }
+      ],
+      "total": 39,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10289",
+      "createdAt": "2026-09-10T12:38:37.302Z",
+      "studentName": "Sophie Taylor",
+      "studentEmail": "sophie.t@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "ielts-writing",
+          "title": "IELTS Writing Foundations",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10288",
+      "createdAt": "2026-09-10T12:19:48.590Z",
+      "studentName": "Daniel Kim",
+      "studentEmail": "daniel.kim@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "internet-of-things",
+          "title": "Internet of Things (IoT) Masterclass",
+          "price": 23
+        },
+        {
+          "slug": "statistics",
+          "title": "Statistics Essentials",
+          "price": 23
+        },
+        {
+          "slug": "university-calculus",
+          "title": "University Calculus Essentials",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10287",
+      "createdAt": "2026-09-09T10:15:58.164Z",
+      "studentName": "Lina Moore",
+      "studentEmail": "lina.moore@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "robotics-101",
+          "title": "Robotics 101: Building Your First Autonomous Car",
+          "price": 39
+        }
+      ],
+      "total": 39,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10286",
+      "createdAt": "2026-09-09T03:25:07.872Z",
+      "studentName": "Noah Williams",
+      "studentEmail": "noah.w@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "ielts-writing",
+          "title": "IELTS Writing Foundations",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10285",
+      "createdAt": "2026-09-08T16:13:04.010Z",
+      "studentName": "Sara Singh",
+      "studentEmail": "sara.singh@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "citizenship-preparation",
+          "title": "Australian Citizenship Test Preparation",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10284",
+      "createdAt": "2026-09-08T11:07:25.056Z",
+      "studentName": "Bao Ali",
+      "studentEmail": "bao.ali@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "internet-of-things",
+          "title": "Internet of Things (IoT) Masterclass",
+          "price": 39
+        }
+      ],
+      "total": 39,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10283",
+      "createdAt": "2026-09-08T05:03:22.056Z",
+      "studentName": "Sam Park",
+      "studentEmail": "sam.park@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "ielts-listening",
+          "title": "IELTS Listening Foundations",
+          "price": 23
+        },
+        {
+          "slug": "cybersecurity-essentials",
+          "title": "Cybersecurity Essentials for Robotics",
+          "price": 23
+        },
+        {
+          "slug": "government-and-laws",
+          "title": "Government and Laws",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10282",
+      "createdAt": "2026-09-06T15:56:40.919Z",
+      "studentName": "Grace Singh",
+      "studentEmail": "grace.singh@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "hsc-biology",
+          "title": "HSC Biology",
+          "price": 23
+        },
+        {
+          "slug": "hsc-mathematics",
+          "title": "Mathematics for HSC: Advanced Level",
+          "price": 23
+        },
+        {
+          "slug": "advanced-linear-algebra",
+          "title": "Advanced Linear Algebra for Engineers",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10281",
+      "createdAt": "2026-09-06T15:39:40.841Z",
+      "studentName": "Aria Tran",
+      "studentEmail": "aria.tran@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "ielts-writing",
+          "title": "IELTS Writing Foundations",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10280",
+      "createdAt": "2026-09-06T15:16:01.951Z",
+      "studentName": "Lina Moore",
+      "studentEmail": "lina.moore@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "ielts-speaking",
+          "title": "IELTS Speaking Foundations",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10279",
+      "createdAt": "2026-09-05T21:20:13.224Z",
+      "studentName": "Sara Singh",
+      "studentEmail": "sara.singh@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "discrete-mathematics",
+          "title": "Discrete Mathematics",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10278",
+      "createdAt": "2026-09-05T03:52:16.184Z",
+      "studentName": "Noah Williams",
+      "studentEmail": "noah.w@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "government-and-laws",
+          "title": "Government and Laws",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10277",
+      "createdAt": "2026-09-04T11:54:54.812Z",
+      "studentName": "Leo Park",
+      "studentEmail": "leo.park@example.com",
+      "plan": "all-access",
+      "items": [
+        {
+          "slug": "plan:all-access",
+          "title": "All-Access Pass",
+          "price": 149
+        }
+      ],
+      "total": 149,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10276",
+      "createdAt": "2026-09-04T09:33:21.085Z",
+      "studentName": "Lina Moore",
+      "studentEmail": "lina.moore@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "vr-and-ar",
+          "title": "Introduction to VR & AR Technology",
+          "price": 23
+        },
+        {
+          "slug": "ethics-in-ai",
+          "title": "Ethics in Artificial Intelligence",
+          "price": 23
+        },
+        {
+          "slug": "statistics",
+          "title": "Statistics Essentials",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10275",
+      "createdAt": "2026-09-03T19:35:31.676Z",
+      "studentName": "Jade Hill",
+      "studentEmail": "jade.hill@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "statistics",
+          "title": "Statistics Essentials",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10274",
+      "createdAt": "2026-09-02T07:45:41.178Z",
+      "studentName": "Chloe Lee",
+      "studentEmail": "chloe.lee@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "hsc-chemistry",
+          "title": "HSC Chemistry",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10273",
+      "createdAt": "2026-08-30T07:18:55.392Z",
+      "studentName": "Chloe Lee",
+      "studentEmail": "chloe.lee@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "internet-of-things",
+          "title": "Internet of Things (IoT) Masterclass",
+          "price": 39
+        }
+      ],
+      "total": 39,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10272",
+      "createdAt": "2026-08-30T01:53:05.014Z",
+      "studentName": "Anya Reid",
+      "studentEmail": "anya.reid@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "advanced-linear-algebra",
+          "title": "Advanced Linear Algebra for Engineers",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10271",
+      "createdAt": "2026-08-29T08:29:15.657Z",
+      "studentName": "Olivia Reid",
+      "studentEmail": "olivia.reid@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "statistics",
+          "title": "Statistics Essentials",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10270",
+      "createdAt": "2026-08-29T04:45:46.079Z",
+      "studentName": "Jack Clarke",
+      "studentEmail": "jack.clarke@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "cybersecurity-essentials",
+          "title": "Cybersecurity Essentials for Robotics",
+          "price": 39
+        }
+      ],
+      "total": 39,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10269",
+      "createdAt": "2026-08-27T11:51:51.756Z",
+      "studentName": "Liam Nguyen",
+      "studentEmail": "liam.nguyen@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "linear-algebra",
+          "title": "Linear Algebra Essentials",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10268",
+      "createdAt": "2026-08-27T01:06:58.104Z",
+      "studentName": "Arjun Rao",
+      "studentEmail": "arjun.rao@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "python-for-beginners",
+          "title": "Python for Beginners: From Scripting to Apps",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10267",
+      "createdAt": "2026-08-24T02:15:31.161Z",
+      "studentName": "Sara Singh",
+      "studentEmail": "sara.singh@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "government-and-laws",
+          "title": "Government and Laws",
+          "price": 23
+        },
+        {
+          "slug": "hsc-mathematics",
+          "title": "Mathematics for HSC: Advanced Level",
+          "price": 23
+        },
+        {
+          "slug": "cybersecurity-essentials",
+          "title": "Cybersecurity Essentials for Robotics",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10266",
+      "createdAt": "2026-08-23T01:05:18.082Z",
+      "studentName": "Chloe Lee",
+      "studentEmail": "chloe.lee@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "ielts-speaking",
+          "title": "IELTS Speaking Foundations",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10265",
+      "createdAt": "2026-08-22T20:17:09.120Z",
+      "studentName": "Pim Evans",
+      "studentEmail": "pim.evans@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "statistics",
+          "title": "Statistics Essentials",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10264",
+      "createdAt": "2026-08-22T14:36:55.280Z",
+      "studentName": "Ken Watanabe",
+      "studentEmail": "ken.w@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "government-and-laws",
+          "title": "Government and Laws",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10263",
+      "createdAt": "2026-08-21T11:59:22.519Z",
+      "studentName": "Omar Tran",
+      "studentEmail": "omar.tran@example.com",
+      "plan": "all-access",
+      "items": [
+        {
+          "slug": "plan:all-access",
+          "title": "All-Access Pass",
+          "price": 149
+        }
+      ],
+      "total": 149,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10262",
+      "createdAt": "2026-08-21T03:06:56.096Z",
+      "studentName": "Oscar Moore",
+      "studentEmail": "oscar.moore@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "internet-of-things",
+          "title": "Internet of Things (IoT) Masterclass",
+          "price": 23
+        },
+        {
+          "slug": "ielts-reading",
+          "title": "IELTS Reading Foundations",
+          "price": 23
+        },
+        {
+          "slug": "citizenship-preparation",
+          "title": "Australian Citizenship Test Preparation",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Afterpay",
+      "status": "failed",
+      "demo": true
+    },
+    {
+      "id": "SI-10261",
+      "createdAt": "2026-08-20T18:59:57.819Z",
+      "studentName": "Leo Park",
+      "studentEmail": "leo.park@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "control-systems",
+          "title": "Control Systems & Mechatronics",
+          "price": 39
+        }
+      ],
+      "total": 39,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10260",
+      "createdAt": "2026-08-20T05:45:02.470Z",
+      "studentName": "Ken Watanabe",
+      "studentEmail": "ken.w@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "hsc-biology",
+          "title": "HSC Biology",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "refund_requested",
+      "note": "Bought the wrong course",
+      "demo": true
+    },
+    {
+      "id": "SI-10259",
+      "createdAt": "2026-08-19T20:14:29.149Z",
+      "studentName": "Emma Tran",
+      "studentEmail": "emma.tran@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "ielts-speaking",
+          "title": "IELTS Speaking Foundations",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10258",
+      "createdAt": "2026-08-18T22:42:55.805Z",
+      "studentId": "demo-ielts",
+      "studentName": "Narin Sukjai",
+      "studentEmail": "narin@si-tutor.example",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "hsc-mathematics",
+          "title": "Mathematics for HSC: Advanced Level",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10257",
+      "createdAt": "2026-08-17T17:40:25.018Z",
+      "studentName": "Liam Nguyen",
+      "studentEmail": "liam.nguyen@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "ielts-speaking",
+          "title": "IELTS Speaking Foundations",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10256",
+      "createdAt": "2026-08-17T13:51:43.089Z",
+      "studentName": "Nina Singh",
+      "studentEmail": "nina.singh@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "linear-algebra",
+          "title": "Linear Algebra Essentials",
+          "price": 23
+        },
+        {
+          "slug": "ielts-reading",
+          "title": "IELTS Reading Foundations",
+          "price": 23
+        },
+        {
+          "slug": "vr-and-ar",
+          "title": "Introduction to VR & AR Technology",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10255",
+      "createdAt": "2026-08-17T12:25:58.154Z",
+      "studentName": "Oscar Moore",
+      "studentEmail": "oscar.moore@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "hsc-mathematics",
+          "title": "Mathematics for HSC: Advanced Level",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10254",
+      "createdAt": "2026-08-16T09:38:19.036Z",
+      "studentName": "Anya Reid",
+      "studentEmail": "anya.reid@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "hsc-biology",
+          "title": "HSC Biology",
+          "price": 23
+        },
+        {
+          "slug": "python-for-beginners",
+          "title": "Python for Beginners: From Scripting to Apps",
+          "price": 23
+        },
+        {
+          "slug": "hsc-physics",
+          "title": "HSC Physics",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10253",
+      "createdAt": "2026-08-15T22:23:29.360Z",
+      "studentId": "demo-student",
+      "studentName": "Alex Morgan",
+      "studentEmail": "student@si-tutor.example",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "ielts-speaking",
+          "title": "IELTS Speaking Foundations",
+          "price": 23
+        },
+        {
+          "slug": "australian-values",
+          "title": "Australian Values",
+          "price": 23
+        },
+        {
+          "slug": "statistics",
+          "title": "Statistics Essentials",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10252",
+      "createdAt": "2026-08-15T14:57:05.137Z",
+      "studentId": "demo-ielts",
+      "studentName": "Narin Sukjai",
+      "studentEmail": "narin@si-tutor.example",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "python-for-beginners",
+          "title": "Python for Beginners: From Scripting to Apps",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10251",
+      "createdAt": "2026-08-13T10:24:22.665Z",
+      "studentName": "Max Hill",
+      "studentEmail": "max.hill@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "control-systems",
+          "title": "Control Systems & Mechatronics",
+          "price": 39
+        }
+      ],
+      "total": 39,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10250",
+      "createdAt": "2026-08-11T22:20:59.038Z",
+      "studentId": "demo-university",
+      "studentName": "Maya Chen",
+      "studentEmail": "maya@si-tutor.example",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "hsc-chemistry",
+          "title": "HSC Chemistry",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10249",
+      "createdAt": "2026-08-08T21:05:55.226Z",
+      "studentName": "Ruby Evans",
+      "studentEmail": "ruby.evans@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "discrete-mathematics",
+          "title": "Discrete Mathematics",
+          "price": 23
+        },
+        {
+          "slug": "linear-algebra",
+          "title": "Linear Algebra Essentials",
+          "price": 23
+        },
+        {
+          "slug": "hsc-english",
+          "title": "HSC English",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10248",
+      "createdAt": "2026-08-07T21:02:11.371Z",
+      "studentName": "Ava Patel",
+      "studentEmail": "ava.patel@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "advanced-linear-algebra",
+          "title": "Advanced Linear Algebra for Engineers",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10247",
+      "createdAt": "2026-08-05T09:34:06.248Z",
+      "studentName": "Ben Park",
+      "studentEmail": "ben.park@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "linear-algebra",
+          "title": "Linear Algebra Essentials",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10246",
+      "createdAt": "2026-08-04T20:24:57.523Z",
+      "studentName": "Bao Ali",
+      "studentEmail": "bao.ali@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "hsc-english",
+          "title": "HSC English",
+          "price": 23
+        },
+        {
+          "slug": "python-for-beginners",
+          "title": "Python for Beginners: From Scripting to Apps",
+          "price": 23
+        },
+        {
+          "slug": "ielts-speaking",
+          "title": "IELTS Speaking Foundations",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10245",
+      "createdAt": "2026-08-04T17:08:29.241Z",
+      "studentName": "Ethan Brown",
+      "studentEmail": "ethan.b@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "hsc-english",
+          "title": "HSC English",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10244",
+      "createdAt": "2026-08-04T16:01:57.799Z",
+      "studentName": "Theo Clarke",
+      "studentEmail": "theo.clarke@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "internet-of-things",
+          "title": "Internet of Things (IoT) Masterclass",
+          "price": 39
+        }
+      ],
+      "total": 39,
+      "method": "Afterpay",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10243",
+      "createdAt": "2026-07-31T23:34:59.684Z",
+      "studentName": "Ruby Evans",
+      "studentEmail": "ruby.evans@example.com",
+      "plan": "bundle",
+      "items": [
+        {
+          "slug": "control-systems",
+          "title": "Control Systems & Mechatronics",
+          "price": 23
+        },
+        {
+          "slug": "statistics",
+          "title": "Statistics Essentials",
+          "price": 23
+        },
+        {
+          "slug": "ielts-writing",
+          "title": "IELTS Writing Foundations",
+          "price": 23
+        }
+      ],
+      "total": 69,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10242",
+      "createdAt": "2026-07-29T01:58:45.645Z",
+      "studentName": "Leo Park",
+      "studentEmail": "leo.park@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "introduction-to-ai-and-ml",
+          "title": "Introduction to Artificial Intelligence & ML",
+          "price": 49
+        }
+      ],
+      "total": 49,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10241",
+      "createdAt": "2026-07-26T19:09:39.482Z",
+      "studentName": "Oscar Moore",
+      "studentEmail": "oscar.moore@example.com",
+      "plan": "single",
+      "items": [
+        {
+          "slug": "vr-and-ar",
+          "title": "Introduction to VR & AR Technology",
+          "price": 29
+        }
+      ],
+      "total": 29,
+      "method": "Stripe",
+      "status": "paid",
+      "demo": true
+    },
+    {
+      "id": "SI-10240",
+      "createdAt": "2026-07-23T04:40:27.528Z",
+      "studentName": "Jack Clarke",
+      "studentEmail": "jack.clarke@example.com",
+      "plan": "all-access",
+      "items": [
+        {
+          "slug": "plan:all-access",
+          "title": "All-Access Pass",
+          "price": 149
+        }
+      ],
+      "total": 149,
+      "method": "PayPal",
+      "status": "paid",
+      "demo": true
+    }
+  ],
+  "accessLog": [],
+  "audit": [
+    {
+      "id": "c361ef82-3d33-4d51-b8a7-4e2503970fa4",
+      "at": "2026-11-19T14:53:48.724Z",
+      "by": "Sora Wattana <admin@si-tutor.example>",
+      "role": "owner",
+      "action": "Edited lesson",
+      "target": "Introduction to Artificial Intelligence & ML › Introduction to AI & ML",
+      "detail": "preview off"
+    },
+    {
+      "id": "9ff55b04-da5d-4965-b269-22b3f1bf3769",
+      "at": "2026-11-19T14:53:47.791Z",
+      "by": "Sora Wattana <admin@si-tutor.example>",
+      "role": "owner",
+      "action": "Edited lesson",
+      "target": "Introduction to Artificial Intelligence & ML › Introduction to AI & ML",
+      "detail": "preview on"
+    },
+    {
+      "id": "fc115da6-17c1-4691-844b-c279e7570197",
+      "at": "2026-11-19T14:53:47.331Z",
+      "by": "Sora Wattana <admin@si-tutor.example>",
+      "role": "owner",
+      "action": "Edited lesson",
+      "target": "Introduction to Artificial Intelligence & ML › Introduction to AI & ML",
+      "detail": "preview off"
+    },
+    {
+      "id": "b5024502-48aa-4bb0-8592-cf417fc971f0",
+      "at": "2026-11-19T14:53:47.107Z",
+      "by": "Sora Wattana <admin@si-tutor.example>",
+      "role": "owner",
+      "action": "Edited lesson",
+      "target": "Introduction to Artificial Intelligence & ML › Introduction to AI & ML",
+      "detail": "preview on"
+    }
+  ]
+}

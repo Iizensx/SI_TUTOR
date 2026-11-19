@@ -36,6 +36,14 @@ const links = [
   },
 ];
 
+const adminLink = {
+  href: "/admin",
+  title: "Admin dashboard",
+  text: "Sales, courses and students",
+  tone: "#fde68a",
+  icon: <><rect x="3.5" y="3.5" width="7" height="7" rx="2" /><rect x="13.5" y="3.5" width="7" height="4.5" rx="2" /><rect x="13.5" y="11" width="7" height="9.5" rx="2" /><rect x="3.5" y="13.5" width="7" height="7" rx="2" /></>,
+};
+
 export function AccountMenu({ user }: { user: UserProfile }) {
   const { logout } = useAuth();
   const router = useRouter();
@@ -120,7 +128,7 @@ export function AccountMenu({ user }: { user: UserProfile }) {
             </div>
 
             <nav className={styles.links} aria-label="Account navigation">
-              {links.map((link, index) => (
+              {(user.role === "admin" ? [adminLink, ...links] : links).map((link, index) => (
                 <motion.div
                   key={link.href}
                   initial={{ opacity: 0, x: -8 }}

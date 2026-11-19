@@ -128,6 +128,36 @@
       "interests": [],
       "createdAt": "2026-11-19T07:02:19.250Z",
       "enrollments": []
+    },
+    {
+      "id": "demo-admin",
+      "firstName": "Sora",
+      "lastName": "Wattana",
+      "email": "admin@si-tutor.example",
+      "passwordHash": "5f7dbfff3046455c6cc71295957faab7:05e92998c9ac1167b40ea3f8727a4705bef89aa64cd3966f222c7c8c5b997cde096c41fa6e0cbb0bff27ec28f7ca0121f3bfd32be8eba077886198f1c705001d",
+      "role": "admin",
+      "adminRole": "owner",
+      "level": "Lifelong learner",
+      "country": "Australia",
+      "learningGoal": "",
+      "interests": [],
+      "createdAt": "2026-09-01T09:00:00.000Z",
+      "enrollments": []
+    },
+    {
+      "id": "demo-editor",
+      "firstName": "Ploy",
+      "lastName": "Chaiyo",
+      "email": "editor@si-tutor.example",
+      "passwordHash": "d320e497420732c94020661424358969:b43fd29db999c8cb725e2eda9358654d7bf19744ce374a6672bb8a859429f76d6c69ad8762734246f118721d43c3e0c2c581f2386a6efb8a0b17e7fa993222e4",
+      "role": "admin",
+      "adminRole": "editor",
+      "level": "Lifelong learner",
+      "country": "Australia",
+      "learningGoal": "",
+      "interests": [],
+      "createdAt": "2026-09-01T09:00:00.000Z",
+      "enrollments": []
     }
   ]
 }

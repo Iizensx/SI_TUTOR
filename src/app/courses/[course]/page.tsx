@@ -1,26 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { connection } from "next/server";
 import { CourseAccess } from "@/components/course-access";
 import { Breadcrumbs } from "@/components/catalog-shell";
 import { CourseHero, CourseIcon, Curriculum } from "@/components/course-shared";
-import { courses, formatCoursePrice, getCourse, getCoursesBySubject, getSubject } from "@/lib/catalog";
+import { formatCoursePrice, getSubject } from "@/lib/catalog";
+import { getPublicCourses } from "@/lib/server/catalog-store";
 import styles from "@/components/course-experience.module.css";
 
-export function generateStaticParams() {
-  return courses.map(({ slug }) => ({ course: slug }));
-}
-
 export default async function CourseDetail({ params }: { params: Promise<{ course: string }> }) {
+  await connection();
   const { course: slug } = await params;
-  const course = getCourse(slug);
+  const catalog = await getPublicCourses();
+  const course = catalog.find((item) => item.slug === slug);
   if (!course) notFound();
 
   const subject = getSubject(course.subjectSlug);
   if (!subject) notFound();
 
   const learnHref = `/courses/${course.slug}/learn`;
-  const related = getCoursesBySubject(subject.slug).filter(({ slug }) => slug !== course.slug).slice(0, 3);
+  const related = catalog.filter((item) => item.subjectSlug === subject.slug).filter(({ slug }) => slug !== course.slug).slice(0, 3);
 
   return (
     <div className={styles.shell}>
