@@ -99,6 +99,21 @@
       "interests": [],
       "createdAt": "2026-11-14T11:52:33.161Z",
       "enrollments": []
+    },
+    {
+      "id": "af74f355-4b6a-4006-954c-cb6cf3a3a6e8",
+      "firstName": "TANAPHAT1",
+      "lastName": "GAEWRUANG",
+      "email": "thanaphat.kre@spumail.net",
+      "passwordHash": "07e650e799dc806d869e8f294e11de43:f155c3b075ac256243b535e156279930ef6bc506d9ab33441d97079bd7993a4ee456b91d344e34600319a3666108acf0258c56321fc1d1646d8298c4df7b6e4d",
+      "role": "student",
+      "level": "High school",
+      "country": "",
+      "learningGoal": "",
+      "interests": [],
+      "createdAt": "2026-11-14T12:03:15.235Z",
+      "enrollments": [],
+      "avatar": "green"
     }
   ]
 }

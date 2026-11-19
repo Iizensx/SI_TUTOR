@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { AccountMenu } from "./account-menu";
 import { useAuth } from "./auth-provider";
 
 import styles from "./site-header.module.css";
@@ -10,6 +11,8 @@ import styles from "./site-header.module.css";
 export function SiteHeader() {
   const pathname = usePathname();
   const { user, loading } = useAuth();
+  if (pathname === "/login" || pathname === "/signup") return null;
+
   const inSubjects =
     pathname === "/subjects" ||
     pathname.startsWith("/subjects/") ||
@@ -36,7 +39,7 @@ export function SiteHeader() {
 
       <div className={styles.actions}>
         {loading ? <span role="status" aria-label="Loading account">…</span> : user ? (
-          <Link className={styles.signup} href="/my-courses">My Courses</Link>
+          <AccountMenu key={user.id} user={user} />
         ) : (
           <>
             <Link className={styles.login} href="/login">Log in</Link>

@@ -1,6 +1,6 @@
 import { randomBytes } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
-import { AuthError, authenticateUser, createUser, findUser } from "@/lib/server/user-repository";
+import { AuthError, authenticateUser, createUser, findUser, changeUserPassword, updateUserProfile } from "@/lib/server/user-repository";
 import type { StudentLevel } from "@/lib/auth-types";
 
 export const runtime = "nodejs";
@@ -76,6 +76,51 @@ export async function POST(request: NextRequest) {
     return json({ error: "We could not save or load your account. Please try again." }, 503);
   }
 }
+
+export async function PATCH(request: NextRequest) {
+  if (!allowedOrigin(request)) return json({ error: "This request is not allowed." }, 403);
+  if (!request.headers.get("content-type")?.includes("application/json")) return json({ error: "Expected JSON data." }, 415);
+
+  const token = request.cookies.get(cookieName)?.value ?? "";
+  const session = sessions.get(token);
+  if (!session || session.expiresAt <= Date.now()) return json({ error: "Please log in again." }, 401);
+
+  try {
+    const body: unknown = await request.json();
+    if (!body || typeof body !== "object") throw new AuthError("Please complete the form.");
+    const data = body as Record<string, unknown>;
+    if (data.action === "profile") {
+      const firstName = typeof data.firstName === "string" ? data.firstName.trim() : "";
+      const lastName = typeof data.lastName === "string" ? data.lastName.trim() : "";
+      if (!firstName || !lastName || firstName.length > 60 || lastName.length > 60) {
+        throw new AuthError("Enter your first and last name (up to 60 characters each).");
+      }
+      const avatar = data.avatar;
+      if (avatar !== undefined && avatar !== "blue" && avatar !== "violet" && avatar !== "green" && avatar !== "amber") {
+        throw new AuthError("Choose a valid profile icon.");
+      }
+      return json({ user: await updateUserProfile(session.userId, { firstName, lastName, ...(avatar === undefined ? {} : { avatar }) }) });
+    }
+    if (data.action === "password") {
+      const currentPassword = typeof data.currentPassword === "string" ? data.currentPassword : "";
+      const password = typeof data.password === "string" ? data.password : "";
+      if (!currentPassword || currentPassword.length > 128) throw new AuthError("Enter your current password.");
+      if (password.length < 8 || password.length > 128 || !/[a-zA-Z]/.test(password) || !/\d/.test(password)) {
+        throw new AuthError("Use 8–128 characters, including a letter and a number.");
+      }
+      if (password !== data.confirmPassword) throw new AuthError("Your passwords do not match.");
+      const user = await changeUserPassword(session.userId, currentPassword, password);
+      for (const [key, value] of sessions) if (key !== token && value.userId === session.userId) sessions.delete(key);
+      return json({ user });
+    }
+    throw new AuthError("Unknown account action.");
+  } catch (error) {
+    if (error instanceof AuthError) return json({ error: error.message }, error.status);
+    if (error instanceof SyntaxError) return json({ error: "Invalid form data." }, 400);
+    return json({ error: "We could not update your account. Please try again." }, 503);
+  }
+}
+
 
 export async function DELETE(request: NextRequest) {
   if (!allowedOrigin(request)) return json({ error: "This request is not allowed." }, 403);

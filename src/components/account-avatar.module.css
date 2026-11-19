@@ -1,0 +1,20 @@
+.avatar {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  width: var(--avatar-size, 42px);
+  height: var(--avatar-size, 42px);
+  flex: none;
+  border: 1px solid #b9d5fc;
+  border-radius: 50%;
+  background: #e8f1ff;
+}
+.avatar[data-color="violet"] { background: #efe8ff; color: #6631a1; border-color: #d9c4f5; }
+.avatar[data-color="green"] { background: #def6ee; color: #17604d; border-color: #b5e6d7; }
+.avatar[data-color="amber"] { background: #fff1d7; color: #7b4710; border-color: #f4d69a; }
+
+
+.avatar img {
+  object-fit: cover;
+  object-position: center 25%;
+}

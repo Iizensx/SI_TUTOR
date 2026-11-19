@@ -1,0 +1,29 @@
+.root { position: relative; padding: 0 !important; }
+.trigger { display: grid; place-items: center; padding: 3px; border-radius: 50%; cursor: pointer; }
+.trigger:hover, .trigger[aria-expanded="true"] { background: #eef4ff; }
+.trigger:focus-visible, .logout:focus-visible { outline: 2px solid #075cbd; outline-offset: 2px; }
+.panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  inset-inline-end: 0;
+  z-index: 10;
+  width: min(300px, calc(100vw - 28px));
+  padding: 15px;
+  border: 1px solid #dce7f6;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 16px 52px #10234a24;
+  color: #111a50;
+  white-space: normal;
+}
+.identity { display: flex; align-items: center; gap: 12px; padding: 4px 2px 14px; border-bottom: 1px solid #e7eef8; overflow-wrap: anywhere; }
+.identity strong { display: block; font-size: 14px; }
+.identity p { color: #50617a; font-size: 12px; margin-top: 3px; }
+.links { display: grid; gap: 6px; margin: 12px 0 10px; }
+.links a { display: grid; grid-template-columns: 23px 1fr auto; align-items: center; gap: 8px; min-height: 41px; padding: 0 10px; border-radius: 11px; background: #f4f7fc; font-size: 13px; }
+.links a:hover { background: #e9f1ff; }
+.links svg { width: 18px; height: 18px; fill: none; stroke: #1659a3; stroke-width: 1.65; stroke-linecap: round; stroke-linejoin: round; }
+.links span { color: #50617a; font-size: 18px; }
+.logout { width: 100%; min-height: 40px; border: 1px solid #f2cccc; border-radius: 11px; background: #fff5f5; color: #a32424; font-size: 13px; cursor: pointer; }
+.logout:hover { background: #fce8e8; }
+.error { margin-top: 8px; color: #a32424; font-size: 12px; }

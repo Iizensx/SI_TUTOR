@@ -7,6 +7,7 @@ type AuthContextValue = {
   user: UserProfile | null;
   loading: boolean;
   authenticate: (data: Record<string, unknown>) => Promise<void>;
+  updateAccount: (data: Record<string, unknown>) => Promise<void>;
   logout: () => Promise<void>;
 };
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -41,7 +42,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
   }, [refresh]);
 
-  async function update(method: "POST" | "DELETE", data?: Record<string, unknown>) {
+  async function update(method: "POST" | "DELETE" | "PATCH", data?: Record<string, unknown>) {
     const response = await fetch("/api/auth", {
       method, headers: { "Content-Type": "application/json" },
       ...(data ? { body: JSON.stringify(data) } : {}),
@@ -54,7 +55,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try { localStorage.setItem(authEventKey, `${Date.now()}-${Math.random()}`); } catch { /* Cookie sessions also work without local storage. */ }
   }
 
-  return <AuthContext.Provider value={{ user, loading, authenticate: (data) => update("POST", data), logout: () => update("DELETE") }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ user, loading, authenticate: (data) => update("POST", data), updateAccount: (data) => update("PATCH", data), logout: () => update("DELETE") }}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {

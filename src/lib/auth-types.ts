@@ -5,6 +5,7 @@ export type UserProfile = {
   firstName: string;
   lastName: string;
   email: string;
+  avatar?: "blue" | "violet" | "green" | "amber";
   role: "student";
   level: StudentLevel;
   country: string;
@@ -15,6 +16,6 @@ export type UserProfile = {
 };
 
 export function safeAuthNext(next: unknown) {
-  return typeof next === "string" && /^\/(?:subjects(?:\/[a-z0-9-]+)?|my-courses|courses\/[a-z0-9-]+(?:\/(?:checkout|learn))?)$/.test(next)
+  return typeof next === "string" && /^\/(?:subjects(?:\/[a-z0-9-]+)?|my-courses|my-account|courses\/[a-z0-9-]+(?:\/(?:checkout|learn))?)$/.test(next)
     ? next : "/my-courses";
 }

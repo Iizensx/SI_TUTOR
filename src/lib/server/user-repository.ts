@@ -69,3 +69,34 @@ export async function createUser(input: Pick<UserProfile, "firstName" | "lastNam
   state.siTutorUserWrites = operation.catch(() => undefined);
   return operation;
 }
+
+export async function updateUserProfile(id: string, profile: Pick<UserProfile, "firstName" | "lastName" | "avatar">) {
+  return writeUserChange(id, (user) => Object.assign(user, profile));
+}
+
+export async function changeUserPassword(id: string, currentPassword: string, password: string) {
+  return writeUserChange(id, async (user) => {
+    const [salt, hash] = user.passwordHash.split(":");
+    const actual = await deriveKey(currentPassword, salt, 64) as Buffer;
+    const expected = Buffer.from(hash, "hex");
+    if (expected.length !== actual.length || !timingSafeEqual(actual, expected)) {
+      throw new AuthError("Your current password is incorrect.", 400);
+    }
+    user.passwordHash = await passwordHash(password);
+  });
+}
+
+function writeUserChange(id: string, update: (user: StoredUser) => unknown) {
+  const operation = (state.siTutorUserWrites ?? Promise.resolve()).then(async () => {
+    const data = await readUsers();
+    const user = data.users.find((item) => item.id === id);
+    if (!user) throw new AuthError("Please log in again.", 401);
+    await update(user);
+    const temporaryPath = `${usersPath}.tmp`;
+    await writeFile(temporaryPath, JSON.stringify(data, null, 2) + "\n", "utf8");
+    await rename(temporaryPath, usersPath);
+    return publicProfile(user);
+  });
+  state.siTutorUserWrites = operation.catch(() => undefined);
+  return operation;
+}

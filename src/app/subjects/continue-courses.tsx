@@ -64,6 +64,8 @@ export function ContinueCourses() {
       .sort((first, second) => purchases[second.slug] - purchases[first.slug])
     : [];
 
+  if (!signedIn) return null;
+
   return (
     <aside className={styles.panel} data-collapsed={collapsed || undefined} aria-labelledby="continue-courses-title">
       <div className={styles.heading}>

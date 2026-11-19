@@ -1,19 +1,19 @@
 .page { min-height: calc(100svh - 90px); padding: 14px clamp(16px, 4vw, 64px) 24px; background: radial-gradient(ellipse at 0 40%, #eaf3ff80, transparent 55%), radial-gradient(ellipse at 100% 90%, #eee9ff70, transparent 45%), #f9fbff; }
-.topline, .footer { max-width: 1160px; margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; color: #617089; font-size: 12px; }
+.topline, .footer { max-width: 960px; margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; color: #617089; font-size: 12px; }
 .topline { padding: 10px 0 24px; }
 .topline a { display: flex; align-items: center; gap: 10px; color: #344a6a; min-height: 36px; font-size: 13px; }
 .topline a:hover { color: #075cbd; }
-.shell { display: grid; grid-template-columns: 1fr 1.07fr; max-width: 1160px; margin-inline: auto; border: 1px solid #e0e8f4; border-radius: 28px; background: #fff; overflow: hidden; box-shadow: 0 20px 65px #18396809; }
-.story { position: relative; display: flex; flex-direction: column; justify-content: center; padding: 46px 40px 32px; overflow: hidden; background: radial-gradient(ellipse at 10% 0%, #dceeff, transparent 60%), linear-gradient(145deg, #eef4ff 15%, #efecff 75%, #e3edff); }
+.shell { display: grid; grid-template-columns: 0.95fr 1.05fr; max-width: 960px; margin-inline: auto; border: 1px solid #e0e8f4; border-radius: 28px; background: #fff; overflow: hidden; box-shadow: 0 20px 65px #18396809; }
+.story { position: relative; display: flex; flex-direction: column; justify-content: center; padding: 30px 32px 26px; overflow: hidden; background: radial-gradient(ellipse at 10% 0%, #dceeff, transparent 60%), linear-gradient(145deg, #eef4ff 15%, #efecff 75%, #e3edff); }
 .eyebrow { display: flex; align-items: center; gap: 7px; color: #345796; font-size: 9px; line-height: 1.8; font-weight: 750; letter-spacing: 1.2px; }
 .eyebrow > span { width: 6px; height: 6px; border-radius: 50%; background: #546ee2; flex: none; }
 .story h2 { position: relative; margin-top: 22px; font-size: clamp(34px, 3.65vw, 50px); font-weight: 800; line-height: 1.15; letter-spacing: -2px; }
 .story h2 > span { background: linear-gradient(100deg, #086cc5, #6545cb); background-clip: text; color: transparent; }
 .story > p { max-width: 340px; margin-top: 18px; color: #526580; font-size: 14px; line-height: 1.8; }
-.illustration { position: relative; display: grid; place-items: center; min-height: 290px; margin: 24px -8px 18px; }
-.robotCircle { position: relative; width: 255px; height: 255px; padding: 15px; border: 1px solid #fff; border-radius: 50%; background: #ffffffb8; box-shadow: 0 16px 50px #7688c21a; }
+.illustration { position: relative; display: grid; place-items: center; min-height: 210px; margin: 12px -8px 10px; }
+.robotCircle { position: relative; width: 190px; height: 190px; padding: 15px; border: 1px solid #fff; border-radius: 50%; background: #ffffffb8; box-shadow: 0 16px 50px #7688c21a; }
 .robotCircle img { width: 100%; height: 100%; border-radius: 50%; object-fit: contain; mix-blend-mode: multiply; }
-.orbit { position: absolute; width: 300px; height: 300px; border: 1px dashed #9aaae26b; border-radius: 50%; }
+.orbit { position: absolute; width: 230px; height: 230px; border: 1px dashed #9aaae26b; border-radius: 50%; }
 .subjectTag { position: absolute; display: flex; align-items: center; gap: 8px; padding: 10px 12px; border: 1px solid #fff; border-radius: 12px; background: #ffffffeb; box-shadow: 0 5px 18px #4059990a; font-size: 11px; font-weight: 650; color: #334773; }
 .subjectTag > span { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 8px; background: #e9f6ff; color: #1668b3; font-size: 17px; }
 .tagMath { top: 18px; left: 0; transform: rotate(-6deg); }
@@ -26,17 +26,17 @@
 .storyFooter div { display: grid; gap: 4px; }
 .storyFooter strong { font-size: 12px; font-weight: 650; }
 .storyFooter div > span { color: #617089; font-size: 11px; }
-.formPanel { display: flex; align-items: center; justify-content: center; min-width: 0; padding: 40px clamp(24px, 4vw, 58px); }
-.formInner { width: 100%; max-width: 410px; }
+.formPanel { display: flex; align-items: center; justify-content: center; min-width: 0; padding: 30px clamp(24px, 3vw, 42px); }
+.formInner { width: 100%; max-width: 385px; }
 .tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 5px; border: 1px solid #e9edf5; border-radius: 12px; background: #f5f7fb; }
 .tabs a { display: grid; place-items: center; min-height: 38px; border-radius: 8px; color: #65748a; font-size: 13px; font-weight: 650; }
 .tabs a[aria-current] { color: #1c51ad; background: #fff; box-shadow: 0 2px 7px #142d5b0c; }
-.formHeading { margin: 30px 0 25px; }
+.formHeading { margin: 22px 0 18px; }
 .kicker { color: #65799d; font-size: 9px; font-weight: 700; letter-spacing: 1.4px; }
 .formHeading h1 { margin: 9px 0; font-size: clamp(27px, 2.6vw, 35px); font-weight: 800; letter-spacing: -1.3px; line-height: 1.2; }
 .formHeading h1 > span { color: #4e6edb; }
 .formHeading p { color: #64728a; font-size: 13px; line-height: 1.7; }
-.form fieldset { display: grid; gap: 18px; min-width: 0; }
+.form fieldset { display: grid; gap: 14px; min-width: 0; }
 .form fieldset:disabled { opacity: .7; }
 .field { display: grid; gap: 8px; min-width: 0; }
 .field label { color: #263857; font-size: 12px; font-weight: 650; }
@@ -77,8 +77,73 @@
 .signedIn p { color: #617089; font-size: 14px; }
 .avatar { display: grid; place-items: center; width: 64px; height: 64px; margin: 10px auto; border-radius: 50%; background: #ebefff; color: #3c59b0; font-weight: 700; }
 .textButton { min-height: 44px; color: #245bbc; font-size: 13px; cursor: pointer; }
+.shell[data-mode="signup"] .story { padding-block: 22px; }
+.shell[data-mode="signup"] .story h2 { margin-top: 15px; font-size: clamp(32px, 3vw, 42px); }
+.shell[data-mode="signup"] .story > p { margin-top: 12px; }
+.shell[data-mode="signup"] .illustration { min-height: 165px; margin-block: 8px; }
+.shell[data-mode="signup"] .robotCircle { width: 145px; height: 145px; }
+.shell[data-mode="signup"] .orbit { width: 185px; height: 185px; }
+.shell[data-mode="signup"] .storyFooter { padding-top: 15px; }
+.shell[data-mode="signup"] .formPanel { padding-block: 20px; }
+.shell[data-mode="signup"] .formHeading { margin: 15px 0; }
+.shell[data-mode="signup"] .form fieldset { gap: 10px; }
+.shell[data-mode="signup"] .field { gap: 5px; align-content: start; }
+.shell[data-mode="signup"] .inputWrap input,
+.shell[data-mode="signup"] .field select { min-height: 44px; padding-block: 9px; }
+.shell[data-mode="signup"] .switchMode { margin-top: 14px; }
+.shell[data-mode="signup"] .demoNote { margin-top: 12px; }
+@media (max-width: 760px) {
+  .shell[data-mode="signup"] .story { min-height: 140px; padding: 18px 24px; }
+  .shell[data-mode="signup"] .formPanel { padding-block: 20px; }
+  .shell[data-mode="signup"] .formHeading { margin: 16px 0; }
+}
+@media (min-width: 761px) {
+  .shell[data-mode="signup"] .formPanel { padding-block: 12px; }
+  .shell[data-mode="signup"] .tabs a { min-height: 34px; }
+  .shell[data-mode="signup"] .formHeading { margin: 9px 0 10px; }
+  .shell[data-mode="signup"] .formHeading h1 { margin: 5px 0; font-size: 29px; }
+  .shell[data-mode="signup"] .form fieldset { gap: 7px; }
+  .shell[data-mode="signup"] .field { gap: 4px; }
+  .shell[data-mode="signup"] .inputWrap input,
+  .shell[data-mode="signup"] .field select { min-height: 40px; padding-block: 7px; }
+  .shell[data-mode="signup"] .submit { min-height: 42px; padding-block: 9px; }
+  .shell[data-mode="signup"] .switchMode { margin-top: 8px; }
+  .shell[data-mode="signup"] .demoNote { margin-top: 6px; }
+}
+@media (min-width: 761px) {
+  .shell { min-height: 672px; }
+  .shell[data-mode="signup"] .formInner { max-width: 430px; }
+  .shell[data-mode="signup"] .form fieldset {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 14px;
+  }
+  .shell[data-mode="signup"] .nameRow { grid-column: 1 / -1; }
+  .shell[data-mode="signup"] .form fieldset > .field:nth-child(2) { grid-column: 1; grid-row: 2; }
+  .shell[data-mode="signup"] .form fieldset > .field:nth-child(3) { grid-column: 1; grid-row: 3; }
+  .shell[data-mode="signup"] .form fieldset > .field:nth-child(4) { grid-column: 2; grid-row: 3; }
+  .shell[data-mode="signup"] .form fieldset > .field:nth-child(5) { grid-column: 2; grid-row: 2; }
+  .shell[data-mode="signup"] .form fieldset > .submit,
+  .shell[data-mode="signup"] .form fieldset > .error { grid-column: 1 / -1; }
+}
+/* Keep every Sign Up label and control aligned across the two-column form. */
+@media (min-width: 761px) {
+  .shell[data-mode="signup"] .field {
+    grid-template-rows: 36px 44px auto;
+    align-content: start;
+  }
+  .shell[data-mode="signup"] .field label {
+    align-self: end;
+    line-height: 1.35;
+  }
+  .shell[data-mode="signup"] .inputWrap input,
+  .shell[data-mode="signup"] .field select {
+    box-sizing: border-box;
+    height: 44px;
+    min-height: 44px;
+  }
+}
 @media (min-width: 1600px) { .page { padding-top: 38px; } }
-@media (max-width: 1000px) { .story { padding-inline: 25px; } .formPanel { padding-inline: 26px; } .illustration { margin-inline: -15px; } .subjectTag { font-size: 10px; padding: 8px; } .tagAi { right: 0; } .robotCircle { width: 220px; height: 220px; } .orbit { width: 265px; height: 265px; } }
+@media (max-width: 1000px) { .story { padding-inline: 25px; } .formPanel { padding-inline: 26px; } .illustration { margin-inline: -15px; } .subjectTag { font-size: 10px; padding: 8px; } .tagAi { right: 0; } .robotCircle { width: 185px; height: 185px; } .orbit { width: 225px; height: 225px; } }
 @media (max-width: 760px) {
   .page { padding: 0 16px 20px; }
   .topline { padding: 8px 0 14px; }

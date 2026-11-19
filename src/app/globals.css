@@ -88,8 +88,12 @@ summary:focus-visible {
 
 .hero-image {
   display: block;
-  width: 100%;
+  width: min(100%, 1120px);
   height: auto;
+  max-height: 620px;
+  margin-inline: auto;
+  border-radius: 20px;
+  object-fit: cover;
   background: #1a3362;
 }
 

@@ -6,12 +6,12 @@ import styles from "./auth.module.css";
 export function AuthScreen({ mode, next }: { mode: "login" | "signup"; next: string }) {
   const signup = mode === "signup";
   return (
-    <main id="main-content" tabIndex={-1} className={styles.page}>
+    <main id="main-content" tabIndex={-1} className={styles.page} data-mode={mode}>
       <div className={styles.topline}>
-        <Link href="/subjects"><span aria-hidden="true">←</span> Explore subjects</Link>
+        <Link href="/"><span aria-hidden="true">←</span> Back to Home</Link>
         <span>Your next chapter starts here.</span>
       </div>
-      <div className={styles.shell}>
+      <div className={styles.shell} data-mode={mode}>
         <aside className={styles.story} aria-label="Learn with SI Tutor">
           <div className={styles.eyebrow}><span /> A LITTLE CURIOSITY. LIMITLESS POSSIBILITIES.</div>
           <h2>Big dreams.<br />Brighter minds.<br /><span>Start with you.</span></h2>
