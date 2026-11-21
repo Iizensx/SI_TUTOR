@@ -988,7 +988,7 @@
   }
 
   .heroFrame {
-    inset: 0;
+    width: 70%;
   }
 
   .categoryGrid,
