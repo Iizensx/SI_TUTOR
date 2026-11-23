@@ -19,6 +19,7 @@ const subjectBackgrounds: Record<string, string> = {
   robotics: "/catalog/robotics-category-background.png",
   mathematics: "/catalog/mathematics-category-background.png",
   citizenship: "/catalog/citizenship-category-background.png",
+  engineering: "/catalog/engineering-short-courses-neon.png",
 };
 const countIn = (catalog: readonly Course[], slug: string) => catalog.filter((course) => course.subjectSlug === slug).length;
 
@@ -28,6 +29,7 @@ const subjectStyles: Record<string, string> = {
   robotics: styles.robotics,
   mathematics: styles.mathematics,
   citizenship: styles.citizenship,
+  engineering: styles.engineering,
 };
 
 function getDissolveGlow(input: HTMLInputElement) {

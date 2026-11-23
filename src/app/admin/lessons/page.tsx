@@ -38,7 +38,7 @@ function LessonRow({ lesson, index, editable, onEdit, onTogglePreview, onDragEnd
       dragControls={controls}
       onDragEnd={onDragEnd}
       className="flex items-center gap-3 rounded-2xl bg-white/85 p-3 ring-1 ring-[var(--line)]"
-      whileDrag={{ scale: 1.02, boxShadow: "0 24px 40px -24px #17332f" }}
+      whileDrag={{ scale: 1.02, boxShadow: "0 24px 40px -24px var(--deep)" }}
     >
       <button
         type="button"

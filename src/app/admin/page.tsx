@@ -173,21 +173,21 @@ export default function OverviewPage() {
     <div className="grid grid-cols-1 gap-4">
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-[minmax(0,1fr)_360px]">
         <motion.section
-          className="relative isolate overflow-hidden rounded-[30px] bg-gradient-to-br from-[var(--deep)] via-[#1b3d37] to-[#24524a] p-6 text-white shadow-[0_30px_60px_-34px_#0b1f1b] sm:p-8"
+          className="relative isolate overflow-hidden rounded-[30px] bg-gradient-to-br from-[var(--deep)] via-[var(--hero-mid)] to-[var(--hero-end)] p-6 text-white shadow-[0_30px_60px_-34px_var(--shadow)] sm:p-8"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           aria-labelledby="welcome"
         >
-          <motion.span aria-hidden="true" className="absolute -right-16 -top-24 -z-10 h-72 w-72 rounded-full bg-[#8fc7b5]/25 blur-2xl" animate={{ x: [0, -30, 0], y: [0, 20, 0] }} transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }} />
+          <motion.span aria-hidden="true" className="absolute -right-16 -top-24 -z-10 h-72 w-72 rounded-full bg-[var(--accent)]/25 blur-2xl" animate={{ x: [0, -30, 0], y: [0, 20, 0] }} transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }} />
           <div className="flex h-full flex-col justify-between gap-8">
           <div className="flex flex-wrap items-start justify-between gap-6">
             <div className="max-w-xl">
-              <p className="text-sm text-[#a8c2bb]">Welcome back, {state.me.firstName}</p>
+              <p className="text-sm text-[var(--on-deep)]">Welcome back, {state.me.firstName}</p>
               <h1 id="welcome" className="mt-2 text-[clamp(28px,3.4vw,42px)] font-semibold leading-[1.05] tracking-[-0.03em]">
-                Learning is always <span className={`${styles.serif} text-[#f6c08f]`}>better</span> together
+                Learning is always <span className={`${styles.serif} text-[var(--highlight)]`}>better</span> together
               </h1>
-              <p className="mt-3 text-sm leading-relaxed text-[#cfe0db]">
+              <p className="mt-3 text-sm leading-relaxed text-[var(--on-deep-soft)]">
                 {pendingCount} payment{pendingCount === 1 ? "" : "s"} waiting for review and {refundCount} refund request{refundCount === 1 ? "" : "s"}. {data.liveCourses} courses are live on {state.site.name}.
               </p>
               <div className="mt-5 flex flex-wrap gap-2">
@@ -203,7 +203,7 @@ export default function OverviewPage() {
               <div className="flex -space-x-2">
                 {data.recentStudents.map((name) => <Initials key={name} name={name} className="ring-[var(--deep)]" />)}
               </div>
-              <span className="text-xs text-[#a8c2bb]">Recent buyers</span>
+              <span className="text-xs text-[var(--on-deep)]">Recent buyers</span>
             </div>
           </div>
           <dl className="grid grid-cols-2 gap-2 sm:grid-cols-4">
@@ -214,7 +214,7 @@ export default function OverviewPage() {
               { label: "Orders all-time", value: state.orders.length },
             ].map((item, index) => (
               <motion.div key={item.label} className="rounded-2xl bg-white/[0.07] p-3.5 ring-1 ring-white/10" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + index * 0.07 }}>
-                <dt className="text-[11px] text-[#a8c2bb]">{item.label}</dt>
+                <dt className="text-[11px] text-[var(--on-deep)]">{item.label}</dt>
                 <dd className="mt-1 text-2xl font-semibold tracking-[-0.03em]">{item.value}</dd>
               </motion.div>
             ))}
@@ -225,10 +225,10 @@ export default function OverviewPage() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <Kpi label="Revenue (30 days)" value={data.revenue} previous={data.revenuePrev} format={(v) => money(v)} icon={Wallet} spark={data.sparkRevenue} delay={0.05} tone="#d6ebe3" />
-        <Kpi label="Orders (30 days)" value={data.orders} previous={data.ordersPrev} format={(v) => String(v)} icon={ShoppingBag} spark={data.sparkOrders} delay={0.1} tone="#fde2c8" />
-        <Kpi label="New learners" value={data.learners} previous={data.learnersPrev} format={(v) => String(v)} icon={GraduationCap} spark={data.sparkOrders.map((v) => Math.round(v * 0.6))} delay={0.15} tone="#dfe3fb" />
-        <Kpi label="Average order" value={data.aov} previous={data.aovPrev} format={(v) => money(v)} icon={CreditCard} spark={data.sparkRevenue.map((v, i) => v / Math.max(1, data.sparkOrders[i]))} delay={0.2} tone="#f6dbe4" />
+        <Kpi label="Revenue (30 days)" value={data.revenue} previous={data.revenuePrev} format={(v) => money(v)} icon={Wallet} spark={data.sparkRevenue} delay={0.05} tone="var(--tone-1)" />
+        <Kpi label="Orders (30 days)" value={data.orders} previous={data.ordersPrev} format={(v) => String(v)} icon={ShoppingBag} spark={data.sparkOrders} delay={0.1} tone="var(--tone-2)" />
+        <Kpi label="New learners" value={data.learners} previous={data.learnersPrev} format={(v) => String(v)} icon={GraduationCap} spark={data.sparkOrders.map((v) => Math.round(v * 0.6))} delay={0.15} tone="var(--tone-3)" />
+        <Kpi label="Average order" value={data.aov} previous={data.aovPrev} format={(v) => money(v)} icon={CreditCard} spark={data.sparkRevenue.map((v, i) => v / Math.max(1, data.sparkOrders[i]))} delay={0.2} tone="var(--tone-4)" />
       </div>
 
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-[minmax(0,1fr)_360px]">

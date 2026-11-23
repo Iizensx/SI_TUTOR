@@ -14,7 +14,6 @@ function reviewCount(value: string) {
 export default async function Home() {
   await connection();
   const courses = await getPublicCourses();
-  const counts = Object.fromEntries(subjects.map(({ slug }) => [slug, courses.filter((course) => course.subjectSlug === slug).length]));
   // The best-rated course from each subject, so the row shows a variety of categories.
   const score = (course: (typeof courses)[number]) => reviewCount(course.reviews) * course.rating;
   const popular = subjects
@@ -23,5 +22,5 @@ export default async function Home() {
     .sort((a, b) => score(b) - score(a))
     .slice(0, 4);
 
-  return <HomeExperience subjects={subjects} counts={counts} courseCount={courses.length} popular={popular} />;
+  return <HomeExperience subjects={subjects} courseCount={courses.length} popular={popular} />;
 }

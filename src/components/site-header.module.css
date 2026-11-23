@@ -5,7 +5,7 @@
   width: 100%;
   min-height: 76px;
   margin: 0 0 14px;
-  padding: 8px 20vw;
+  padding: 8px clamp(24px, 2.5vw, 48px);
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
@@ -144,11 +144,6 @@
   outline-offset: 3px;
 }
 
-@media (min-width: 861px) and (max-width: 1440px) {
-  .header {
-    padding-inline: clamp(64px, calc(65.3vw - 653px), 20vw);
-  }
-}
 
 @media (max-width: 860px) {
   .header {

@@ -161,6 +161,7 @@
 .robotics { --tone: #ede9fe; --accent: #7c3aed; }
 .mathematics { --tone: #ccfbf1; --accent: #0d9488; }
 .citizenship { --tone: #fef3c7; --accent: #b45309; }
+.engineering { --tone: #1887ec; --accent: #075aaa; }
 
 /* ─────────── Page shell ─────────── */
 .subjectPage {
@@ -514,6 +515,12 @@
   z-index: -1;
   background: linear-gradient(90deg, var(--tone) 0%, color-mix(in srgb, var(--tone) 85%, transparent) 38%, transparent 68%);
 }
+
+.engineering .subjectBg { object-position: right center; }
+.engineering .subjectShade { background: linear-gradient(90deg, #1887ec30, transparent 60%); }
+.engineering .subjectText { max-width: 56%; }
+.engineering .subjectCard h2 { color: #fff; }
+.engineering .subjectCard p { color: #fff; font-weight: 550; }
 
 .subjectCard:hover,
 .subjectCard:focus-visible {

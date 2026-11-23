@@ -46,10 +46,9 @@ function Hero({ courseCount }: { courseCount: number }) {
           <i aria-hidden="true" /> AI-powered learning · {courseCount} courses
         </motion.p>
         <h1 id="home-title" className={styles.title}>
-          {["Learn smarter", "with your own", "SI tutor."].map((line, index) => (
+          {["Learn smarter", "with your own"].map((line, index) => (
             <span key={line} className={styles.line}>
               <motion.span
-                className={index === 2 ? styles.highlight : undefined}
                 initial={{ y: "110%" }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.9, ease, delay: 0.1 + index * 0.1 }}
@@ -60,7 +59,7 @@ function Hero({ courseCount }: { courseCount: number }) {
           ))}
         </h1>
         <motion.p className={styles.lead} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease, delay: 0.4 }}>
-          HSC, IELTS, AI &amp; Robotics, University Maths and Australian Citizenship — clear lessons, study files and progress tracking in one place.
+          HSC, IELTS, AI &amp; Robotics, University STEM, Australian Citizenship, and Engineering Short Courses. Personalised lessons, interactive practice, and progress tracking, all in one place.
         </motion.p>
         <motion.div className={styles.ctas} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease, delay: 0.5 }}>
           <Link href="/subjects" className={styles.primary}>
@@ -83,7 +82,7 @@ function Hero({ courseCount }: { courseCount: number }) {
 
         <div className={styles.subjectPopouts} aria-hidden="true">
           <Image src="/home/subject-panels/hsc.png" alt="" width={1600} height={900} className={`${styles.subjectPanel} ${styles.subjectHsc}`} />
-          <Image src="/home/subject-panels/ielts.png" alt="" width={1600} height={900} className={`${styles.subjectPanel} ${styles.subjectIelts}`} />
+          <Image src="/home/subject-panels/ielts-australia.png" alt="" width={1600} height={900} className={`${styles.subjectPanel} ${styles.subjectIelts}`} />
           <Image src="/home/subject-panels/robotics.png" alt="" width={1600} height={900} className={`${styles.subjectPanel} ${styles.subjectRobotics}`} />
           <Image src="/home/subject-panels/mathematics.png" alt="" width={1600} height={900} className={`${styles.subjectPanel} ${styles.subjectMaths}`} />
           <Image src="/home/subject-panels/citizenship.png" alt="" width={1600} height={900} className={`${styles.subjectPanel} ${styles.subjectCitizenship}`} />
@@ -128,7 +127,15 @@ function Stats({ subjectCount, courseCount }: { subjectCount: number; courseCoun
 
 /* ─────────── Categories ─────────── */
 
-function Categories({ subjects, counts }: { subjects: readonly Subject[]; counts: Record<string, number> }) {
+const categoryPosters: Record<string, string> = {
+  hsc: "/home/category-posters/hsc.jpg",
+  ielts: "/home/category-posters/ielts.jpg",
+  robotics: "/home/category-posters/robotics.jpg",
+  mathematics: "/home/category-posters/university-stem.jpg",
+  engineering: "/home/category-posters/engineering.jpg",
+  citizenship: "/home/category-posters/citizenship.jpg",
+};
+function Categories({ subjects }: { subjects: readonly Subject[] }) {
   return (
     <section className={styles.section} id="subjects" aria-labelledby="subjects-title">
       <motion.div className={styles.sectionHead} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease }}>
@@ -148,14 +155,20 @@ function Categories({ subjects, counts }: { subjects: readonly Subject[]; counts
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7, ease, delay: index * 0.08 }}
           >
-            <Link href={`/subjects/${subject.slug}`} className={styles.categoryCard}>
-              <span className={styles.categoryCount}>{counts[subject.slug] ?? 0} courses</span>
-              <span className={styles.categoryArt}>
-                <Image src={subject.image} alt="" width={280} height={180} sizes="(max-width: 640px) 60vw, 260px" />
+            <Link href={`/subjects/${subject.slug}`} className={styles.categoryCard} aria-label={`View ${subject.name} courses`}>
+              <span className={styles.categoryVisual}>
+                <Image
+                  className={styles.categoryPoster}
+                  src={categoryPosters[subject.slug] ?? subject.image}
+                  alt=""
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 33vw"
+                />
               </span>
-              <span className={styles.categoryName}>{subject.name}</span>
-              <span className={styles.categoryText}>{subject.description}</span>
-              <span className={styles.categoryArrow} aria-hidden="true"><Arrow size={20} /></span>
+              <span className={styles.categoryAction}>
+                View Courses
+                <Arrow size={18} aria-hidden="true" />
+              </span>
             </Link>
           </motion.li>
         ))}
@@ -167,14 +180,13 @@ function Categories({ subjects, counts }: { subjects: readonly Subject[]; counts
 /* ─────────── How it works ─────────── */
 
 const steps = [
-  { title: "Pick a subject", text: "Browse categories and choose a course that matches your goal.", tone: "#e0f2fe", icon: <><circle cx="11" cy="11" r="6" /><path d="m16 16 4 4" /></> },
-  { title: "Learn with AI", text: "Short lessons, study files and an AI tutor that explains every step.", tone: "#ede9fe", icon: <><rect x="4" y="6" width="16" height="12" rx="3" /><path d="M9 11h.01M15 11h.01M10 15h4M12 3v3" /></> },
-  { title: "Track progress", text: "See what you have mastered and jump back into your next lesson.", tone: "#ccfbf1", icon: <><path d="M4 19h16" /><path d="M7 15v-3M12 15V8M17 15v-6" /></> },
+  { title: "Pick a subject", text: "Browse categories and choose a course that matches your goal.", image: "/home/steps/pick-subject.png" },
+  { title: "Learn with AI", text: "Short lessons, study files and an AI tutor that explains every step.", image: "/home/steps/learn-ai.png" },
+  { title: "Track progress", text: "See what you have mastered and jump back into your next lesson.", image: "/home/steps/track-progress.png" },
 ];
-
 function HowItWorks() {
   return (
-    <section className={styles.section} aria-labelledby="how-title">
+    <section className={`${styles.section} ${styles.howSection}`} aria-labelledby="how-title">
       <motion.div className={styles.sectionHead} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease }}>
         <p className={styles.eyebrow}>HOW IT WORKS</p>
         <h2 id="how-title">Three steps to a better study routine</h2>
@@ -197,8 +209,8 @@ function HowItWorks() {
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.6, ease, delay: 0.15 + index * 0.15 }}
           >
-            <span className={styles.stepIcon} style={{ background: step.tone }}>
-              <svg viewBox="0 0 24 24" aria-hidden="true">{step.icon}</svg>
+            <span className={styles.stepIcon}>
+              <Image src={step.image} alt="" width={160} height={160} />
               <em>0{index + 1}</em>
             </span>
             <h3>{step.title}</h3>
@@ -285,29 +297,25 @@ function CtaBand() {
 function Footer() {
   return (
     <footer className={styles.footer}>
-      <Link href="/" className={styles.footerBrand} aria-label="SI Tutor home">
-        <Image src="/catalog/brand-robot.jpg" alt="" width={40} height={40} />
-        <span><strong><span>SI</span> TUTOR</strong><small>Super Intelligence Tutor · Learn Beyond Limits.</small></span>
-      </Link>
-      <nav aria-label="Footer navigation">
-        <Link href="/subjects">Subjects</Link>
-        <Link href="/pricing">Pricing</Link>
-        <Link href="/about">About</Link>
-        <Link href="/my-courses">My Courses</Link>
+      <div className={styles.paymentRow}>
+        <span>We accept:</span>
+        <span className={styles.paymentMarks} aria-label="Payment methods">
+          <b className={styles.mastercard}>●●</b><b className={styles.visa}>VISA</b><b className={styles.amex}>AMEX</b><b className={styles.paypal}>PayPal</b><b className={styles.applePay}> Pay</b><b className={styles.afterpay}>afterpay</b>
+        </span>
+      </div>
+      <nav aria-label="Footer navigation" className={styles.footerLinks}>
+        <Link href="/subjects">Subjects</Link><Link href="/pricing">Pricing</Link><Link href="/about">About</Link><Link href="/my-courses">My Courses</Link>
       </nav>
-      <p>© 2026 SI Tutor. All rights reserved.</p>
+      <p>© 2026 SI TUTOR</p>
     </footer>
   );
 }
-
 export function HomeExperience({
   subjects,
-  counts,
   courseCount,
   popular,
 }: {
   subjects: readonly Subject[];
-  counts: Record<string, number>;
   courseCount: number;
   popular: readonly Course[];
 }) {
@@ -319,7 +327,7 @@ export function HomeExperience({
         <main id="main-content" tabIndex={-1} className={styles.inner}>
           <Hero courseCount={courseCount} />
           <Stats subjectCount={subjects.length} courseCount={courseCount} />
-          <Categories subjects={subjects} counts={counts} />
+          <Categories subjects={subjects} />
           <HowItWorks />
           <PopularCourses courses={popular} subjectNames={subjectNames} />
           <CtaBand />

@@ -9,6 +9,7 @@ export function CatalogIcon({ name, size = 18 }: { name: string; size?: number }
     ielts: <><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m6 15 2-6 2 6m-3-2h2m4-4h5m-2.5 0c0 2-1 4-2.5 5m1-3 3 4"/></>,
     robotics: <><rect x="4" y="7" width="16" height="13" rx="3"/><path d="M12 7V4m-9 8H2m20 0h-1m-12 3h.01m6 0h.01"/></>,
     mathematics: <><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M9 7h6m-6 4h.01m3 0h.01m3 0h.01M9 15h.01m3 0h.01m3 0h.01M9 18h.01m3 0h.01m3 0h.01"/></>,
+    engineering: <><rect x="4" y="5" width="16" height="14" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M8 19v2m8-2v2"/></>,
     citizenship: <><circle cx="12" cy="12" r="9"/><path d="M3 12h18m-9-9a17 17 0 0 1 0 18 17 17 0 0 1 0-18Z"/></>,
     search: <><circle cx="10.7" cy="10.7" r="5.7"/><path d="m15 15 4 4"/></>,
     grid: <><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></>,

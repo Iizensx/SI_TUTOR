@@ -114,8 +114,8 @@ export function Field({ label, children, hint }: { label: string; children: Reac
   );
 }
 
-export const inputClass = "h-11 w-full rounded-2xl border border-[var(--line)] bg-white/80 px-3.5 text-sm outline-none transition focus:border-[var(--deep-2)] focus:ring-4 focus:ring-[#21463f1f]";
-export const textareaClass = "min-h-24 w-full rounded-2xl border border-[var(--line)] bg-white/80 px-3.5 py-3 text-sm outline-none transition focus:border-[var(--deep-2)] focus:ring-4 focus:ring-[#21463f1f]";
+export const inputClass = "h-11 w-full rounded-2xl border border-[var(--line)] bg-white/80 px-3.5 text-sm outline-none transition focus:border-[var(--deep-2)] focus:ring-4 focus:ring-[var(--focus-ring)]";
+export const textareaClass = "min-h-24 w-full rounded-2xl border border-[var(--line)] bg-white/80 px-3.5 py-3 text-sm outline-none transition focus:border-[var(--deep-2)] focus:ring-4 focus:ring-[var(--focus-ring)]";
 
 /** Slide-over panel used for editing details. */
 export function Drawer({ open, onClose, title, children, wide = false }: { open: boolean; onClose: () => void; title: string; children: ReactNode; wide?: boolean }) {
@@ -130,12 +130,12 @@ export function Drawer({ open, onClose, title, children, wide = false }: { open:
     <AnimatePresence>
       {open && (
         <>
-          <motion.div className="fixed inset-0 z-40 bg-[#0b1f1b]/30 backdrop-blur-[2px]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} />
+          <motion.div className="fixed inset-0 z-40 bg-[var(--shadow)]/30 backdrop-blur-[2px]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} />
           <motion.aside
             role="dialog"
             aria-modal="true"
             aria-labelledby={id}
-            className={`fixed inset-y-3 right-3 z-50 flex flex-col overflow-hidden rounded-[28px] bg-[#f7faf8] shadow-2xl`}
+            className={`fixed inset-y-3 right-3 z-50 flex flex-col overflow-hidden rounded-[28px] bg-[var(--panel)] shadow-2xl`}
             style={{ width: `min(calc(100vw - 24px), ${wide ? 720 : 520}px)` }}
             initial={{ x: "105%" }}
             animate={{ x: 0 }}

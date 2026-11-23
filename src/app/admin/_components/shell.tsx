@@ -24,7 +24,7 @@ const nav = [
   { href: "/admin/settings", label: "Settings", icon: Settings },
 ];
 
-const themes = ["forest", "pink", "ocean", "violet", "amber"] as const;
+const themes = ["ocean", "forest", "pink", "violet", "amber"] as const;
 type AdminTheme = (typeof themes)[number];
 const themeNames: Record<AdminTheme, string> = {
   forest: "Forest", pink: "Pink", ocean: "Ocean", violet: "Violet", amber: "Amber",
@@ -148,12 +148,16 @@ function MobileNav() {
 }
 
 export function AdminShell({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<AdminTheme>("forest");
+  const [theme, setTheme] = useState<AdminTheme>("ocean");
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem("si-tutor:admin-theme");
-      if (themes.some((item) => item === saved)) setTheme(saved as AdminTheme);
-    } catch { /* The default theme works without local storage. */ }
+    // Read the saved theme after hydration (deferred so the effect does not set state synchronously).
+    const timer = setTimeout(() => {
+      try {
+        const saved = localStorage.getItem("si-tutor:admin-theme");
+        if (themes.some((item) => item === saved)) setTheme(saved as AdminTheme);
+      } catch { /* The default theme works without local storage. */ }
+    }, 0);
+    return () => clearTimeout(timer);
   }, []);
   function randomTheme() {
     const choices = themes.filter((item) => item !== theme);

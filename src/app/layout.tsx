@@ -9,7 +9,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "SI Tutor | Super Intelligence Tutor",
-  description: "Explore HSC, IELTS, SI & Robotics, University Mathematics and Australian Citizenship with SI Tutor.",
+  description: "Explore HSC, IELTS, SI & Robotics, University STEM, Australian Citizenship and Engineering Short Courses with SI Tutor.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

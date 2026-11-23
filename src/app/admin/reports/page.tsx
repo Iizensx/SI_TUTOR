@@ -112,11 +112,11 @@ export default function ReportsPage() {
 
       <div className="mb-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
         {[
-          { label: "Revenue", value: money(report.revenue), icon: Wallet, tone: "#d6ebe3" },
-          { label: "Orders", value: String(report.paid.length), icon: ShoppingBag, tone: "#fde2c8" },
-          { label: "Buyers", value: String(report.buyers), icon: Users, tone: "#dfe3fb" },
-          { label: "Continuation rate", value: `${report.continuation}%`, icon: Repeat, tone: "#e6f0c8", hint: "Buyers who purchased again" },
-          { label: "Refund rate", value: `${report.refundRate}%`, icon: Undo2, tone: "#f6dbe4", hint: `${money(report.refundedAmount)} refunded` },
+          { label: "Revenue", value: money(report.revenue), icon: Wallet, tone: "var(--tone-1)" },
+          { label: "Orders", value: String(report.paid.length), icon: ShoppingBag, tone: "var(--tone-2)" },
+          { label: "Buyers", value: String(report.buyers), icon: Users, tone: "var(--tone-3)" },
+          { label: "Continuation rate", value: `${report.continuation}%`, icon: Repeat, tone: "var(--tone-5)", hint: "Buyers who purchased again" },
+          { label: "Refund rate", value: `${report.refundRate}%`, icon: Undo2, tone: "var(--tone-4)", hint: `${money(report.refundedAmount)} refunded` },
         ].map((item, index) => (
           <Card key={item.label} delay={index * 0.05} className="!p-4">
             <span className="grid h-9 w-9 place-items-center rounded-xl" style={{ background: item.tone }}><item.icon size={16} /></span>

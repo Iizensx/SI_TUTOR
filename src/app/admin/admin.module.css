@@ -22,6 +22,7 @@
   --bg-base: #eef3f0;
   --rail-end: #10241f;
   --rail-icon: #a8c2bb;
+  --highlight: #f6c08f;
   position: relative;
   display: grid;
   min-height: 100svh;
@@ -35,10 +36,30 @@
     var(--bg-base);
 }
 
-.root[data-theme="pink"] { --deep: #6d2754; --deep-2: #89436a; --accent: #ffb4d2; --accent-ink: #682447; --mint: #ffe3ef; --ink: #32182a; --muted: #795b6c; --line: #efdce6; --bg-one: #fbd6e9; --bg-two: #ffe5f1; --bg-three: #f5ddea; --bg-base: #fff5fa; --rail-end: #441933; --rail-icon: #e5b8d0; }
-.root[data-theme="ocean"] { --deep: #164e74; --deep-2: #1b668d; --accent: #7dd3fc; --accent-ink: #075079; --mint: #d9f2ff; --ink: #143247; --muted: #567687; --line: #d8e8ef; --bg-one: #caeafc; --bg-two: #d8f3f4; --bg-three: #d6ecfa; --bg-base: #f2faff; --rail-end: #0e344d; --rail-icon: #a9d7ea; }
-.root[data-theme="violet"] { --deep: #4d3275; --deep-2: #6c4a98; --accent: #cab5ff; --accent-ink: #42236b; --mint: #ede4ff; --ink: #29203f; --muted: #6b6380; --line: #e5dff0; --bg-one: #e5d8ff; --bg-two: #f3e5fa; --bg-three: #e4e6ff; --bg-base: #f8f5ff; --rail-end: #302049; --rail-icon: #cfbee6; }
-.root[data-theme="amber"] { --deep: #704817; --deep-2: #8b6125; --accent: #fbbf24; --accent-ink: #593706; --mint: #fff0c6; --ink: #35291a; --muted: #796d58; --line: #eee4d3; --bg-one: #f9e6bd; --bg-two: #fde4cf; --bg-three: #f8ebcd; --bg-base: #fffaf0; --rail-end: #4a300f; --rail-icon: #e5d0a8; }
+.root[data-theme="pink"] { --highlight: #ffd1e4; --deep: #6d2754; --deep-2: #89436a; --accent: #ffb4d2; --accent-ink: #682447; --mint: #ffe3ef; --ink: #32182a; --muted: #795b6c; --line: #efdce6; --bg-one: #fbd6e9; --bg-two: #ffe5f1; --bg-three: #f5ddea; --bg-base: #fff5fa; --rail-end: #441933; --rail-icon: #e5b8d0; }
+.root[data-theme="ocean"] { --highlight: #7dd3fc; --deep: #164e74; --deep-2: #1b668d; --accent: #7dd3fc; --accent-ink: #075079; --mint: #d9f2ff; --ink: #143247; --muted: #567687; --line: #d8e8ef; --bg-one: #caeafc; --bg-two: #d8f3f4; --bg-three: #d6ecfa; --bg-base: #f2faff; --rail-end: #0e344d; --rail-icon: #a9d7ea; }
+.root[data-theme="violet"] { --highlight: #d9c8ff; --deep: #4d3275; --deep-2: #6c4a98; --accent: #cab5ff; --accent-ink: #42236b; --mint: #ede4ff; --ink: #29203f; --muted: #6b6380; --line: #e5dff0; --bg-one: #e5d8ff; --bg-two: #f3e5fa; --bg-three: #e4e6ff; --bg-base: #f8f5ff; --rail-end: #302049; --rail-icon: #cfbee6; }
+.root[data-theme="amber"] { --highlight: #fcd34d; --deep: #704817; --deep-2: #8b6125; --accent: #fbbf24; --accent-ink: #593706; --mint: #fff0c6; --ink: #35291a; --muted: #796d58; --line: #eee4d3; --bg-one: #f9e6bd; --bg-two: #fde4cf; --bg-three: #f8ebcd; --bg-base: #fffaf0; --rail-end: #4a300f; --rail-icon: #e5d0a8; }
+/* Tokens derived from the theme colours, so every theme recolours the whole dashboard. */
+.root {
+  --hero-mid: color-mix(in srgb, var(--deep) 70%, var(--deep-2));
+  --hero-end: color-mix(in srgb, var(--deep-2) 80%, var(--mint));
+  --on-deep: color-mix(in srgb, var(--mint) 70%, var(--deep));
+  --on-deep-soft: color-mix(in srgb, var(--mint) 85%, var(--deep));
+  --shadow: color-mix(in srgb, var(--rail-end) 85%, black);
+  --panel: color-mix(in srgb, var(--bg-base) 70%, white);
+  --focus-ring: color-mix(in srgb, var(--deep-2) 14%, transparent);
+  --chart-1: var(--deep);
+  --chart-2: var(--accent);
+  --chart-3: color-mix(in srgb, var(--deep-2) 45%, var(--mint));
+  --chart-4: color-mix(in srgb, var(--accent) 35%, var(--mint));
+  --tone-1: var(--mint);
+  --tone-2: color-mix(in srgb, var(--accent) 30%, white);
+  --tone-3: color-mix(in srgb, var(--deep-2) 16%, white);
+  --tone-4: color-mix(in srgb, var(--bg-two) 75%, var(--accent) 25%);
+  --tone-5: color-mix(in srgb, var(--bg-one) 80%, var(--deep-2) 20%);
+}
+
 .serif {
   font-family: "Instrument Serif", Georgia, serif;
   font-style: italic;
@@ -64,7 +85,7 @@
   padding: 14px 0;
   border-radius: 30px;
   background: linear-gradient(180deg, var(--deep) 0%, var(--rail-end) 100%);
-  box-shadow: 0 30px 60px -30px #0b1f1b;
+  box-shadow: 0 30px 60px -30px var(--shadow);
 }
 
 .logo {
@@ -165,7 +186,7 @@
   border: 1px solid #ffffffb3;
   background: #ffffffb8;
   backdrop-filter: blur(18px) saturate(140%);
-  box-shadow: 0 18px 40px -32px #17332f73;
+  box-shadow: 0 18px 40px -32px color-mix(in srgb, var(--deep) 45%, transparent);
 }
 
 .mobileNav {
@@ -196,7 +217,7 @@
     flex: none;
     padding: 8px 12px;
     border-radius: 999px;
-    color: #cfe0db;
+    color: var(--on-deep-soft);
     font-size: 13px;
     font-weight: 600;
   }

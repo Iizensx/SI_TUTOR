@@ -95,7 +95,7 @@ export default function CoursesPage() {
       <PageTitle
         title="Subjects &"
         accent="Courses"
-        subtitle="Manage the 5 categories, prices, covers, descriptions and instructors. Hidden courses disappear from the website."
+        subtitle="Manage the 6 categories, prices, covers, descriptions and instructors. Hidden courses disappear from the website."
         actions={<Button variant="accent" onClick={() => setCreating(true)} disabled={!editable} title={editable ? undefined : "Owner or editor role required"}><Plus size={16} /> New course</Button>}
       />
 
@@ -144,7 +144,7 @@ export default function CoursesPage() {
                   initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.96 }}
-                  className={`group overflow-hidden rounded-[24px] bg-white/80 ring-1 ring-[var(--line)] backdrop-blur transition hover:-translate-y-1 hover:shadow-[0_24px_40px_-30px_#17332f] ${course.hidden ? "opacity-70" : ""}`}
+                  className={`group overflow-hidden rounded-[24px] bg-white/80 ring-1 ring-[var(--line)] backdrop-blur transition hover:-translate-y-1 hover:shadow-[0_24px_40px_-30px_var(--deep)] ${course.hidden ? "opacity-70" : ""}`}
                 >
                   <div className="relative m-2 aspect-[16/9] overflow-hidden rounded-[18px] bg-[var(--mint)]">
                     <Image src={course.cover} alt="" fill sizes="360px" className="object-cover transition duration-500 group-hover:scale-105" unoptimized={course.cover.startsWith("http")} />
