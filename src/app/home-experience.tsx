@@ -128,16 +128,16 @@ function Stats({ subjectCount, courseCount }: { subjectCount: number; courseCoun
 /* ─────────── Categories ─────────── */
 
 const categoryPosters: Record<string, string> = {
-  hsc: "/home/category-posters/hsc.jpg",
-  ielts: "/home/category-posters/ielts.jpg",
-  robotics: "/home/category-posters/robotics.jpg",
-  mathematics: "/home/category-posters/university-stem.jpg",
-  engineering: "/home/category-posters/engineering.jpg",
-  citizenship: "/home/category-posters/citizenship.jpg",
+  hsc: "/home/category-posters/Edited-Poster/new-hsc.jpg",
+  ielts: "/home/category-posters/Edited-Poster/new-ielts.jpg",
+  robotics: "/home/category-posters/Edited-Poster/new-robotics.jpg",
+  mathematics: "/home/category-posters/Edited-Poster/new-university-stem.jpg",
+  engineering: "/home/category-posters/Edited-Poster/new-engineering.jpg",
+  citizenship: "/home/category-posters/Edited-Poster/new-citizenship.jpg",
 };
 function Categories({ subjects }: { subjects: readonly Subject[] }) {
   return (
-    <section className={styles.section} id="subjects" aria-labelledby="subjects-title">
+    <section className={`${styles.section} ${styles.categorySection}`} id="subjects" aria-labelledby="subjects-title">
       <motion.div className={styles.sectionHead} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease }}>
         <p className={styles.eyebrow}>CATEGORIES</p>
         <h2 id="subjects-title">Choose a <span className={styles.highlight}>Category</span></h2>
@@ -162,7 +162,7 @@ function Categories({ subjects }: { subjects: readonly Subject[] }) {
                   src={categoryPosters[subject.slug] ?? subject.image}
                   alt=""
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 33vw"
+                  sizes="(max-width: 640px) calc(100vw - 24px), (max-width: 1099px) calc(50vw - 24px), calc(33.333vw - 32px)"
                 />
               </span>
               <span className={styles.categoryAction}>
@@ -324,13 +324,17 @@ export function HomeExperience({
     <MotionConfig reducedMotion="user">
       <div className={styles.page} id="home">
         <div className={styles.glow} aria-hidden="true" />
-        <main id="main-content" tabIndex={-1} className={styles.inner}>
-          <Hero courseCount={courseCount} />
-          <Stats subjectCount={subjects.length} courseCount={courseCount} />
+        <main id="main-content" tabIndex={-1}>
+          <div className={styles.inner}>
+            <Hero courseCount={courseCount} />
+            <Stats subjectCount={subjects.length} courseCount={courseCount} />
+          </div>
           <Categories subjects={subjects} />
-          <HowItWorks />
-          <PopularCourses courses={popular} subjectNames={subjectNames} />
-          <CtaBand />
+          <div className={styles.inner}>
+            <HowItWorks />
+            <PopularCourses courses={popular} subjectNames={subjectNames} />
+            <CtaBand />
+          </div>
         </main>
         <div className={styles.inner}><Footer /></div>
       </div>
