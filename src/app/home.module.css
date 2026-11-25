@@ -6,16 +6,37 @@
 }
 
 .glow {
-  position: absolute;
-  inset: -100px 0 auto;
+  position: fixed;
+  inset: -8%;
   z-index: -1;
-  height: 900px;
   background:
-    radial-gradient(38% 45% at 8% 22%, #bae6fd 0%, #e0f2fe99 40%, transparent 72%),
-    radial-gradient(40% 50% at 78% 30%, #7dd3fc8c 0%, #caeafc80 45%, transparent 74%),
-    radial-gradient(30% 40% at 96% 8%, #c7d2fe99 0%, transparent 70%),
-    radial-gradient(34% 40% at 55% 82%, #a5f3fc66 0%, transparent 70%);
+    radial-gradient(48% 54% at 5% 20%, #7dd3fc 0%, #bae6fdcc 42%, transparent 76%),
+    radial-gradient(48% 58% at 76% 32%, #60a5facc 0%, #93c5fda6 43%, transparent 76%),
+    radial-gradient(40% 48% at 100% 8%, #a78bfa 0%, #c4b5fd99 42%, transparent 74%),
+    radial-gradient(40% 40% at 48% 70%, #67e8f980 0%, transparent 74%),
+    linear-gradient(180deg, #e0e7ff 0%, #e0f2fe 48%, #f0f9ff80 76%, transparent 100%);
   pointer-events: none;
+  animation: homeGlowDrift 28s ease-in-out infinite alternate;
+}
+
+@keyframes homeGlowDrift {
+  0% {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, 1.5%, 0) scale(1.04);
+  }
+  100% {
+    transform: translate3d(-1%, 2%, 0) scale(1.07);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow {
+    inset: 0;
+    animation: none;
+    transform: none;
+  }
 }
 
 .inner {
