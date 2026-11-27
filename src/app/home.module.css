@@ -295,6 +295,7 @@
 .subjectRobotics { --panel-turn: 5deg; --panel-y: 12deg; top: 36%; left: -11%; animation-delay: -2s; }
 .subjectMaths { --panel-turn: -5deg; --panel-y: -12deg; top: 35%; right: -12%; animation-delay: -3s; }
 .subjectCitizenship { --panel-turn: 4deg; --panel-y: -10deg; right: -10%; bottom: 0; animation-delay: -4s; }
+.subjectEngineering { --panel-turn: -4deg; --panel-y: 10deg; left: -9%; bottom: 0; width: 44%; animation-delay: -5s; }
 @keyframes panel-float {
   0%, 100% { translate: 0 0; }
   50% { translate: 0 -7px; }
@@ -417,72 +418,6 @@
   font-size: 13px;
   font-weight: 650;
   animation-delay: .8s;
-}
-
-/* ─────────── Stats ─────────── */
-.stats {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  overflow: hidden;
-  border-radius: 28px;
-  background: linear-gradient(120deg, #0e344d 0%, #164e74 50%, #1b668d 100%);
-  box-shadow: 0 30px 60px -36px #0e344d;
-}
-
-.stats::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(40% 120% at 0% 0%, #7dd3fc33 0%, transparent 60%),
-    radial-gradient(45% 140% at 100% 100%, #38bdf840 0%, transparent 60%),
-    linear-gradient(180deg, #ffffff12 0%, transparent 40%);
-  pointer-events: none;
-}
-
-.stat {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  gap: 6px;
-  padding: 26px 28px;
-}
-
-.stat + .stat::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 24%;
-  bottom: 24%;
-  width: 1px;
-  background: #ffffff2e;
-}
-
-.stat strong {
-  color: #fff;
-  font-size: clamp(30px, 3.2vw, 42px);
-  font-weight: 650;
-  letter-spacing: -.04em;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-}
-
-.stat > span {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #bfe4f7;
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.stat > span::before {
-  content: "";
-  width: 14px;
-  height: 2px;
-  border-radius: 2px;
-  background: #7dd3fc;
 }
 
 /* ─────────── Sections ─────────── */
@@ -969,18 +904,6 @@
     margin-inline: auto;
   }
 
-  .stats {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .stat:nth-child(3)::before {
-    display: none;
-  }
-
-  .stat:nth-child(n + 3) {
-    border-top: 1px solid #ffffff1f;
-  }
-
 }
 
 @media (max-width: 640px) {
@@ -1055,6 +978,7 @@
   .subjectRobotics { left: -3%; }
   .subjectMaths { right: -3%; }
   .subjectCitizenship { right: -2%; bottom: 12%; }
+  .subjectEngineering { left: -2%; bottom: 12%; width: 44%; }
 }
 
 @media (prefers-reduced-motion: reduce) {

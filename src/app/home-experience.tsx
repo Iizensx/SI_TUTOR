@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
-import { MotionConfig, animate, motion, useInView, useMotionValue, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { MotionConfig, motion, useScroll, useTransform } from "framer-motion";
 
 import type { Course, Subject } from "@/lib/catalog";
 import { formatCoursePrice } from "@/lib/catalog";
@@ -17,19 +17,6 @@ function Arrow({ size = 16 }: { size?: number }) {
       <path d="M5 12h14m-6-6 6 6-6 6" />
     </svg>
   );
-}
-
-function CountUp({ value, suffix = "" }: { value: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true });
-  const motionValue = useMotionValue(0);
-  const rounded = useTransform(motionValue, (latest) => `${Math.round(latest)}${suffix}`);
-  useEffect(() => {
-    if (!inView) return;
-    const controls = animate(motionValue, value, { duration: 1.4, ease });
-    return () => controls.stop();
-  }, [inView, value, motionValue]);
-  return <span ref={ref} aria-label={`${value}${suffix}`}><motion.span aria-hidden="true">{rounded}</motion.span></span>;
 }
 
 /* ─────────── Hero ─────────── */
@@ -86,6 +73,7 @@ function Hero({ courseCount }: { courseCount: number }) {
           <Image src="/home/subject-panels/robotics.png" alt="" width={1600} height={900} className={`${styles.subjectPanel} ${styles.subjectRobotics}`} />
           <Image src="/home/subject-panels/mathematics.png" alt="" width={1600} height={900} className={`${styles.subjectPanel} ${styles.subjectMaths}`} />
           <Image src="/home/subject-panels/citizenship.png" alt="" width={1600} height={900} className={`${styles.subjectPanel} ${styles.subjectCitizenship}`} />
+          <Image src="/home/subject-panels/engineering.png" alt="" width={1659} height={948} className={`${styles.subjectPanel} ${styles.subjectEngineering}`} />
         </div>
         <div className={styles.heroPopout} aria-hidden="true">
           <Image src="/home/hero-robot-popout.png" alt="" fill sizes="(max-width: 960px) 55vw, 400px" className={styles.heroPopoutImage} />
@@ -93,34 +81,6 @@ function Hero({ courseCount }: { courseCount: number }) {
 
 
       </motion.div>
-    </section>
-  );
-}
-
-/* ─────────── Stats ─────────── */
-
-function Stats({ subjectCount, courseCount }: { subjectCount: number; courseCount: number }) {
-  const items = [
-    { value: subjectCount, suffix: "", label: "Subject areas" },
-    { value: courseCount, suffix: "+", label: "Courses to explore" },
-    { value: 3, suffix: " mo", label: "Access per course" },
-    { value: 24, suffix: "/7", label: "AI help, any time" },
-  ];
-  return (
-    <section className={styles.stats} aria-label="SI Tutor at a glance">
-      {items.map((item, index) => (
-        <motion.div
-          key={item.label}
-          className={styles.stat}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.6, ease, delay: index * 0.08 }}
-        >
-          <strong><CountUp value={item.value} suffix={item.suffix} /></strong>
-          <span>{item.label}</span>
-        </motion.div>
-      ))}
     </section>
   );
 }
@@ -327,7 +287,6 @@ export function HomeExperience({
         <main id="main-content" tabIndex={-1}>
           <div className={styles.inner}>
             <Hero courseCount={courseCount} />
-            <Stats subjectCount={subjects.length} courseCount={courseCount} />
           </div>
           <Categories subjects={subjects} />
           <div className={styles.inner}>
