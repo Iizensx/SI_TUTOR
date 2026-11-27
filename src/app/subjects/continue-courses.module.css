@@ -121,15 +121,15 @@
   height: 36px;
   margin-inline-start: auto;
   place-items: center;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #28516b;
   border-radius: 50%;
-  background: #fff;
-  color: #334155;
+  background: #123d58;
+  color: #f4f8ff;
   cursor: pointer;
 }
 
-.toggle:hover { background: #f0f9ff; }
-.toggle:focus-visible { outline: 3px solid #1d4ed866; outline-offset: 2px; }
+.toggle:hover { background: #164765; }
+.toggle:focus-visible { outline: 3px solid #38bdf8; outline-offset: 2px; }
 .panel[data-collapsed] .toggle svg { transform: rotate(180deg); }
 
 .panel[data-collapsed] .heading {

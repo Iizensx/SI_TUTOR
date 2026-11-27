@@ -4,7 +4,7 @@
   top: 0;
   width: 100%;
   min-height: 76px;
-  margin: 0 0 14px;
+  margin: 0;
   padding: 8px clamp(24px, 2.5vw, 48px);
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -12,9 +12,9 @@
   gap: clamp(12px, 2vw, 28px);
   border: 0;
   border-radius: 0;
-  color: #111a50;
-  background: var(--page-background);
-  box-shadow: none;
+  color: #ffffff;
+  background: #0b3049;
+  box-shadow: 0 4px 20px #00111f33;
 }
 
 .brand {
@@ -48,14 +48,16 @@
 }
 
 .brandName > span {
-  color: #244ed8;
-  background: linear-gradient(105deg, #0872df, #8636d4);
+  color: #42d9ff;
+  background: linear-gradient(105deg,#a855f7 0%, #6366f1 50%, #3b82f6 100%);
   background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 .brandTagline {
-  color: #455571;
+  color: #b9d6e9;
   font-size: 11px;
   line-height: 1.2;
   white-space: nowrap;
@@ -77,7 +79,7 @@
 .navigation {
   justify-self: center;
   gap: clamp(2px, .65vw, 10px);
-  color: #293653;
+  color: #ffffff;
 }
 
 .navigation > *,
@@ -94,8 +96,8 @@
 
 .navigation a:hover,
 .navigation [aria-current] {
-  color: #111a50;
-  background: #f0f1f3;
+  color: #ffffff;
+  background: #ffffff20;
 }
 
 .header button:disabled {
@@ -112,13 +114,13 @@
 .actions .login {
   padding-inline: 4px;
   border-radius: 0;
-  color: #111a50;
+  color: #ffffff;
   background: transparent;
   font-weight: 600;
 }
 
 .actions .login:hover {
-  color: #0759b5;
+  color: #42d9ff;
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -127,15 +129,15 @@
   min-width: 96px;
   padding-inline: 19px;
   border-radius: 999px;
-  color: #fff;
-  background: #202124;
-  box-shadow: 0 2px 6px #111a5026;
+  color: #ffffff;
+  background: #ffffff26;
+  box-shadow: 0 2px 10px #00111f33;
   transition: background .18s ease, box-shadow .18s ease;
 }
 
 .actions .signup:hover {
-  background: #3a3b3e;
-  box-shadow: 0 4px 12px #111a5030;
+  background: #42a5d5;
+  box-shadow: 0 4px 12px #42d9ff33;
 }
 
 .actions .login:focus-visible,
@@ -166,9 +168,9 @@
     gap: 5px;
     width: 44px;
     height: 44px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #ffffff33;
     border-radius: 12px;
-    background: #fff;
+    background: #123d58;
     cursor: pointer;
   }
 
@@ -176,7 +178,7 @@
     width: 19px;
     height: 2px;
     border-radius: 2px;
-    background: #111a50;
+    background: #ffffff;
   }
 
   .mobileToggle:focus-visible { outline: 3px solid #075cbd; outline-offset: 3px; }
@@ -188,10 +190,10 @@
     left: 12px;
     right: 12px;
     padding: 12px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #ffffff22;
     border-radius: 0 0 18px 18px;
-    background: #fff;
-    box-shadow: 0 18px 30px #0f172a1f;
+    background: #0b3049;
+    box-shadow: 0 18px 30px #00111f66;
   }
 
   .headerContent[data-open] { display: grid; gap: 12px; }

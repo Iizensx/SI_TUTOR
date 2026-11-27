@@ -14,7 +14,7 @@
 .notchRight {
   position: absolute;
   z-index: 5;
-  background: #fff;
+  background: #071f30;
 }
 
 .notchTop::before,
@@ -41,13 +41,13 @@
 .notchTop::before {
   top: 0;
   right: 100%;
-  background: radial-gradient(circle at 0 100%, transparent calc(var(--fillet) - .5px), #fff var(--fillet));
+  background: radial-gradient(circle at 0 100%, transparent calc(var(--fillet) - .5px), #071f30 var(--fillet));
 }
 
 .notchTop::after {
   top: 0;
   left: 100%;
-  background: radial-gradient(circle at 100% 100%, transparent calc(var(--fillet) - .5px), #fff var(--fillet));
+  background: radial-gradient(circle at 100% 100%, transparent calc(var(--fillet) - .5px), #071f30 var(--fillet));
 }
 
 .notchLeft,
@@ -67,10 +67,10 @@
   border-radius: 999px 0 0 999px;
 }
 
-.notchLeft::before { bottom: 100%; left: 0; background: radial-gradient(circle at 100% 0, transparent calc(var(--fillet) - .5px), #fff var(--fillet)); }
-.notchLeft::after { top: 100%; left: 0; background: radial-gradient(circle at 100% 100%, transparent calc(var(--fillet) - .5px), #fff var(--fillet)); }
-.notchRight::before { bottom: 100%; right: 0; background: radial-gradient(circle at 0 0, transparent calc(var(--fillet) - .5px), #fff var(--fillet)); }
-.notchRight::after { top: 100%; right: 0; background: radial-gradient(circle at 0 100%, transparent calc(var(--fillet) - .5px), #fff var(--fillet)); }
+.notchLeft::before { bottom: 100%; left: 0; background: radial-gradient(circle at 100% 0, transparent calc(var(--fillet) - .5px), #071f30 var(--fillet)); }
+.notchLeft::after { top: 100%; left: 0; background: radial-gradient(circle at 100% 100%, transparent calc(var(--fillet) - .5px), #071f30 var(--fillet)); }
+.notchRight::before { bottom: 100%; right: 0; background: radial-gradient(circle at 0 0, transparent calc(var(--fillet) - .5px), #071f30 var(--fillet)); }
+.notchRight::after { top: 100%; right: 0; background: radial-gradient(circle at 0 100%, transparent calc(var(--fillet) - .5px), #071f30 var(--fillet)); }
 
 /* Pulsing hotspot dot */
 .hotspot {
@@ -78,10 +78,10 @@
   display: block;
   width: 16px;
   height: 16px;
-  border: 3px solid #fff;
+  border: 3px solid #7dd3fc;
   border-radius: 50%;
-  background: #1d4ed8;
-  box-shadow: 0 0 0 0 #1d4ed866;
+  background: #38bdf8;
+  box-shadow: 0 0 0 0 #38bdf866;
   animation: pulse 2.2s ease-out infinite;
 }
 
@@ -92,14 +92,14 @@
 .hotspotSoft {
   width: 20px;
   height: 20px;
-  border: 5px solid #ffffffcc;
-  background: #fff;
+  border: 5px solid #7dd3fc66;
+  background: #38bdf8;
 }
 
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 #ffffffb3; }
-  70% { box-shadow: 0 0 0 16px #ffffff00; }
-  100% { box-shadow: 0 0 0 0 #ffffff00; }
+  0% { box-shadow: 0 0 0 0 #38bdf866; }
+  70% { box-shadow: 0 0 0 16px #38bdf800; }
+  100% { box-shadow: 0 0 0 0 #38bdf800; }
 }
 
 /* Vertical "OPEN" label for collapsed accordion panels */
@@ -175,4 +175,171 @@
   .marquee {
     overflow-x: auto;
   }
+}
+
+
+/* =========================================
+   ABOUT PAGE — DARK NAVY THEME
+   ========================================= */
+
+/* Hero frame notches */
+.notchTop,
+.notchLeft,
+.notchRight {
+  background: #071f30;
+}
+
+/* Hotspot colors */
+.hotspot {
+  border-color: #7dd3fc;
+  background: #38bdf8;
+  box-shadow: 0 0 0 0 #38bdf866;
+}
+
+.hotspotSoft {
+  border-color: #7dd3fc66;
+  background: #38bdf8;
+}
+
+/* Footer brand banner */
+.footerBanner {
+  background: linear-gradient(
+    110deg,
+    #0b3049 0%,
+    #123d58 45%,
+    #312e81 100%
+  );
+  border: 1px solid #38bdf855;
+  box-shadow: 0 24px 60px -30px #000000cc;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hotspot,
+  .marqueeTrack {
+    animation: none;
+  }
+}
+
+.aboutPage {
+  min-height: 100vh;
+  background: linear-gradient(
+    180deg,
+    #071f30 0%,
+    #09283d 48%,
+    #071f30 100%
+  );
+  color: #f4f8ff;
+}
+
+/* Main headings */
+.aboutPage :global(.text-ink) {
+  color: #f4f8ff;
+}
+
+/* Supporting text */
+.aboutPage :global(.text-slate-400),
+.aboutPage :global(.text-slate-500),
+.aboutPage :global(.text-slate-600),
+.aboutPage :global(.text-slate-700) {
+  color: #bdcede;
+}
+
+/* Brand accent */
+.aboutPage :global(.text-brand) {
+  color: #42d9ff;
+}
+
+/* Light gray surfaces */
+.aboutPage :global(.bg-mist),
+.aboutPage :global(.bg-slate-100) {
+  background-color: #123d58;
+}
+
+/* Journey accordion */
+.aboutPage :global(.hover\:bg-slate-100:hover) {
+  background-color: #164765;
+}
+
+/* Journey and testimonial cards */
+.aboutPage :global(.bg-mist) {
+  border: 1px solid #28516b;
+}
+
+/* Hero link */
+.aboutPage :global(.border-ink\/30) {
+  border-color: #7dd3fc66;
+}
+
+/* Decorative SVG shapes */
+.aboutPage :global(.bg-slate-100) {
+  background-color: #123d58;
+}
+
+/* Testimonials */
+.aboutPage :global(.text-slate-700) {
+  color: #dbeafe;
+}
+
+/* Track information panels */
+.aboutPage :global(.rounded-3xl.bg-white.p-5) {
+  border: 1px solid #28516b;
+  background: #0b3049;
+}
+
+.aboutPage :global(.rounded-3xl.bg-white.p-5 .text-slate-500) {
+  color: #91a9bf;
+}
+
+/* Track level tags */
+.aboutPage :global(.border-slate-200) {
+  border-color: #426080;
+}
+
+/* Track AI feature panels */
+.aboutPage :global(.bg-brand) {
+  background: linear-gradient(120deg, #0ea5e9, #4f46e5);
+}
+
+/* Track availability panels */
+.aboutPage :global(.bg-slate-100.p-4) {
+  background: #123d58;
+}
+
+/* Accordion active panel */
+.aboutPage :global(.bg-mist) {
+  background-color: #0b3049;
+}
+
+/* Smooth dark theme */
+.aboutPage :global(article),
+.aboutPage :global(button) {
+  transition-property: background-color, border-color, box-shadow, color;
+}
+
+/* Mission & Values cards */
+.aboutValueTitle {
+  color: #0f172a !important;
+}
+
+.aboutValueDescription {
+  color: #475569 !important;
+}
+
+/* Learning track headings */
+.aboutTrackTitle {
+  color: #0f172a !important;
+}
+
+.aboutTrackCategory {
+  color: #475569 !important;
+}
+
+.aboutTrackBadge {
+  color: #0f172a !important;
+}
+
+/* Keep text readable on pastel cards */
+.aboutTrackMuted {
+  color: #475569 !important;
 }

@@ -140,8 +140,12 @@ function ValueCard({ value, delay }: { value: (typeof values)[number]; delay: nu
     >
       <ValueIcon name={value.icon} />
       <div>
-        <h3 className="text-xl font-semibold tracking-[-0.03em] text-ink sm:text-2xl">{value.title}</h3>
-        <p className="mt-2 text-sm leading-snug text-slate-600">{value.text}</p>
+        <h3 className="text-xl font-semibold tracking-[-0.03em] !text-[#0f172a] sm:text-2xl">
+          {value.title}
+        </h3>
+        <p className="mt-2 text-sm leading-snug !text-[#475569]">
+          {value.text}
+        </p>
       </div>
     </motion.article>
   );
@@ -181,7 +185,7 @@ function Mission() {
 
         <Shape delay={0.15}>
           <svg viewBox="0 0 100 100" className="h-full w-full">
-            <path d="M88 2c6 0 10 4 10 10v76c0 6-4 10-10 10H14C5 98 1 91 7 84L80 6c2-3 5-4 8-4z" fill="#F1F5F9" />
+            <path d="M88 2c6 0 10 4 10 10v76c0 6-4 10-10 10H14C5 98 1 91 7 84L80 6c2-3 5-4 8-4z" fill="#123d58" />
           </svg>
         </Shape>
 
@@ -198,7 +202,7 @@ function Mission() {
 
         <Shape delay={0.2}>
           <svg viewBox="0 0 100 100" className="h-full w-full">
-            <path d="M0 24C0 6 22-2 34 16c10 15 14 34 24 34s14-26 26-34C94 8 100 16 100 26v62c0 6-4 10-10 10H10C4 98 0 94 0 88z" fill="#F1F5F9" />
+            <path d="M0 24C0 6 22-2 34 16c10 15 14 34 24 34s14-26 26-34C94 8 100 16 100 26v62c0 6-4 10-10 10H10C4 98 0 94 0 88z" fill="#123d58" />
           </svg>
         </Shape>
 
@@ -225,12 +229,17 @@ function TrackCard({ track, index, total, progress, stacked }: { track: Track; i
         aria-labelledby={`track-${track.slug}`}
       >
         <div className="flex flex-col">
-          <h3 id={`track-${track.slug}`} className="text-[clamp(38px,6.4vw,92px)] font-semibold leading-[0.9] tracking-[-0.05em] text-ink">
+          <h3
+            id={`track-${track.slug}`}
+            className="text-[clamp(38px,6.4vw,92px)] font-semibold leading-[0.9] tracking-[-0.05em] !text-[#0f172a]"
+          >
             {track.title[0]}
             <br />
             {track.title[1]}
           </h3>
-          <p className="mt-4 text-sm font-medium text-slate-600">{track.categories.join("  /  ")}</p>
+          <p className="mt-4 text-sm font-medium !text-[#475569]">
+            {track.categories.join("  /  ")}
+          </p>
           <div className="relative mt-6 h-[220px] w-full max-w-[420px] sm:h-[280px] lg:mt-auto lg:h-[320px]">
             <Image src={track.image} alt={track.imageAlt} fill sizes="(max-width: 1024px) 80vw, 420px" className="object-contain object-left-bottom mix-blend-multiply" />
           </div>
@@ -238,10 +247,14 @@ function TrackCard({ track, index, total, progress, stacked }: { track: Track; i
 
         <div className="mt-8 flex flex-col justify-end lg:mt-0">
           <div className="mb-3 flex flex-wrap gap-2">
-            <span className="rounded-full bg-white px-3 py-1.5 text-[11px] font-bold tracking-[0.08em] text-ink">SI TRACK 0{index + 1}</span>
-            <span className="rounded-full bg-white/55 px-3 py-1.5 text-[11px] font-semibold text-slate-700">AI-powered</span>
+            <span className="rounded-full bg-white px-3 py-1.5 text-[11px] font-bold tracking-[0.08em] !text-[#0f172a]">
+              SI TRACK 0{index + 1}
+            </span>
+            <span className="rounded-full bg-white/55 px-3 py-1.5 text-[11px] font-semibold !text-[#475569]">
+              AI-powered
+            </span>
           </div>
-          <div className="rounded-3xl bg-white p-5 shadow-[0_24px_50px_-30px_rgba(15,23,42,0.35)] sm:p-6">
+          <div className="rounded-3xl border border-[#28516b] bg-[#0b3049] p-5 shadow-[0_24px_50px_-30px_rgba(0,0,0,0.5)] sm:p-6">
             <p className="text-xl font-bold tracking-[-0.02em] text-ink sm:text-2xl">{track.product}</p>
             <p className="mt-1 text-sm text-slate-500">{track.focus}</p>
             <div className="mt-4 flex flex-wrap gap-2">
@@ -380,8 +393,12 @@ function WhyChoose() {
           >
             <DotIcon name={feature.icon} />
             <div>
-              <h3 className="text-xl font-semibold tracking-[-0.03em] text-ink">{feature.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">{feature.text}</p>
+              <h3 className="text-xl font-semibold tracking-[-0.03em] !text-[#0f172a]">
+                {feature.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed !text-[#475569]">
+                {feature.text}
+              </p>
             </div>
           </motion.article>
         ))}
@@ -488,7 +505,13 @@ function Journey() {
                     </h3>
                     <p className="mt-3 max-w-lg text-sm leading-relaxed text-slate-600 sm:text-base">{step.text}</p>
                     <div className="relative mt-6 h-[240px] w-full max-w-[460px] flex-1 md:h-auto">
-                      <Image src={step.image} alt={step.imageAlt} fill sizes="(max-width: 768px) 90vw, 460px" className="object-contain mix-blend-multiply" />
+                    <Image
+                      src={step.image}
+                      alt={step.imageAlt}
+                      fill
+                      sizes="(max-width: 768px) 90vw, 460px"
+                      className="object-contain"
+                    />
                     </div>
                   </motion.div>
                 ) : (
@@ -566,7 +589,11 @@ function Testimonials() {
 export function AboutExperience() {
   return (
     <MotionConfig reducedMotion="user">
-      <main id="main-content" tabIndex={-1} className="overflow-x-clip bg-white text-ink">
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className={`${styles.aboutPage} overflow-x-clip`}
+      >
           <Hero />
           <Mission />
           <Tracks />

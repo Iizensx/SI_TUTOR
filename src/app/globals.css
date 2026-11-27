@@ -123,13 +123,19 @@
 }
 
 :root {
-  --ink: #0f172a;
-  --muted-ink: #475569;
-  --blue: #1d4ed8;
+  --ink: #f1f5f9;
+  --muted-ink: #bdcede;
+  --blue: #38bdf8;
   --page-width: 1280px;
-  --page-background: #ffffff;
-  --site-header-inset: 12px;
-  --site-header-clearance: 98px;
+  --page-background: #071f30;
+  --site-header-inset: 0px;
+  --site-header-clearance: 90px;
+  --navy-dark: #061c2b;
+  --navy-main: #0b3049;
+  --navy-light: #123d58;
+  --cyan: #42d9ff;
+  --text-light: #f4f8ff;
+  --text-muted: #bdcede;
 }
 
 html {
@@ -137,9 +143,14 @@ html {
   scroll-padding-block-start: var(--site-header-clearance);
 }
 
+
+html {
+  background: #071f30;
+}
+
 body {
-  color: var(--ink);
-  background: var(--page-background);
+  color: #f4f8ff;
+  background: #071f30;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

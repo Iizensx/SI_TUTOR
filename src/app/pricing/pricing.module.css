@@ -530,3 +530,303 @@
     animation: none;
   }
 }
+
+
+/* =========================================
+   PRICING PAGE — DARK NAVY THEME
+   ========================================= */
+
+/* Page background */
+.page {
+  background: linear-gradient(
+    180deg,
+    #071f30 0%,
+    #09283d 50%,
+    #071f30 100%
+  );
+  color: #f4f8ff;
+}
+
+.glow {
+  background:
+    radial-gradient(
+      40% 50% at 12% 30%,
+      #0ea5e933 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      35% 45% at 88% 20%,
+      #818cf833 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      30% 40% at 55% 70%,
+      #42d9ff12 0%,
+      transparent 70%
+    );
+}
+
+/* Header */
+.eyebrow {
+  color: #42d9ff;
+}
+
+.title {
+  color: #f4f8ff;
+}
+
+.lead {
+  color: #bdcede;
+}
+
+/* Access pill */
+.accessPill {
+  border-color: #28516b;
+  background: #0b3049cc;
+  color: #bdcede;
+  box-shadow: 0 10px 24px -16px #00000099;
+}
+
+.pillActive {
+  background: linear-gradient(
+    100deg,
+    #0ea5e9,
+    #6366f1
+  );
+  color: #ffffff;
+}
+
+/* Pricing cards */
+.card {
+  border-color: #24465f;
+  background: linear-gradient(
+    165deg,
+    #0b3049 0%,
+    #102f49 60%,
+    #123d58 100%
+  );
+  color: #f4f8ff;
+  box-shadow: 0 24px 50px -32px #000000cc;
+}
+
+.card[data-plan="bundle"] {
+  border: 1px solid #38bdf8;
+  background: linear-gradient(
+    145deg,
+    #0b2540 0%,
+    #172554 55%,
+    #312e81 120%
+  );
+  color: #ffffff;
+  box-shadow: 0 28px 60px -30px #2563eb88;
+}
+
+.card[data-plan="all-access"] {
+  border-color: #51458a;
+  background: linear-gradient(
+    165deg,
+    #172b4a 0%,
+    #252451 65%,
+    #30264f 100%
+  );
+  color: #ffffff;
+}
+
+/* Animated bundle border */
+.stripes {
+  background: repeating-linear-gradient(
+    135deg,
+    #38bdf8 0 7px,
+    #6366f1 7px 14px,
+    #818cf8 14px 21px
+  );
+  box-shadow: 0 30px 60px -30px #2563eb99;
+}
+
+/* Plan badge */
+.badge {
+  border: 1px solid #ffffff20;
+  background: #164765;
+  color: #bae6fd;
+}
+
+.badge i {
+  background: #38bdf8;
+}
+
+.card[data-plan="bundle"] .badge {
+  background: linear-gradient(
+    100deg,
+    #bae6fd,
+    #7dd3fc
+  );
+  color: #075985;
+}
+
+.card[data-plan="bundle"] .badge i {
+  background: #0284c7;
+}
+
+/* Plan name and price */
+.name {
+  color: #f4f8ff;
+}
+
+.price {
+  color: #f4f8ff;
+}
+
+.card[data-plan="bundle"] .price {
+  color: #7dd3fc;
+}
+
+.original {
+  color: #91a9bf;
+}
+
+.card[data-plan="bundle"] .original {
+  color: #94a3b8;
+}
+
+.unit {
+  color: #f4f8ff;
+}
+
+.unit small {
+  color: #91a9bf;
+}
+
+.card[data-plan="bundle"] .unit small {
+  color: #7dd3fc;
+}
+
+/* Description */
+.description {
+  color: #bdcede;
+}
+
+.card[data-plan="bundle"] .description {
+  color: #dbeafe;
+}
+
+/* Divider */
+.divider {
+  border-color: #365a73;
+}
+
+.card[data-plan="bundle"] .divider {
+  border-color: #426080;
+}
+
+/* Features */
+.features li {
+  color: #e2e8f0;
+}
+
+.features li:not([data-included]) {
+  color: #718ba3;
+}
+
+.card[data-plan="bundle"] .features li:not([data-included]) {
+  color: #91a9bf;
+}
+
+.yes {
+  background: #0d9488;
+  box-shadow: 0 4px 10px -4px #0d948899;
+}
+
+.no {
+  color: #718ba3;
+}
+
+/* Pricing buttons */
+.cta {
+  border-color: transparent;
+  background: #ffffff;
+  color: #075985;
+  box-shadow: 0 10px 22px -14px #00000099;
+}
+
+.cta:hover {
+  background: #e0f2fe;
+  box-shadow: 0 16px 28px -14px #000000cc;
+}
+
+.card[data-plan="bundle"] .cta {
+  background: #ffffff;
+  color: #075985;
+}
+
+.card[data-plan="all-access"] .cta {
+  background: linear-gradient(
+    100deg,
+    #38bdf8,
+    #6366f1,
+    #818cf8
+  );
+  color: #ffffff;
+}
+
+.cta:focus-visible {
+  outline-color: #38bdf8;
+}
+
+/* Demo note */
+.demoNote {
+  color: #91a9bf;
+}
+
+/* Single course prices */
+.courses h2 {
+  color: #f4f8ff;
+}
+
+.courses > p {
+  color: #bdcede;
+}
+
+.subject {
+  border: 1px solid #28516b;
+  background: #0b3049;
+}
+
+.subject summary {
+  color: #f4f8ff;
+}
+
+.subject summary span {
+  color: #91a9bf;
+}
+
+.subject summary span::after {
+  background: #164765;
+  color: #7dd3fc;
+}
+
+.subject ul {
+  background: #102f49;
+}
+
+.subject li + li {
+  border-top-color: #24465f;
+}
+
+.subject li a {
+  color: #bdcede;
+}
+
+.subject li a:hover {
+  color: #38bdf8;
+}
+
+.subject li strong {
+  color: #7dd3fc;
+}
+
+/* Keyboard focus */
+.subject summary:focus-visible,
+.subject li a:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 3px;
+}

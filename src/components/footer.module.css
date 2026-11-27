@@ -1,0 +1,13 @@
+.footer { position: relative; z-index: 100; display: block; clear: both; width: 100%; min-height: 100px; margin-top: 56px; padding: 24px 0 24px; text-align: center; color: #bdcede; font-size: 12px; visibility: visible; opacity: 1; }
+.paymentRow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 24px; margin-inline: calc(50% - 50vw); padding: 14px 24px; background: #0b3049; color: #f4f8ff; border-top: 1px solid #ffffff15; border-bottom: 1px solid #ffffff15; }
+.paymentMarks { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 14px; }
+.paymentMarks b { display: inline-grid; min-width: 45px; height: 26px; padding: 0 6px; place-items: center; border-radius: 4px; background: white; color: #111827; font-size: 11px; font-style: normal; font-weight: 800; }
+.paymentMarks .mastercard { color: #f36b21; background: #222; letter-spacing: -8px; padding-right: 14px; font-size: 22px; }
+.paymentMarks .visa, .paymentMarks .amex { color: white; background: #163ab5; }
+.paymentMarks .paypal { color: #005ea6; background: #75d5fa; border-radius: 16px; }
+.paymentMarks .afterpay { color: #111827; background: #a8edc2; border-radius: 16px; }
+.footerLinks { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0; margin: 22px 0 12px; }
+.footerLinks a { padding: 0 14px; border-right: 1px solid #d8dee8; color: #e2eff8; border-color: #ffffff33; }
+.footerLinks a:last-child { border-right: 0; }
+.footerLinks a:hover { color: #42d9ff; }
+.footer p { margin: 0; }
