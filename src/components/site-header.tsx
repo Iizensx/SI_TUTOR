@@ -25,7 +25,9 @@ export function SiteHeader() {
   return (
     <header className={styles.header}>
       <Link className={styles.brand} href="/" aria-label="SI Tutor home" onClick={closeMenu}>
-        <Image className={styles.brandRobot} src="/catalog/brand-robot.jpg" alt="" width={48} height={48} />
+        <span className={styles.brandMark} aria-hidden="true">
+          <Image className={styles.brandLogo} src="/brand/si-navbar-logo.png" alt="" width={64} height={64} />
+        </span>
         <span className={styles.brandCopy}>
           <span className={styles.brandName}><span>SI</span> TUTOR</span>
           <span className={styles.brandTagline}>Super Intelligence Tutor</span>

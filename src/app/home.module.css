@@ -54,8 +54,21 @@
 }
 
 .inner {
-  width: min(1240px, calc(100% - 32px));
+  width: 86%;
   margin-inline: auto;
+}
+
+/* Align the Hero artwork with the 7% page gutter. */
+@media (min-width: 1280px) {
+  .heroInner .heroVisual {
+    width: 90%;
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  .heroInner .title {
+    font-size: clamp(44px, 4.5vw, 84px);
+  }
 }
 
 .highlight {
@@ -507,7 +520,8 @@
 
 /* Home category posters */
 .categorySection {
-  padding-inline: 24px;
+  width: 86%;
+  margin-inline: auto;
 }
 
 .categoryGrid {
@@ -910,10 +924,6 @@
 
 /* ─────────── Responsive ─────────── */
 @media (max-width: 1099px) {
-  .categorySection {
-    padding-inline: 16px;
-  }
-
   .categoryGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
@@ -964,10 +974,6 @@
   .steps,
   .courseRow {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .categorySection {
-    padding-inline: 12px;
   }
 
   .categoryGrid {

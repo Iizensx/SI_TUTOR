@@ -269,7 +269,7 @@ export function HomeExperience({
       <div className={styles.page} id="home">
         <div className={styles.glow} aria-hidden="true" />
         <main id="main-content" tabIndex={-1}>
-          <div className={styles.inner}>
+          <div className={`${styles.inner} ${styles.heroInner}`}>
             <Hero courseCount={courseCount} />
           </div>
           <Categories subjects={subjects} />
