@@ -46,29 +46,23 @@
 
 .brandCopy {
   display: grid;
-  gap: 3px;
+  gap: 2px;
 }
 
 .brandName {
-  font-size: clamp(22px, 2.4vw, 29px);
-  font-weight: 850;
-  letter-spacing: -.045em;
+  color: #fff;
+  font-size: clamp(17px, 1.61vw, 20px);
+  font-weight: 800;
+  letter-spacing: -.04em;
   line-height: 1;
   white-space: nowrap;
 }
 
-.brandName > span {
-  color: #42d9ff;
-  background: linear-gradient(105deg,#a855f7 0%, #6366f1 50%, #3b82f6 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-}
-
 .brandTagline {
-  color: #b9d6e9;
-  font-size: 11px;
+  color: #c7c7c7;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .025em;
   line-height: 1.2;
   white-space: nowrap;
 }
@@ -166,9 +160,9 @@
     margin-bottom: 10px;
   }
 
-  .brandRobot { width: 34px; }
-  .brandName { font-size: clamp(18px, 5.6vw, 22px); }
-  .brandTagline { font-size: 9px; }
+  .brandMark { width: 34px; }
+  .brandName { font-size: clamp(14px, 3.92vw, 16px); }
+  .brandTagline { font-size: 7px; }
 
   .mobileToggle {
     display: flex;

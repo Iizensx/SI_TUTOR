@@ -29,8 +29,8 @@ export function SiteHeader() {
           <Image className={styles.brandLogo} src="/brand/si-navbar-logo.png" alt="" width={64} height={64} />
         </span>
         <span className={styles.brandCopy}>
-          <span className={styles.brandName}><span>SI</span> TUTOR</span>
-          <span className={styles.brandTagline}>Super Intelligence Tutor</span>
+          <span className={styles.brandName}>SI TUTOR</span>
+          <span className={styles.brandTagline}>SUPER INTELLIGENCE TUTOR</span>
         </span>
       </Link>
 
